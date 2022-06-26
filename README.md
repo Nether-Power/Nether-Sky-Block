@@ -22,4 +22,4 @@
   * [Cjsah](https://space.bilibili.com/19170004)
 
 ## Powered by
-* https://github.com/Dubhe-Studio/AnvilCraft-SkyLandMod
+* [AnvilCraft-SkyLandMod](https://github.com/Dubhe-Studio/AnvilCraft-SkyLandMod)
