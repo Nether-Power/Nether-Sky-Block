@@ -33,13 +33,12 @@ public class WorldPresetsRegistrarMixin {
     @Final @Shadow private Registry<StructureSet> structureSetRegistry;
     @Final @Shadow private Registry<ChunkGeneratorSettings> chunkGeneratorSettingsRegistry;
     @Final @Shadow private Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseParametersRegistry;
-    @Final @Shadow private RegistryEntry<DimensionType> overworldDimensionType;
     @Final @Shadow private RegistryEntry<DimensionType> theNetherDimensionType;
     @Final @Shadow private RegistryEntry<DimensionType> theEndDimensionType;
 
     @Inject(method = "initAndGetDefault", at = @At("RETURN"))
     private void register(CallbackInfoReturnable<RegistryEntry<WorldPreset>> cir) {
-        DimensionOptions overworld = this.createSkyDimensionOptions(this.overworldDimensionType, MultiNoiseBiomeSource.Preset.OVERWORLD.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.OVERWORLD);
+        DimensionOptions overworld = this.createSkyDimensionOptions(this.theNetherDimensionType, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
         DimensionOptions nether = this.createSkyDimensionOptions(this.theNetherDimensionType, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
         DimensionOptions end = this.createSkyDimensionOptions(this.theEndDimensionType, new TheEndBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.END);
         BuiltinRegistries.add(this.worldPresetRegistry, SkyLand.SKYLAND, new WorldPreset(Map.of(DimensionOptions.OVERWORLD, overworld, DimensionOptions.NETHER, nether, DimensionOptions.END, end)));
