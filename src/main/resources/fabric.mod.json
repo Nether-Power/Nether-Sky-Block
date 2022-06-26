@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "skyland",
+  "version": "${version}",
+  "name": "SkyLand",
+  "description": "Empty world generation",
+  "authors": [
+    "DubheStudio"
+  ],
+  "contact": {
+    "sources": "https://github.com/Dubhe-Studio/AnvilCraft-SkyLandMod",
+    "issues": "https://github.com/Dubhe-Studio/AnvilCraft-SkyLandMod/issues"
+  },
+  "license": "GUN GPL 3.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.dubhe.skyland.SkyLand"
+    ]
+  },
+  "mixins": [
+    "skyland.mixins.json"
+  ],
+  "accessWidener": "skyland.accesswidener",
+  "depends": {
+    "minecraft": ">=1.19",
+    "fabricloader": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

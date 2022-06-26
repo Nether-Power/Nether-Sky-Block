@@ -1,0 +1,7 @@
+accessWidener	v1	named
+extendable	class	net/minecraft/world/gen/chunk/NoiseChunkGenerator
+
+accessible	method	net/minecraft/world/GameRules register (Ljava/lang/String;Lnet/minecraft/world/GameRules$Category;Lnet/minecraft/world/GameRules$Type;)Lnet/minecraft/world/GameRules$Key;
+accessible	method	net/minecraft/world/GameRules$BooleanRule create (Z)Lnet/minecraft/world/GameRules$Type;
+
+accessible  class   net/minecraft/world/gen/WorldPresets$Registrar
