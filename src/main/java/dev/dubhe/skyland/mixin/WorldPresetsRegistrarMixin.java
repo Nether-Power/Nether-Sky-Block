@@ -34,6 +34,9 @@ public class WorldPresetsRegistrarMixin {
     @Final @Shadow private Registry<ChunkGeneratorSettings> chunkGeneratorSettingsRegistry;
     @Final @Shadow private Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseParametersRegistry;
     @Final @Shadow private RegistryEntry<DimensionType> theNetherDimensionType;
+
+    //TODO 和原版下界几乎一致的下界维度类型，但坐标比例尺为1.0
+    private RegistryEntry<DimensionType> overNetherDimensionType;
     @Final @Shadow private RegistryEntry<DimensionType> theEndDimensionType;
 
     @Inject(method = "initAndGetDefault", at = @At("RETURN"))
