@@ -1,5 +1,12 @@
 name: build
-on: [ pull_request, push ]
+on:
+  push:
+    paths:
+      - "*.gradle"
+      - "gradle.properties"
+      - "src/**"
+      - "./github/**"
+  pull_request:
 
 jobs:
   build:
