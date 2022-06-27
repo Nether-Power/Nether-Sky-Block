@@ -9,6 +9,8 @@ group = project.maven_group
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+
 loom {
     accessWidenerPath =  file("src/main/resources/skyland.accesswidener")
 }
