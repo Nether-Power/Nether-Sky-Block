@@ -72,3 +72,13 @@ publishing {
         }
     }
 }
+
+task build_datapack(type: Zip) {
+    archiveName "${project.name}-${project.version}.zip"
+
+    destinationDir file('build/libs')
+
+    from 'datapack'
+}
+
+build.dependsOn build_datapack

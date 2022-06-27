@@ -6,6 +6,7 @@ on:
       - "gradle.properties"
       - "src/**"
       - "./github/**"
+      - "datapack/**"
   pull_request:
 
 jobs:
@@ -46,4 +47,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: build-artifact
-          path: build/libs/*.jar
+          path: build/libs/**
