@@ -74,7 +74,7 @@ publishing {
 }
 
 task build_datapack(type: Zip) {
-    archiveName "${project.name}-${project.version}.zip"
+    archiveName "${project.name}-datapack-${project.version}.zip"
 
     destinationDir file('build/libs')
 
