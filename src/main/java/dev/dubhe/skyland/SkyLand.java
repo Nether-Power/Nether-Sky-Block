@@ -17,12 +17,19 @@ public class SkyLand implements ModInitializer {
     public static final RegistryKey<WorldPreset> SKYLAND = RegistryKey.of(Registry.WORLD_PRESET_KEY, ID);
 
     private static final Identifier SOUL_SAND_VALLEY = new Identifier("soul_sand_valley");
+    private static final Identifier BASALT_DELTAS = new Identifier("basalt_deltas");
 
     @Override
     public void onInitialize() {
 
-        BiomeModifications.addSpawn(context -> SOUL_SAND_VALLEY.equals(context.getBiomeKey().getValue()), SpawnGroup.MONSTER,
+        SkyLandGamerules.registry();
+
+        BiomeModifications.addSpawn(context -> SOUL_SAND_VALLEY.equals(context.getBiomeKey().getValue()),
+                SpawnGroup.MONSTER,
                 EntityType.WITCH, 1, 1, 1);
+
+        BiomeModifications.addSpawn(context -> BASALT_DELTAS.equals(context.getBiomeKey().getValue()),
+                SpawnGroup.MONSTER, EntityType.SLIME, 100, 2, 5);
 
     }
 }
