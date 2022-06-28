@@ -7,7 +7,7 @@ import net.minecraft.world.GameRules.Key;
 
 public class SkyLandGamerules {
 
-    public static final Key<BooleanRule> LC = GameRuleRegistry.register("gnmdLC", Category.MOBS, BooleanRule.create(false));
+    public static final Key<BooleanRule> LC = GameRuleRegistry.register("qnmdLC", Category.MOBS, BooleanRule.create(false));
     public static final Key<BooleanRule> CHIEFTAIN = GameRuleRegistry.register("chieftainMode", Category.MISC, BooleanRule.create(false));
 
 
