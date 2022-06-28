@@ -1,6 +1,6 @@
 package dev.dubhe.skyland.mixin;
 
-import dev.dubhe.skyland.SkyLand;
+import dev.dubhe.skyland.SkyLandGamerules;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -27,7 +27,7 @@ public class SpawnHelperMixin {
             cancellable = true
     )
     private static void spawnEntities(SpawnGroup group, ServerWorld world, WorldChunk chunk, SpawnHelper.Checker checker, SpawnHelper.Runner runner, CallbackInfo ci) {
-        if (world.getGameRules().getBoolean(SkyLand.LC)) {
+        if (world.getGameRules().getBoolean(SkyLandGamerules.LC)) {
             for (int i = chunk.getBottomY(); i < chunk.getTopY(); i += 16) {
                 ChunkSection chunkSection = chunk.getSectionArray()[chunk.getSectionIndex(i)];
                 if (chunkSection != null && !chunkSection.isEmpty()) {

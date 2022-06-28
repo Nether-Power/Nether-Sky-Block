@@ -1,6 +1,6 @@
 package dev.dubhe.skyland.mixin;
 
-import dev.dubhe.skyland.SkyLand;
+import dev.dubhe.skyland.SkyLandGamerules;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.WanderingTraderManager;
@@ -14,6 +14,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class WanderingTraderManagerMixin {
     @Redirect(method = "trySpawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextInt(I)I"))
     private int spawnX10(Random random, int value, ServerWorld world) {
-        return world.getGameRules().getBoolean(SkyLand.CHIEFTAIN) ? 0 : random.nextInt(value);
+        return world.getGameRules().getBoolean(SkyLandGamerules.CHIEFTAIN) ? 0 : random.nextInt(value);
     }
 }
