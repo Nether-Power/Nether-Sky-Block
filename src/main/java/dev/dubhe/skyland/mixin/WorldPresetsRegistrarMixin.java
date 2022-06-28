@@ -2,6 +2,7 @@ package dev.dubhe.skyland.mixin;
 
 import dev.dubhe.skyland.SkyLand;
 import dev.dubhe.skyland.SkyLandChunkGenerator;
+import dev.dubhe.skyland.dimension.DimensionTypes;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
@@ -16,7 +17,6 @@ import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
 import net.minecraft.world.biome.source.TheEndBiomeSource;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.dimension.DimensionTypes;
 import net.minecraft.world.gen.WorldPreset;
 import net.minecraft.world.gen.WorldPresets;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
@@ -38,10 +38,10 @@ public class WorldPresetsRegistrarMixin {
     @Final @Shadow private Registry<ChunkGeneratorSettings> chunkGeneratorSettingsRegistry;
     @Final @Shadow private Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseParametersRegistry;
     @Final @Shadow private RegistryEntry<DimensionType> theNetherDimensionType;
-
     @Final @Shadow private Registry<DimensionType> dimensionTypeRegistry;
+    @Final @Shadow private RegistryEntry<DimensionType> theEndDimensionType;
 
-    private final DimensionType overNether = new DimensionType(
+    private static final DimensionType overNether = new DimensionType(
             OptionalLong.of(18000L),
             false,
             true,
@@ -54,16 +54,15 @@ public class WorldPresetsRegistrarMixin {
             256,
             128,
             BlockTags.INFINIBURN_NETHER,
-            DimensionTypes.THE_NETHER_ID,
-            0.1F, new
-            DimensionType.MonsterSettings(true, true, ConstantIntProvider.create(11), 15)
+            net.minecraft.world.dimension.DimensionTypes.THE_NETHER_ID,
+            0.1F,
+            new DimensionType.MonsterSettings(true, true, ConstantIntProvider.create(11), 15)
     );
-    private final RegistryEntry<DimensionType> overNetherDimensionType = this.dimensionTypeRegistry.createEntry(overNether);
-    @Final @Shadow private RegistryEntry<DimensionType> theEndDimensionType;
 
     @Inject(method = "initAndGetDefault", at = @At("RETURN"))
     private void register(CallbackInfoReturnable<RegistryEntry<WorldPreset>> cir) {
-        DimensionOptions overworld = this.createSkyDimensionOptions(this.overNetherDimensionType, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
+        BuiltinRegistries.add(dimensionTypeRegistry, DimensionTypes.OVER_NETHER, overNether);
+        DimensionOptions overworld = this.createSkyDimensionOptions(this.dimensionTypeRegistry.getOrCreateEntry(DimensionTypes.OVER_NETHER), MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
         DimensionOptions nether = this.createSkyDimensionOptions(this.theNetherDimensionType, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
         DimensionOptions end = this.createSkyDimensionOptions(this.theEndDimensionType, new TheEndBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.END);
         BuiltinRegistries.add(this.worldPresetRegistry, SkyLand.SKYLAND, new WorldPreset(Map.of(DimensionOptions.OVERWORLD, overworld, DimensionOptions.NETHER, nether, DimensionOptions.END, end)));
