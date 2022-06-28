@@ -38,14 +38,14 @@ public class EnderDragonFightMixin {
             this.exitPortalLocation = new BlockPos(0, 60, 0);
     }
 
-    @Inject(method = "dragonKilled", at = @At(value = "INVOKE_ASSIGN", target="Lnet/minecraft/entity/boss/dragon/EnderDragonFight;generateNewEndGateway()V"))
-    private void setBlock(EnderDragonEntity dragon, CallbackInfo ci){
-        ShulkerEntity shulker = EntityType.SHULKER.create(world);
-        BlockPos pos = this.world.getTopPosition(Heightmap.Type.MOTION_BLOCKING, EndPortalFeature.ORIGIN);
-        if (shulker != null&&this.previouslyKilled) {
-            shulker.initialize(world, world.getLocalDifficulty(pos), SpawnReason.NATURAL, null, null);
-            shulker.refreshPositionAndAngles(pos, 0.0F, 0.0F);
-            world.spawnEntityAndPassengers(shulker);
-        }
-    }
+//    @Inject(method = "dragonKilled", at = @At(value = "INVOKE_ASSIGN", target="Lnet/minecraft/entity/boss/dragon/EnderDragonFight;generateNewEndGateway()V"))
+//    private void setBlock(EnderDragonEntity dragon, CallbackInfo ci){
+//        ShulkerEntity shulker = EntityType.SHULKER.create(world);
+//        BlockPos pos = this.world.getTopPosition(Heightmap.Type.MOTION_BLOCKING, EndPortalFeature.ORIGIN);
+//        if (shulker != null&&this.previouslyKilled) {
+//            shulker.initialize(world, world.getLocalDifficulty(pos), SpawnReason.NATURAL, null, null);
+//            shulker.refreshPositionAndAngles(pos, 0.0F, 0.0F);
+//            world.spawnEntityAndPassengers(shulker);
+//        }
+//    }
 }

@@ -2,9 +2,17 @@ package dev.dubhe.skyland;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.WorldPreset;
@@ -30,6 +38,23 @@ public class SkyLand implements ModInitializer {
 
         BiomeModifications.addSpawn(context -> BASALT_DELTAS.equals(context.getBiomeKey().getValue()),
                 SpawnGroup.MONSTER, EntityType.SLIME, 100, 2, 5);
+
+        ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killedEntity) -> {
+            if (killedEntity instanceof EnderDragonEntity enderDragonEntity) {
+                ItemEntity itemEntity = EntityType.ITEM.create(world);
+                assert itemEntity != null;
+
+                NbtCompound nbtCompound = new NbtCompound();
+                nbtCompound.putInt("Damage", 426);
+
+                ItemStack itemStack = new ItemStack(Items.ELYTRA, 1);
+                itemStack.setNbt(nbtCompound);
+                itemEntity.setStack(itemStack);
+                Vec3d pos = enderDragonEntity.getPos();
+                itemEntity.setPosition(pos);
+                world.spawnEntityAndPassengers(itemEntity);
+            }
+        });
 
     }
 }
