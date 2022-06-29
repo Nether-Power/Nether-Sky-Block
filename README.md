@@ -41,6 +41,7 @@
   * [古镇天Gugle](https://space.bilibili.com/19822751)
   * [Cjsah](https://space.bilibili.com/19170004)
   * [DancingSnow](https://space.bilibili.com/302121711)
+  * [Huaji_MUR233](https://space.bilibili.com/434118309)
 
 ## Powered by
 * [AnvilCraft-SkyLandMod](https://github.com/Dubhe-Studio/AnvilCraft-SkyLandMod)
