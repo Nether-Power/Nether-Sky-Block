@@ -60,7 +60,6 @@ public class SkyLandTrades {
 
     public static void removeFarmerTrades() {
 
-        System.out.println("Start remove farmer trades");
         Factory[] farm_trades = TradeOffers.PROFESSION_TO_LEVELED_TRADE.get(VillagerProfession.FARMER).get(2);
         Factory[] new_farm_trades = new Factory[2];
 
