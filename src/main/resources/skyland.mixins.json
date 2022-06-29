@@ -5,6 +5,7 @@
   "mixins": [
     "ChunkGeneratorsMixin",
     "EnderDragonFightMixin",
+    "FluidBlockMixin",
     "SpawnHelperMixin",
     "WanderingTraderManagerMixin",
     "WorldPresetsRegistrarMixin",
