@@ -6,6 +6,7 @@
     "ChunkGeneratorsMixin",
     "EnderDragonFightMixin",
     "FluidBlockMixin",
+    "MinecraftServerMixin",
     "SpawnHelperMixin",
     "WanderingTraderManagerMixin",
     "WorldPresetsRegistrarMixin",
