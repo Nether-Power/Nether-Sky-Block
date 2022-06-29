@@ -41,7 +41,7 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 java {
-    withSourcesJar()
+//    withSourcesJar()
 }
 
 jar {
@@ -56,9 +56,9 @@ publishing {
             artifact(remapJar) {
                 builtBy remapJar
             }
-            artifact(sourcesJar) {
-                builtBy remapSourcesJar
-            }
+//            artifact(sourcesJar) {
+//                builtBy remapSourcesJar
+//            }
         }
     }
 
