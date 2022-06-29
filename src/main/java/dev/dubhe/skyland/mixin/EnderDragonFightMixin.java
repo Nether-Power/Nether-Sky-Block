@@ -48,7 +48,9 @@ public class EnderDragonFightMixin {
     )
     private void spawnShulker(EnderDragonEntity dragon, CallbackInfo ci) {
         ShulkerEntity shulker = EntityType.SHULKER.create(world);
-        assert shulker != null;
+        if (!previouslyKilled || shulker == null) {
+            return;
+        }
         BlockPos pos = this.world.getTopPosition(Heightmap.Type.MOTION_BLOCKING, EndPortalFeature.ORIGIN);
         shulker.setPos(pos.getX(), pos.getY() + 1, pos.getZ());
 
