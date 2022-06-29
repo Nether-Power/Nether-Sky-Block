@@ -80,6 +80,9 @@ task build_datapack(type: Zip) {
     destinationDir file('build/libs')
 
     from 'datapack'
+    from("LICENSE") {
+        rename { "${it}_${project.name}" }
+    }
 }
 
 build.dependsOn build_datapack
