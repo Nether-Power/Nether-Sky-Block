@@ -19,9 +19,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class FluidBlockMixin {
     @Shadow
     @Final
-    protected FlowableFluid fluid;
-    @Shadow
-    @Final
     public static ImmutableList<Direction> FLOW_DIRECTIONS;
 
     @Inject(
@@ -33,7 +30,7 @@ public class FluidBlockMixin {
             )
     )
     private void cauldronObsidian(World world, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        if (world.getGameRules().getBoolean(SkyLandGamerules.CHIEFTAIN)) {
+        if (world.getGameRules().getBoolean(SkyLandGamerules.WATER_CAULDRON)) {
             for (Direction direction : FLOW_DIRECTIONS) {
                 BlockPos blockPos = pos.offset(direction.getOpposite());
                 BlockState blockState = world.getBlockState(blockPos);
