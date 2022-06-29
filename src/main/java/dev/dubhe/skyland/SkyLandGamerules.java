@@ -13,6 +13,7 @@ public class SkyLandGamerules {
 
     public static final Key<BooleanRule> LC = GameRuleRegistry.register("qnmdLC", Category.MOBS, BooleanRule.create(false));
     public static final Key<BooleanRule> CHIEFTAIN = GameRuleRegistry.register("chieftainMode", Category.MISC, BooleanRule.create(false));
+    public static final Key<BooleanRule> WATER_CAULDRON = GameRuleRegistry.register("water_cauldron", Category.MISC, BooleanRule.create(false));
 
 
 }

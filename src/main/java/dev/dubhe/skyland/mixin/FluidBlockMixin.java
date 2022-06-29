@@ -1,9 +1,9 @@
 package dev.dubhe.skyland.mixin;
 
 import com.google.common.collect.ImmutableList;
+import dev.dubhe.skyland.SkyLandGamerules;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FlowableFluid;
-import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -17,9 +17,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FluidBlock.class)
 public class FluidBlockMixin {
-    @Shadow @Final
+    @Shadow
+    @Final
     protected FlowableFluid fluid;
-    @Shadow @Final
+    @Shadow
+    @Final
     public static ImmutableList<Direction> FLOW_DIRECTIONS;
 
     @Inject(
@@ -30,15 +32,17 @@ public class FluidBlockMixin {
                     shift = At.Shift.AFTER
             )
     )
-    private void cauldronObsidian(World world, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir){
-        for (Direction direction : FLOW_DIRECTIONS) {
-            BlockPos blockPos = pos.offset(direction.getOpposite());
-            BlockState blockState = world.getBlockState(blockPos);
-            if (blockState.isOf(Blocks.WATER_CAULDRON)&&((LeveledCauldronBlock)blockState.getBlock()).isFull(blockState)) {
-                if (world.getFluidState(pos).isStill()){
-                    world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
-                    world.setBlockState(blockPos, Blocks.CAULDRON.getDefaultState());
-                    world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
+    private void cauldronObsidian(World world, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
+        if (world.getGameRules().getBoolean(SkyLandGamerules.CHIEFTAIN)) {
+            for (Direction direction : FLOW_DIRECTIONS) {
+                BlockPos blockPos = pos.offset(direction.getOpposite());
+                BlockState blockState = world.getBlockState(blockPos);
+                if (blockState.isOf(Blocks.WATER_CAULDRON) && ((LeveledCauldronBlock) blockState.getBlock()).isFull(blockState)) {
+                    if (world.getFluidState(pos).isStill()) {
+                        world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
+                        world.setBlockState(blockPos, Blocks.CAULDRON.getDefaultState());
+                        world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
+                    }
                 }
             }
         }

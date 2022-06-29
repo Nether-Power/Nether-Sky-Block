@@ -1,5 +1,6 @@
 {
   "generator.skyland.skyland": "SkyLand",
   "gamerule.qnmdLC": "qnmdLC",
-  "gamerule.chieftainMode": "Chieftain Mode"
+  "gamerule.chieftainMode": "Chieftain Mode",
+  "gamerule.water_cauldron": "Water Cauldron Turn lava into Obsidian"
 }
