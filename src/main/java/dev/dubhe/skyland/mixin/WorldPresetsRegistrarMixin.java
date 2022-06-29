@@ -18,7 +18,6 @@ import net.minecraft.world.biome.source.TheEndBiomeSource;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.WorldPreset;
-import net.minecraft.world.gen.WorldPresets;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Map;
 import java.util.OptionalLong;
 
-@Mixin(WorldPresets.Registrar.class)
+@Mixin(targets = "net.minecraft.world.gen.WorldPresets.Registrar")
 public class WorldPresetsRegistrarMixin {
 
     @Final

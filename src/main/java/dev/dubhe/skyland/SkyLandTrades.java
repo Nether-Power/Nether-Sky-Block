@@ -1,6 +1,7 @@
 package dev.dubhe.skyland;
 
 import com.google.common.collect.ImmutableMap;
+import dev.dubhe.skyland.mixin.SellItemFactoryAccessor;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
@@ -64,7 +65,7 @@ public class SkyLandTrades {
         int counter = 0;
         for (Factory factory : farm_trades) {
             if (factory instanceof SellItemFactory sellItemFactory) {
-                if (sellItemFactory.sell.getItem() != Items.PUMPKIN_PIE) {
+                if (((SellItemFactoryAccessor) sellItemFactory).getSell().getItem() != Items.PUMPKIN_PIE) {
                     new_farm_trades[counter] = factory;
                     counter += 1;
                 }
