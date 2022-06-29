@@ -1,11 +1,9 @@
 package dev.dubhe.skyland;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -23,9 +21,6 @@ public class SkyLandMod implements ModInitializer {
 
     public static final RegistryKey<WorldPreset> SKYLAND = RegistryKey.of(Registry.WORLD_PRESET_KEY, ID);
 
-    private static final Identifier SOUL_SAND_VALLEY = new Identifier("soul_sand_valley");
-    private static final Identifier BASALT_DELTAS = new Identifier("basalt_deltas");
-
     @Override
     public void onInitialize() {
 
@@ -33,13 +28,6 @@ public class SkyLandMod implements ModInitializer {
 
         SkyLandTrades.mergeWanderingTraderOffers(SkyLandTrades.getSkyLandWanderingTraderOffers());
         SkyLandTrades.removeFarmerTrades();
-
-        BiomeModifications.addSpawn(context -> SOUL_SAND_VALLEY.equals(context.getBiomeKey().getValue()),
-                SpawnGroup.MONSTER,
-                EntityType.WITCH, 1, 1, 1);
-
-        BiomeModifications.addSpawn(context -> BASALT_DELTAS.equals(context.getBiomeKey().getValue()),
-                SpawnGroup.MONSTER, EntityType.SLIME, 100, 2, 5);
 
         ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killedEntity) -> {
             if (killedEntity instanceof EnderDragonEntity enderDragonEntity) {
