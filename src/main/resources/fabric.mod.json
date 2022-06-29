@@ -5,11 +5,11 @@
   "name": "SkyLand",
   "description": "Empty world generation",
   "authors": [
-    "DubheStudio"
+    "NetherSkyBlockTeam"
   ],
   "contact": {
-    "sources": "https://github.com/Dubhe-Studio/AnvilCraft-SkyLandMod",
-    "issues": "https://github.com/Dubhe-Studio/AnvilCraft-SkyLandMod/issues"
+    "sources": "https://github.com/XXiuBai/Nether_Sky_Block",
+    "issues": "https://github.com/XXiuBai/Nether_Sky_Block/issues"
   },
   "license": "GUN GPL 3.0",
   "environment": "*",
