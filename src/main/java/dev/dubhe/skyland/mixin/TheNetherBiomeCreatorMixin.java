@@ -126,10 +126,8 @@ public class TheNetherBiomeCreatorMixin {
     }
 
     private static int getSkyColor(float temperature) {
-        float f = temperature;
-        f /= 3.0f;
-        f = MathHelper.clamp(f, -1.0f, 1.0f);
-        return MathHelper.hsvToRgb(0.62222224f - f * 0.05f, 0.5f + f * 0.1f, 1.0f);
+        temperature = MathHelper.clamp(temperature / 3.0f, -1.0f, 1.0f);
+        return MathHelper.hsvToRgb(0.62222224f - temperature * 0.05f, 0.5f + temperature * 0.1f, 1.0f);
     }
 
 }
