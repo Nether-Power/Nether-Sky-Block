@@ -7,7 +7,8 @@
     "EnderDragonFightMixin",
     "SpawnHelperMixin",
     "WanderingTraderManagerMixin",
-    "WorldPresetsRegistrarMixin"
+    "WorldPresetsRegistrarMixin",
+    "ZombieEntityMixin"
   ],
   "client": [],
   "injectors": {
