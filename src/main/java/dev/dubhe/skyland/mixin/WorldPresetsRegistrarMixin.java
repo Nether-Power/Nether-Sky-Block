@@ -1,6 +1,6 @@
 package dev.dubhe.skyland.mixin;
 
-import dev.dubhe.skyland.SkyLand;
+import dev.dubhe.skyland.SkyLandMod;
 import dev.dubhe.skyland.SkyLandChunkGenerator;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.tag.BlockTags;
@@ -67,7 +67,7 @@ public class WorldPresetsRegistrarMixin {
         DimensionOptions overworld = this.createSkyDimensionOptions(this.dimensionTypeRegistry.getOrCreateEntry(OVER_NETHER), MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
         DimensionOptions nether = this.createSkyDimensionOptions(this.theNetherDimensionType, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
         DimensionOptions end = this.createSkyDimensionOptions(this.theEndDimensionType, new TheEndBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.END);
-        BuiltinRegistries.add(this.worldPresetRegistry, SkyLand.SKYLAND, new WorldPreset(Map.of(DimensionOptions.OVERWORLD, overworld, DimensionOptions.NETHER, nether, DimensionOptions.END, end)));
+        BuiltinRegistries.add(this.worldPresetRegistry, SkyLandMod.SKYLAND, new WorldPreset(Map.of(DimensionOptions.OVERWORLD, overworld, DimensionOptions.NETHER, nether, DimensionOptions.END, end)));
     }
 
     private DimensionOptions createSkyDimensionOptions(RegistryEntry<DimensionType> type, BiomeSource biomes, RegistryKey<ChunkGeneratorSettings> key) {

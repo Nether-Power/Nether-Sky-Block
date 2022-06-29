@@ -15,7 +15,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.dubhe.skyland.SkyLand"
+      "dev.dubhe.skyland.SkyLandMod"
     ]
   },
   "mixins": [

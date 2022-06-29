@@ -1,7 +1,7 @@
 package dev.dubhe.skyland.mixin;
 
 import com.mojang.serialization.Codec;
-import dev.dubhe.skyland.SkyLand;
+import dev.dubhe.skyland.SkyLandMod;
 import dev.dubhe.skyland.SkyLandChunkGenerator;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -15,6 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ChunkGeneratorsMixin {
     @Inject(method = "registerAndGetDefault", at = @At("RETURN"))
     private static void register(Registry<Codec<? extends ChunkGenerator>> registry, CallbackInfoReturnable<Codec<? extends ChunkGenerator>> cir) {
-        Registry.register(registry, SkyLand.ID, SkyLandChunkGenerator.CODEC);
+        Registry.register(registry, SkyLandMod.ID, SkyLandChunkGenerator.CODEC);
     }
 }
