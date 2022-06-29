@@ -18,8 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SpawnHelper.class)
 public class SpawnHelperMixin {
+
     @Shadow
-    public static void spawnEntitiesInChunk(SpawnGroup group, ServerWorld world, Chunk chunk, BlockPos pos, SpawnHelper.Checker checker, SpawnHelper.Runner runner) {
+    public static void spawnEntitiesInChunk(SpawnGroup group, ServerWorld world, Chunk chunk, BlockPos pos,
+            SpawnHelper.Checker checker, SpawnHelper.Runner runner) {
     }
 
     @Inject(
@@ -27,7 +29,8 @@ public class SpawnHelperMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void spawnEntities(SpawnGroup group, ServerWorld world, WorldChunk chunk, SpawnHelper.Checker checker, SpawnHelper.Runner runner, CallbackInfo ci) {
+    private static void spawnEntities(SpawnGroup group, ServerWorld world, WorldChunk chunk,
+            SpawnHelper.Checker checker, SpawnHelper.Runner runner, CallbackInfo ci) {
         if (world.getGameRules().getBoolean(SkyLandGamerules.LC)) {
             for (int i = chunk.getBottomY(); i < chunk.getTopY(); i += 16) {
                 ChunkSection chunkSection = chunk.getSectionArray()[chunk.getSectionIndex(i)];

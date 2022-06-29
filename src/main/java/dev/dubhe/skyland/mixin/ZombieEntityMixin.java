@@ -24,6 +24,7 @@ import java.util.Objects;
 
 @Mixin(ZombieEntity.class)
 public class ZombieEntityMixin {
+
     protected final Random random = Random.create();
 
     @Inject(method = "damage",
@@ -52,16 +53,27 @@ public class ZombieEntityMixin {
                 BlockPos blockPos = new BlockPos(m, n, o);
                 EntityType<?> entityType = zombieVillager.getType();
                 SpawnRestriction.Location location = SpawnRestriction.getLocation(entityType);
-                if (!SpawnHelper.canSpawn(location, world, blockPos, entityType) || !SpawnRestriction.canSpawn(entityType, serverWorld, SpawnReason.REINFORCEMENT, blockPos, world.random))
+                if (!SpawnHelper.canSpawn(location, world, blockPos, entityType) || !SpawnRestriction.canSpawn(
+                        entityType, serverWorld, SpawnReason.REINFORCEMENT, blockPos, world.random)) {
                     continue;
+                }
                 zombieVillager.setPosition(m, n, o);
-                if (world.isPlayerInRange(m, n, o, 7.0) || !world.doesNotIntersectEntities(zombieVillager) || !world.isSpaceEmpty(zombieVillager) || world.containsFluid(zombieVillager.getBoundingBox()))
+                if (world.isPlayerInRange(m, n, o, 7.0) || !world.doesNotIntersectEntities(zombieVillager)
+                        || !world.isSpaceEmpty(zombieVillager) || world.containsFluid(
+                        zombieVillager.getBoundingBox())) {
                     continue;
+                }
                 zombieVillager.setTarget(livingEntity);
-                zombieVillager.initialize(serverWorld, world.getLocalDifficulty(zombieVillager.getBlockPos()), SpawnReason.REINFORCEMENT, null, null);
+                zombieVillager.initialize(serverWorld, world.getLocalDifficulty(zombieVillager.getBlockPos()),
+                        SpawnReason.REINFORCEMENT, null, null);
                 serverWorld.spawnEntityAndPassengers(zombieVillager);
-                Objects.requireNonNull(zombie.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)).addPersistentModifier(new EntityAttributeModifier("Zombie reinforcement caller charge", -0.05f, EntityAttributeModifier.Operation.ADDITION));
-                Objects.requireNonNull(zombieVillager.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)).addPersistentModifier(new EntityAttributeModifier("Zombie reinforcement callee charge", -0.05f, EntityAttributeModifier.Operation.ADDITION));
+                Objects.requireNonNull(zombie.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS))
+                        .addPersistentModifier(new EntityAttributeModifier("Zombie reinforcement caller charge", -0.05f,
+                                EntityAttributeModifier.Operation.ADDITION));
+                Objects.requireNonNull(
+                                zombieVillager.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS))
+                        .addPersistentModifier(new EntityAttributeModifier("Zombie reinforcement callee charge", -0.05f,
+                                EntityAttributeModifier.Operation.ADDITION));
                 break;
             }
         }

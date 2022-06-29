@@ -13,8 +13,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChunkGenerators.class)
 public class ChunkGeneratorsMixin {
+
     @Inject(method = "registerAndGetDefault", at = @At("RETURN"))
-    private static void register(Registry<Codec<? extends ChunkGenerator>> registry, CallbackInfoReturnable<Codec<? extends ChunkGenerator>> cir) {
+    private static void register(Registry<Codec<? extends ChunkGenerator>> registry,
+            CallbackInfoReturnable<Codec<? extends ChunkGenerator>> cir) {
         Registry.register(registry, SkyLandMod.ID, SkyLandChunkGenerator.CODEC);
     }
 }

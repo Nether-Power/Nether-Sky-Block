@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FluidBlock.class)
 public class FluidBlockMixin {
+
     @Inject(
             method = "receiveNeighborFluids",
             at = @At(

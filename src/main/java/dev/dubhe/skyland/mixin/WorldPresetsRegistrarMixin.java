@@ -32,6 +32,7 @@ import java.util.OptionalLong;
 
 @Mixin(WorldPresets.Registrar.class)
 public class WorldPresetsRegistrarMixin {
+
     @Final
     @Shadow
     private Registry<WorldPreset> worldPresetRegistry;
@@ -75,18 +76,28 @@ public class WorldPresetsRegistrarMixin {
             new DimensionType.MonsterSettings(true, true, ConstantIntProvider.create(11), 15)
     );
 
-    private static final RegistryKey<DimensionType> OVER_NETHER = RegistryKey.of(Registry.DIMENSION_TYPE_KEY, new Identifier("over_nether"));
+    private static final RegistryKey<DimensionType> OVER_NETHER = RegistryKey.of(Registry.DIMENSION_TYPE_KEY,
+            new Identifier("over_nether"));
 
     @Inject(method = "initAndGetDefault", at = @At("RETURN"))
     private void register(CallbackInfoReturnable<RegistryEntry<WorldPreset>> cir) {
         BuiltinRegistries.add(dimensionTypeRegistry, OVER_NETHER, overNether);
-        DimensionOptions overworld = this.createSkyDimensionOptions(this.dimensionTypeRegistry.getOrCreateEntry(OVER_NETHER), MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
-        DimensionOptions nether = this.createSkyDimensionOptions(this.theNetherDimensionType, MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
-        DimensionOptions end = this.createSkyDimensionOptions(this.theEndDimensionType, new TheEndBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.END);
-        BuiltinRegistries.add(this.worldPresetRegistry, SkyLandMod.SKYLAND, new WorldPreset(Map.of(DimensionOptions.OVERWORLD, overworld, DimensionOptions.NETHER, nether, DimensionOptions.END, end)));
+        DimensionOptions overworld = this.createSkyDimensionOptions(
+                this.dimensionTypeRegistry.getOrCreateEntry(OVER_NETHER),
+                MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
+        DimensionOptions nether = this.createSkyDimensionOptions(this.theNetherDimensionType,
+                MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
+        DimensionOptions end = this.createSkyDimensionOptions(this.theEndDimensionType,
+                new TheEndBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.END);
+        BuiltinRegistries.add(this.worldPresetRegistry, SkyLandMod.SKYLAND, new WorldPreset(
+                Map.of(DimensionOptions.OVERWORLD, overworld, DimensionOptions.NETHER, nether, DimensionOptions.END,
+                        end)));
     }
 
-    private DimensionOptions createSkyDimensionOptions(RegistryEntry<DimensionType> type, BiomeSource biomes, RegistryKey<ChunkGeneratorSettings> key) {
-        return new DimensionOptions(type, new SkyLandChunkGenerator(this.structureSetRegistry, this.noiseParametersRegistry, biomes, this.chunkGeneratorSettingsRegistry.getOrCreateEntry(key)));
+    private DimensionOptions createSkyDimensionOptions(RegistryEntry<DimensionType> type, BiomeSource biomes,
+            RegistryKey<ChunkGeneratorSettings> key) {
+        return new DimensionOptions(type,
+                new SkyLandChunkGenerator(this.structureSetRegistry, this.noiseParametersRegistry, biomes,
+                        this.chunkGeneratorSettingsRegistry.getOrCreateEntry(key)));
     }
 }

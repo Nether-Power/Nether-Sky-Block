@@ -36,16 +36,20 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 public class SkyLandChunkGenerator extends NoiseChunkGenerator {
+
     private final Registry<DoublePerlinNoiseSampler.NoiseParameters> structuresRegistry;
 
     public static final Codec<SkyLandChunkGenerator> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            RegistryOps.createRegistryCodec(Registry.STRUCTURE_SET_KEY).forGetter(generator -> generator.structureSetRegistry),
+            RegistryOps.createRegistryCodec(Registry.STRUCTURE_SET_KEY)
+                    .forGetter(generator -> generator.structureSetRegistry),
             RegistryOps.createRegistryCodec(Registry.NOISE_KEY).forGetter(generator -> generator.structuresRegistry),
             BiomeSource.CODEC.fieldOf("biome_source").forGetter(generator -> generator.biomeSource),
             ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings").forGetter(generator -> generator.settings)
     ).apply(instance, instance.stable(SkyLandChunkGenerator::new)));
 
-    public SkyLandChunkGenerator(Registry<StructureSet> noiseRegistry, Registry<DoublePerlinNoiseSampler.NoiseParameters> structuresRegistry, BiomeSource biomeSource, RegistryEntry<ChunkGeneratorSettings> settings) {
+    public SkyLandChunkGenerator(Registry<StructureSet> noiseRegistry,
+            Registry<DoublePerlinNoiseSampler.NoiseParameters> structuresRegistry, BiomeSource biomeSource,
+            RegistryEntry<ChunkGeneratorSettings> settings) {
         super(noiseRegistry, structuresRegistry, biomeSource, settings);
         this.structuresRegistry = structuresRegistry;
     }
@@ -61,7 +65,8 @@ public class SkyLandChunkGenerator extends NoiseChunkGenerator {
     }
 
     @Override
-    public CompletableFuture<Chunk> populateNoise(Executor executor, Blender blender, NoiseConfig noiseConfig, StructureAccessor structureAccessor, Chunk chunk) {
+    public CompletableFuture<Chunk> populateNoise(Executor executor, Blender blender, NoiseConfig noiseConfig,
+            StructureAccessor structureAccessor, Chunk chunk) {
         return CompletableFuture.completedFuture(chunk);
     }
 
@@ -94,7 +99,8 @@ public class SkyLandChunkGenerator extends NoiseChunkGenerator {
     }
 
     @Override
-    public void carve(ChunkRegion chunkRegion, long seed, NoiseConfig noiseConfig, BiomeAccess biomeAccess, StructureAccessor structureAccessor, Chunk chunk, GenerationStep.Carver generationStep) {
+    public void carve(ChunkRegion chunkRegion, long seed, NoiseConfig noiseConfig, BiomeAccess biomeAccess,
+            StructureAccessor structureAccessor, Chunk chunk, GenerationStep.Carver generationStep) {
     }
 
 }
