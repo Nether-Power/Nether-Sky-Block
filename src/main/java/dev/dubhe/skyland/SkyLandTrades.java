@@ -8,7 +8,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.TradeOffers.Factory;
+import net.minecraft.village.TradeOffers.SellItemFactory;
+import net.minecraft.village.VillagerProfession;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SkyLandTrades {
@@ -36,7 +40,7 @@ public class SkyLandTrades {
     }
 
     public static Int2ObjectMap<TradeOffers.Factory[]> getSkyLandWanderingTraderOffers() {
-        return new Int2ObjectOpenHashMap<>(ImmutableMap.of(2, new TradeOffers.Factory[] {
+        return new Int2ObjectOpenHashMap<>(ImmutableMap.of(2, new TradeOffers.Factory[]{
                 sell(Items.NETHER_WART, 32, 4),
                 sell(Items.BAMBOO, 16, 8),
                 sell(Items.SEA_PICKLE, 16, 8),
@@ -52,5 +56,26 @@ public class SkyLandTrades {
                 sell(Items.FIRE_CORAL_FAN, 64, 4),
                 sell(Items.HORN_CORAL_FAN, 64, 4)
         }));
+    }
+
+    public static void removeFarmerTrades() {
+
+        System.out.println("Start remove farmer trades");
+        Factory[] farm_trades = TradeOffers.PROFESSION_TO_LEVELED_TRADE.get(VillagerProfession.FARMER).get(2);
+        Factory[] new_farm_trades = new Factory[2];
+
+        int counter = 0;
+        for (Factory factory : farm_trades) {
+            if (factory instanceof SellItemFactory sellItemFactory) {
+                if (sellItemFactory.sell.getItem() != Items.PUMPKIN_PIE) {
+                    new_farm_trades[counter] = factory;
+                    counter += 1;
+                }
+            } else {
+                new_farm_trades[counter] = factory;
+                counter += 1;
+            }
+        }
+        TradeOffers.PROFESSION_TO_LEVELED_TRADE.get(VillagerProfession.FARMER).put(2, new_farm_trades);
     }
 }

@@ -32,6 +32,7 @@ public class SkyLandMod implements ModInitializer {
         SkyLandGamerules.registry();
 
         SkyLandTrades.mergeWanderingTraderOffers(SkyLandTrades.getSkyLandWanderingTraderOffers());
+        SkyLandTrades.removeFarmerTrades();
 
         BiomeModifications.addSpawn(context -> SOUL_SAND_VALLEY.equals(context.getBiomeKey().getValue()),
                 SpawnGroup.MONSTER,
