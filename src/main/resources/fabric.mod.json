@@ -11,7 +11,7 @@
     "sources": "https://github.com/XXiuBai/Nether_Sky_Block",
     "issues": "https://github.com/XXiuBai/Nether_Sky_Block/issues"
   },
-  "license": "GUN GPL 3.0",
+  "license": "GPL-3.0-or-later",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -25,8 +25,5 @@
   "depends": {
     "minecraft": ">=1.19",
     "fabricloader": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
