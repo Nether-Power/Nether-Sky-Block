@@ -32,14 +32,30 @@ import java.util.OptionalLong;
 
 @Mixin(WorldPresets.Registrar.class)
 public class WorldPresetsRegistrarMixin {
-    @Final @Shadow private Registry<WorldPreset> worldPresetRegistry;
-    @Final @Shadow private Registry<Biome> biomeRegistry;
-    @Final @Shadow private Registry<StructureSet> structureSetRegistry;
-    @Final @Shadow private Registry<ChunkGeneratorSettings> chunkGeneratorSettingsRegistry;
-    @Final @Shadow private Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseParametersRegistry;
-    @Final @Shadow private RegistryEntry<DimensionType> theNetherDimensionType;
-    @Final @Shadow private Registry<DimensionType> dimensionTypeRegistry;
-    @Final @Shadow private RegistryEntry<DimensionType> theEndDimensionType;
+    @Final
+    @Shadow
+    private Registry<WorldPreset> worldPresetRegistry;
+    @Final
+    @Shadow
+    private Registry<Biome> biomeRegistry;
+    @Final
+    @Shadow
+    private Registry<StructureSet> structureSetRegistry;
+    @Final
+    @Shadow
+    private Registry<ChunkGeneratorSettings> chunkGeneratorSettingsRegistry;
+    @Final
+    @Shadow
+    private Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseParametersRegistry;
+    @Final
+    @Shadow
+    private RegistryEntry<DimensionType> theNetherDimensionType;
+    @Final
+    @Shadow
+    private Registry<DimensionType> dimensionTypeRegistry;
+    @Final
+    @Shadow
+    private RegistryEntry<DimensionType> theEndDimensionType;
 
     private static final DimensionType overNether = new DimensionType(
             OptionalLong.of(18000L),

@@ -25,6 +25,7 @@ import java.util.Objects;
 @Mixin(ZombieEntity.class)
 public class ZombieEntityMixin {
     protected final Random random = Random.create();
+
     @Inject(method = "damage",
             at = @At(
                     value = "INVOKE",
@@ -32,11 +33,11 @@ public class ZombieEntityMixin {
                     shift = At.Shift.AFTER
             )
     )
-    private void zombieVillager(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir){
-        ZombieEntity zombie = (ZombieEntity)(Object)this;
+    private void zombieVillager(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        ZombieEntity zombie = (ZombieEntity) (Object) this;
         LivingEntity livingEntity = zombie.getTarget();
         if (livingEntity == null && source.getAttacker() instanceof LivingEntity) {
-            livingEntity = (LivingEntity)source.getAttacker();
+            livingEntity = (LivingEntity) source.getAttacker();
         }
         World world = zombie.world;
         if (world instanceof ServerWorld serverWorld) {
@@ -51,9 +52,11 @@ public class ZombieEntityMixin {
                 BlockPos blockPos = new BlockPos(m, n, o);
                 EntityType<?> entityType = zombieVillager.getType();
                 SpawnRestriction.Location location = SpawnRestriction.getLocation(entityType);
-                if (!SpawnHelper.canSpawn(location, world, blockPos, entityType) || !SpawnRestriction.canSpawn(entityType, serverWorld, SpawnReason.REINFORCEMENT, blockPos, world.random)) continue;
+                if (!SpawnHelper.canSpawn(location, world, blockPos, entityType) || !SpawnRestriction.canSpawn(entityType, serverWorld, SpawnReason.REINFORCEMENT, blockPos, world.random))
+                    continue;
                 zombieVillager.setPosition(m, n, o);
-                if (world.isPlayerInRange(m, n, o, 7.0) || !world.doesNotIntersectEntities(zombieVillager) || !world.isSpaceEmpty(zombieVillager) || world.containsFluid(zombieVillager.getBoundingBox())) continue;
+                if (world.isPlayerInRange(m, n, o, 7.0) || !world.doesNotIntersectEntities(zombieVillager) || !world.isSpaceEmpty(zombieVillager) || world.containsFluid(zombieVillager.getBoundingBox()))
+                    continue;
                 zombieVillager.setTarget(livingEntity);
                 zombieVillager.initialize(serverWorld, world.getLocalDifficulty(zombieVillager.getBlockPos()), SpawnReason.REINFORCEMENT, null, null);
                 serverWorld.spawnEntityAndPassengers(zombieVillager);

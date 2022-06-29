@@ -3,7 +3,6 @@ package dev.dubhe.skyland.mixin;
 import com.google.common.collect.ImmutableList;
 import dev.dubhe.skyland.SkyLandGamerules;
 import net.minecraft.block.*;
-import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
