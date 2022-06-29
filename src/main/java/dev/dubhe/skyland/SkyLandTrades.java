@@ -11,8 +11,6 @@ import net.minecraft.village.TradeOffers.Factory;
 import net.minecraft.village.TradeOffers.SellItemFactory;
 import net.minecraft.village.VillagerProfession;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SkyLandTrades {
