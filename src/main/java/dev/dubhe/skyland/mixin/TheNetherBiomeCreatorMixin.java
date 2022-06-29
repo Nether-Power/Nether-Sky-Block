@@ -22,17 +22,14 @@ import net.minecraft.world.gen.feature.NetherPlacedFeatures;
 import net.minecraft.world.gen.feature.OrePlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(TheNetherBiomeCreator.class)
 public class TheNetherBiomeCreatorMixin {
-
-    /**
-     * @author DancingSnow
-     * @reason spawn witch
-     */
-    @Overwrite
-    public static Biome createSoulSandValley() {
+    @Inject(method = "createSoulSandValley", at = @At("HEAD"), cancellable = true)
+    private static void createSoulSandValley(CallbackInfoReturnable<Biome> cir) {
         SpawnSettings spawnSettings = new SpawnSettings.Builder()
                 .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 20, 5, 5))
                 .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 4, 4))
@@ -59,32 +56,30 @@ public class TheNetherBiomeCreatorMixin {
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED)
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_SOUL_SAND);
         DefaultBiomeFeatures.addNetherMineables(builder);
-        return new Biome.Builder()
+        cir.setReturnValue(
+            new Biome.Builder()
                 .precipitation(Biome.Precipitation.NONE)
                 .temperature(2.0f).downfall(0.0f)
                 .effects(new BiomeEffects.Builder()
-                        .waterColor(4159204)
-                        .waterFogColor(329011)
-                        .fogColor(1787717)
-                        .skyColor(getSkyColor(2.0f))
-                        .particleConfig(new BiomeParticleConfig(ParticleTypes.ASH, 0.00625f))
-                        .loopSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_LOOP)
-                        .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0))
-                        .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, 0.0111))
-                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_SOUL_SAND_VALLEY))
-                        .build())
+                    .waterColor(4159204)
+                    .waterFogColor(329011)
+                    .fogColor(1787717)
+                    .skyColor(getSkyColor(2.0f))
+                    .particleConfig(new BiomeParticleConfig(ParticleTypes.ASH, 0.00625f))
+                    .loopSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_LOOP)
+                    .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0))
+                    .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, 0.0111))
+                    .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_SOUL_SAND_VALLEY))
+                    .build())
                 .spawnSettings(spawnSettings)
                 .generationSettings(builder.build())
-                .build();
+                .build()
+        );
 
     }
 
-    /**
-     * @author DancingSnow
-     * @reason spawn slime
-     */
-    @Overwrite
-    public static Biome createBasaltDeltas() {
+    @Inject(method = "createBasaltDeltas", at = @At("HEAD"), cancellable = true)
+    private static void createBasaltDeltas(CallbackInfoReturnable<Biome> cir) {
         SpawnSettings spawnSettings = new SpawnSettings.Builder()
                 .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 40, 1, 1))
                 .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 100, 2, 5))
@@ -110,22 +105,24 @@ public class TheNetherBiomeCreatorMixin {
                 feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_GOLD_DELTAS)
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_QUARTZ_DELTAS);
         DefaultBiomeFeatures.addAncientDebris(builder);
-        return new Biome.Builder()
+        cir.setReturnValue(
+            new Biome.Builder()
                 .precipitation(Biome.Precipitation.NONE)
                 .temperature(2.0f)
                 .downfall(0.0f)
                 .effects(new BiomeEffects.Builder()
-                        .waterColor(4159204)
-                        .waterFogColor(329011)
-                        .fogColor(6840176)
-                        .skyColor(getSkyColor(2.0f))
-                        .particleConfig(new BiomeParticleConfig(ParticleTypes.WHITE_ASH, 0.118093334f))
-                        .loopSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP)
-                        .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0))
-                        .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111))
-                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_BASALT_DELTAS)).build())
+                    .waterColor(4159204)
+                    .waterFogColor(329011)
+                    .fogColor(6840176)
+                    .skyColor(getSkyColor(2.0f))
+                    .particleConfig(new BiomeParticleConfig(ParticleTypes.WHITE_ASH, 0.118093334f))
+                    .loopSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP)
+                    .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0))
+                    .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111))
+                    .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_BASALT_DELTAS)).build())
                 .spawnSettings(spawnSettings).generationSettings(builder.build())
-                .build();
+                .build()
+        );
     }
 
     private static int getSkyColor(float temperature) {
