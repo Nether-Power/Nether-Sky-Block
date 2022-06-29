@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Map;
 import java.util.OptionalLong;
 
-@Mixin(targets = "net.minecraft.world.gen.WorldPresets.Registrar")
+@Mixin(targets = "net.minecraft.world.gen.WorldPresets$Registrar")
 public class WorldPresetsRegistrarMixin {
 
     @Final
