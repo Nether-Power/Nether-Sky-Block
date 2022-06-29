@@ -5,7 +5,7 @@ on:
       - "*.gradle"
       - "gradle.properties"
       - "src/**"
-      - "./github/**"
+      - ".github/**"
       - "datapack/**"
   pull_request:
 
