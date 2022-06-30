@@ -68,11 +68,16 @@ public abstract class WanderingTraderManagerMixin {
                 BlockPos blockPos3 = this.getNearbySpawnPos(world, blockPos2);
                 if (blockPos3 != null && this.doesNotSuffocateAt(world, blockPos3)) {
                     if (world.getBiome(blockPos3).isIn(BiomeTags.IS_NETHER)) {
+                        StriderEntity striderEntity = EntityType.STRIDER.spawn(world, null, null, null, blockPos, SpawnReason.EVENT,
+                                false, false);
                         WanderingTraderEntity wanderingTraderEntity = EntityType.WANDERING_TRADER.spawn(world, null,
                                 null,
                                 null, blockPos3, SpawnReason.EVENT, false, false);
                         if (wanderingTraderEntity != null) {
-                            this.spawnStrider(world, wanderingTraderEntity, blockPos3);
+                            if (striderEntity != null) {
+                                striderEntity.saddle(null);
+                                wanderingTraderEntity.startRiding(striderEntity, true);
+                            }
                             properties.setWanderingTraderId(wanderingTraderEntity.getUuid());
                             wanderingTraderEntity.setDespawnDelay(48000);
                             wanderingTraderEntity.setWanderTarget(blockPos2);
@@ -85,17 +90,6 @@ public abstract class WanderingTraderManagerMixin {
         }
     }
 
-    private void spawnStrider(ServerWorld world, WanderingTraderEntity wanderingTrader,BlockPos blockPos) {
-        if (blockPos != null) {
-            StriderEntity striderEntity = EntityType.STRIDER.spawn(world, null, null, null, blockPos, SpawnReason.EVENT,
-                    false, false);
-            if (striderEntity != null) {
-                striderEntity.saddle(null);
-                striderEntity.startRiding(wanderingTrader, true);
-            }
-        }
-    }
-
     @Nullable
     private BlockPos getNearbySpawnPos(ServerWorld world, BlockPos pos) {
         BlockPos blockPos = null;
@@ -104,7 +98,7 @@ public abstract class WanderingTraderManagerMixin {
             int j = pos.getX() + this.random.nextInt(48 * 2) - 48;
             int k = pos.getZ() + this.random.nextInt(48 * 2) - 48;
             int l = world.getTopY(Type.WORLD_SURFACE, j, k);
-            BlockPos blockPos2 = new BlockPos(j, l, k);
+            BlockPos blockPos2 = new BlockPos(j, l+2, k);
             BlockPos blockPos3 = new BlockPos(j, l-1, k);
             BlockState blockState = world.getBlockState(blockPos3);
             if (blockState.getFluidState().isOf(Fluids.LAVA) && blockState.getFluidState().isStill()) {
