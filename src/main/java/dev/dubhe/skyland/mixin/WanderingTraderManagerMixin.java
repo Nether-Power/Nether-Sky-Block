@@ -45,33 +45,37 @@ public abstract class WanderingTraderManagerMixin {
         return world.getGameRules().getBoolean(SkyLandGamerules.CHIEFTAIN) ? 0 : random.nextInt(value);
     }
 
-    @Inject(method = "trySpawn",
+    @Inject(
+            method = "trySpawn",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/WanderingTraderManager;getNearbySpawnPos(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;I)Lnet/minecraft/util/math/BlockPos;",
                     shift = At.Shift.AFTER
-            )
+            ),
+            cancellable = true
     )
-    private void spawn(ServerWorld world, CallbackInfoReturnable<Boolean> cir){
+    private void spawn(ServerWorld world, CallbackInfoReturnable<Boolean> cir) {
         ServerPlayerEntity playerEntity = world.getRandomAlivePlayer();
         if (playerEntity != null) {
             BlockPos blockPos = playerEntity.getBlockPos();
             PointOfInterestStorage pointOfInterestStorage = world.getPointOfInterestStorage();
             Optional<BlockPos> optional = pointOfInterestStorage.getPosition(registryEntry -> registryEntry.matchesKey(
-                    PointOfInterestTypes.MEETING), pos -> true, blockPos, 48, PointOfInterestStorage.OccupationStatus.ANY);
+                            PointOfInterestTypes.MEETING), pos -> true, blockPos, 48,
+                    PointOfInterestStorage.OccupationStatus.ANY);
             BlockPos blockPos2 = optional.orElse(blockPos);
             BlockPos blockPos3 = this.getNearbySpawnPos(world, blockPos2, 48);
             if (blockPos3 != null && this.doesNotSuffocateAt(world, blockPos3)) {
-                if (world.getBiome(blockPos3).isIn(BiomeTags.WITHOUT_WANDERING_TRADER_SPAWNS)) {
-                    return;
-                }
-                WanderingTraderEntity wanderingTraderEntity = EntityType.WANDERING_TRADER.spawn(world, null, null, null, blockPos3, SpawnReason.EVENT, false, false);
-                if (wanderingTraderEntity != null) {
-                    this.spawnStrider(world, wanderingTraderEntity);
-                    properties.setWanderingTraderId(wanderingTraderEntity.getUuid());
-                    wanderingTraderEntity.setDespawnDelay(48000);
-                    wanderingTraderEntity.setWanderTarget(blockPos2);
-                    wanderingTraderEntity.setPositionTarget(blockPos2, 16);
+                if (world.getBiome(blockPos3).isIn(BiomeTags.IS_NETHER)) {
+                    WanderingTraderEntity wanderingTraderEntity = EntityType.WANDERING_TRADER.spawn(world, null, null,
+                            null, blockPos3, SpawnReason.EVENT, false, false);
+                    if (wanderingTraderEntity != null) {
+                        this.spawnStrider(world, wanderingTraderEntity);
+                        properties.setWanderingTraderId(wanderingTraderEntity.getUuid());
+                        wanderingTraderEntity.setDespawnDelay(48000);
+                        wanderingTraderEntity.setWanderTarget(blockPos2);
+                        wanderingTraderEntity.setPositionTarget(blockPos2, 16);
+                        cir.setReturnValue(true);
+                    }
                 }
             }
         }
@@ -84,7 +88,7 @@ public abstract class WanderingTraderManagerMixin {
                     false, false);
             if (striderEntity != null) {
                 striderEntity.saddle(null);
-                striderEntity.startRiding(wanderingTrader,true);
+                striderEntity.startRiding(wanderingTrader, true);
             }
         }
     }
@@ -98,7 +102,8 @@ public abstract class WanderingTraderManagerMixin {
             int k = pos.getZ() + this.random.nextInt(range * 2) - range;
             int l = world.getTopY(Type.WORLD_SURFACE, j, k);
             BlockPos blockPos2 = new BlockPos(j, l, k);
-            BlockState blockState = world.getBlockState(blockPos2);
+            BlockPos blockPos3 = new BlockPos(j, l - 1, k);
+            BlockState blockState = world.getBlockState(blockPos3);
             if (blockState.getFluidState().isOf(Fluids.LAVA) && blockState.getFluidState().isStill()) {
                 blockPos = blockPos2;
                 break;

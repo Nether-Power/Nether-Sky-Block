@@ -64,7 +64,7 @@ public class TheNetherBiomeCreatorMixin {
                     .waterColor(4159204)
                     .waterFogColor(329011)
                     .fogColor(1787717)
-                    .skyColor(getSkyColor(2.0f))
+                    .skyColor(getSkyColor())
                     .particleConfig(new BiomeParticleConfig(ParticleTypes.ASH, 0.00625f))
                     .loopSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_LOOP)
                     .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0))
@@ -114,7 +114,7 @@ public class TheNetherBiomeCreatorMixin {
                     .waterColor(4159204)
                     .waterFogColor(329011)
                     .fogColor(6840176)
-                    .skyColor(getSkyColor(2.0f))
+                    .skyColor(getSkyColor())
                     .particleConfig(new BiomeParticleConfig(ParticleTypes.WHITE_ASH, 0.118093334f))
                     .loopSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP)
                     .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0))
@@ -125,8 +125,8 @@ public class TheNetherBiomeCreatorMixin {
         );
     }
 
-    private static int getSkyColor(float temperature) {
-        temperature = MathHelper.clamp(temperature / 3.0f, -1.0f, 1.0f);
+    private static int getSkyColor() {
+        float temperature = MathHelper.clamp(2.0f / 3.0f, -1.0f, 1.0f);
         return MathHelper.hsvToRgb(0.62222224f - temperature * 0.05f, 0.5f + temperature * 0.1f, 1.0f);
     }
 
