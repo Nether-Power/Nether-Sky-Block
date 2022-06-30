@@ -35,7 +35,8 @@ public class SkyLandMod implements ModInitializer {
         SkyLandTrades.removeFarmerTrades();
 
         ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killedEntity) -> {
-            if (killedEntity instanceof EnderDragonEntity enderDragonEntity) {
+            if (world.getGameRules().getBoolean(SkyLandGamerules.KILL_DRAGON_DROP_ELYTRA)
+                    && killedEntity instanceof EnderDragonEntity enderDragonEntity) {
                 ItemEntity itemEntity = EntityType.ITEM.create(world);
                 assert itemEntity != null;
 
@@ -74,6 +75,15 @@ public class SkyLandMod implements ModInitializer {
                                                 serverCommandSource.getServer().getGameRules()
                                                         .get(SkyLandGamerules.NETHER_PATROL)
                                                         .set(true, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.VILLAGER_REINFORCEMENTS)
+                                                        .set(true, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.KILL_DRAGON_SPAWN_SHULKER)
+                                                        .set(true, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.KILL_DRAGON_DROP_ELYTRA)
+                                                        .set(true, serverCommandSource.getServer());
                                                 serverCommandSource.sendFeedback(
                                                         Text.translatable("skyland.command.gamerule_set_succeed",
                                                                 "true"), true);
@@ -92,6 +102,15 @@ public class SkyLandMod implements ModInitializer {
                                                         .set(false, serverCommandSource.getServer());
                                                 serverCommandSource.getServer().getGameRules()
                                                         .get(SkyLandGamerules.NETHER_PATROL)
+                                                        .set(false, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.VILLAGER_REINFORCEMENTS)
+                                                        .set(false, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.KILL_DRAGON_SPAWN_SHULKER)
+                                                        .set(false, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.KILL_DRAGON_DROP_ELYTRA)
                                                         .set(false, serverCommandSource.getServer());
                                                 serverCommandSource.sendFeedback(
                                                         Text.translatable("skyland.command.gamerule_set_succeed",

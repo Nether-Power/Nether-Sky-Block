@@ -7,6 +7,9 @@
   "gamerule.iceGolem": "雪傀儡可以将水变为冰",
   "gamerule.doubleCoralFans": "再生珊瑚扇",
   "gamerule.netherPatrol": "下界灾厄巡逻队",
+  "gamerule.villagerReinforcements": "村民增援",
+  "gamerule.killDragonSpawnShulker": "龙亡贝诞",
+  "gamerule.killDragonDropElytra": "战龙夺翅",
 
   "skyland.command.gamerule_set_succeed": "SkyLand 规则设置到 %s 成功"
 }

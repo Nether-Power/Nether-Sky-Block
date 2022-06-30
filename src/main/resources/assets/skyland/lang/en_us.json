@@ -7,6 +7,9 @@
   "gamerule.iceGolem": "Snow golem can turn water into ice",
   "gamerule.doubleCoralFans": "Double Coral Fans",
   "gamerule.netherPatrol": "Nether Patrol",
+  "gamerule.villagerReinforcements": "Villager Reinforcements",
+  "gamerule.killDragonSpawnShulker": "Kill Dragon Spawn Shulker",
+  "gamerule.killDragonDropElytra": "Kill Dragon Drop Elytra",
 
   "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed"
 }

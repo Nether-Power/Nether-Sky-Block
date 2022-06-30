@@ -24,4 +24,10 @@ public class SkyLandGamerules {
             GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> NETHER_PATROL = GameRuleRegistry.register("netherPatrol", Category.SPAWNING,
             GameRuleFactory.createBooleanRule(false));
+    public static final Key<BooleanRule> VILLAGER_REINFORCEMENTS = GameRuleRegistry.register("villagerReinforcements", Category.SPAWNING,
+            GameRuleFactory.createBooleanRule(false));
+    public static final Key<BooleanRule> KILL_DRAGON_SPAWN_SHULKER = GameRuleRegistry.register("killDragonSpawnShulker", Category.MOBS,
+            GameRuleFactory.createBooleanRule(false));
+    public static final Key<BooleanRule> KILL_DRAGON_DROP_ELYTRA = GameRuleRegistry.register("killDragonDropElytra", Category.DROPS,
+            GameRuleFactory.createBooleanRule(false));
 }

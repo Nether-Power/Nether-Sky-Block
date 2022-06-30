@@ -1,6 +1,7 @@
 package dev.dubhe.skyland.mixin;
 
 import dev.dubhe.skyland.SkyLandChunkGenerator;
+import dev.dubhe.skyland.SkyLandGamerules;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
@@ -47,13 +48,15 @@ public class EnderDragonFightMixin {
             )
     )
     private void spawnShulker(EnderDragonEntity dragon, CallbackInfo ci) {
-        ShulkerEntity shulker = EntityType.SHULKER.create(world);
-        if (!previouslyKilled || shulker == null) {
-            return;
-        }
-        BlockPos pos = this.world.getTopPosition(Heightmap.Type.MOTION_BLOCKING, EndPortalFeature.ORIGIN);
-        shulker.setPos(pos.getX(), pos.getY() + 1, pos.getZ());
+        if(world.getGameRules().getBoolean(SkyLandGamerules.KILL_DRAGON_SPAWN_SHULKER)){
+            ShulkerEntity shulker = EntityType.SHULKER.create(world);
+            if (!previouslyKilled || shulker == null) {
+                return;
+            }
+            BlockPos pos = this.world.getTopPosition(Heightmap.Type.MOTION_BLOCKING, EndPortalFeature.ORIGIN);
+            shulker.setPos(pos.getX(), pos.getY() + 1, pos.getZ());
 
-        world.spawnEntityAndPassengers(shulker);
+            world.spawnEntityAndPassengers(shulker);
+        }
     }
 }
