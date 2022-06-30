@@ -27,7 +27,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:ancient_debris",
-          "weight": 1
+          "weight": 3
         }
       ],
       "rolls": 1.0

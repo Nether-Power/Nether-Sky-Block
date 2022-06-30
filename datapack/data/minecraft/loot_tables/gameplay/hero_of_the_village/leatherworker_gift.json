@@ -12,7 +12,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:lava_bucket",
-          "weight": 1
+          "weight": 3
         }
       ],
       "rolls": 1.0
