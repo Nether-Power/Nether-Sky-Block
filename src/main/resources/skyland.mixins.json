@@ -9,6 +9,7 @@
     "MinecraftServerMixin",
     "SellItemFactoryAccessor",
     "SlimeEntityMixin",
+    "SnowGolemEntityMixin",
     "SpawnHelperMixin",
     "TheNetherBiomeCreatorMixin",
     "WanderingTraderManagerMixin",

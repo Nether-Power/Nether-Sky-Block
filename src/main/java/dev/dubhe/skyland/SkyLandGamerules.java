@@ -13,13 +13,15 @@ public class SkyLandGamerules {
     }
 
     public static final Key<BooleanRule> LC = GameRuleRegistry.register("qnmdLC", Category.MOBS,
-        GameRuleFactory.createBooleanRule(false));
+            GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> CHIEFTAIN = GameRuleRegistry.register("chieftainMode", Category.MISC,
-        GameRuleFactory.createBooleanRule(false));
+            GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> WATER_CAULDRON = GameRuleRegistry.register("waterCauldron", Category.MISC,
-        GameRuleFactory.createBooleanRule(false));
+            GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> NETHER_TRADER = GameRuleRegistry.register("netherTrader", Category.SPAWNING,
             GameRuleFactory.createBooleanRule(false));
 
+    public static final Key<BooleanRule> ICE_GOLEM = GameRuleRegistry.register("ice_golem", Category.MISC,
+            GameRuleFactory.createBooleanRule(false));
 
 }

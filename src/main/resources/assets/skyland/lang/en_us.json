@@ -3,5 +3,6 @@
   "gamerule.qnmdLC": "qnmdLC",
   "gamerule.chieftainMode": "Chieftain Mode",
   "gamerule.waterCauldron": "Water Cauldron Turn lava into Obsidian",
-  "gamerule.netherTrader": "Nether Trader"
+  "gamerule.netherTrader": "Nether Trader",
+  "ice_golem": "Snow golem can turn water into ice"
 }
