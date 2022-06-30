@@ -24,6 +24,7 @@
   "accessWidener": "skyland.accesswidener",
   "depends": {
     "minecraft": ">=1.19",
-    "fabricloader": "*"
+    "fabricloader": "*",
+    "fabric": "*"
   }
 }
