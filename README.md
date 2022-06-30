@@ -3,6 +3,8 @@
 ### 模组
   - 将三个维度设置为虚空
   - 将主世界生成替换为下界
+  - 一键开关所有特性
+    - `/skyland gamerule <true|false>`
   - 忽略LC值对刷怪效率的影响
     - `/gamerule qnmdLC true`
   - 使流浪商人的刷新概率提升10倍
