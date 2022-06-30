@@ -3,6 +3,10 @@
 ### 模组
   - 将三个维度设置为虚空
   - 将主世界生成替换为下界
+  - 忽略LC值对刷怪效率的影响
+    - `/gamerule qnmdLC true`
+  - 使流浪商人的刷新概率提升10倍
+    - `/gamerule chieftainMode true`
   - 创建地图时会在Y轴64创建一个初始平台(一个绯红菌岩、一个诡异菌岩、绯红菌岩上方种植绯红菌、诡异菌岩上方挂着放着苹果的展示框)
   - 僵尸猪灵和僵尸触发僵尸增援时有概率生成僵尸村民 
     - `/gamerule villagerReinforcements true`
