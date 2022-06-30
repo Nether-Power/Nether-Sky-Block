@@ -49,7 +49,7 @@ public abstract class WanderingTraderManagerMixin {
             method = "trySpawn",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/WanderingTraderManager;getNearbySpawnPos(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;I)Lnet/minecraft/util/math/BlockPos;",
+                    target = "Lnet/minecraft/server/world/ServerWorld;getRandomAlivePlayer()Lnet/minecraft/server/network/ServerPlayerEntity;",
                     shift = At.Shift.AFTER
             ),
             cancellable = true
@@ -57,6 +57,9 @@ public abstract class WanderingTraderManagerMixin {
     private void spawn(ServerWorld world, CallbackInfoReturnable<Boolean> cir) {
         if(world.getGameRules().getBoolean(SkyLandGamerules.NETHER_TRADER)){
             ServerPlayerEntity playerEntity = world.getRandomAlivePlayer();
+            if (!world.getGameRules().getBoolean(SkyLandGamerules.CHIEFTAIN) && this.random.nextFloat() >= 0.1) {
+                cir.setReturnValue(false);
+            }
             if (playerEntity != null) {
                 BlockPos blockPos = playerEntity.getBlockPos();
                 PointOfInterestStorage pointOfInterestStorage = world.getPointOfInterestStorage();
