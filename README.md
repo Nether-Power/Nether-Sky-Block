@@ -2,11 +2,13 @@
 ## Install
 下载安装 `Minecraft 1.19`, 安装 `Fabric 0.14.8`
 
-从 [Release](https://github.com/XXiuBai/Nether_Sky_Block/releases/latest) 下载最新发行版 mod, 并放入 `mods` 文件夹
+从 [Release](https://github.com/XXiuBai/Nether_Sky_Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并放入 `mods` 文件夹
 
 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
 
-创建世界时, 在 `更多选项` 中将 `世界类型` 调为 `空岛`
+创建世界时, 在 `更多选项` 中将 `世界类型` 调为 `空岛` 并添加数据包
+
+进入进入世界后，输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
 
 ## Features
 ### 模组
