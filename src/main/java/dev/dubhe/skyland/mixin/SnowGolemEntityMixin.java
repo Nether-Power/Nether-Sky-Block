@@ -24,18 +24,15 @@ public class SnowGolemEntityMixin {
             )
     )
     private void setIce(CallbackInfo ci) {
-
+        World world = ((SnowGolemEntity) (Object) this).world;
         BlockState iceState = Blocks.ICE.getDefaultState();
-
-        for (int l = 0; l < 4; ++l) {
-            int i = MathHelper.floor(
-                    ((SnowGolemEntity) (Object) this).getX() + (double) ((float) (l % 2 * 2 - 1) * 0.25F));
-            int j = MathHelper.floor(((SnowGolemEntity) (Object) this).getY());
-            int k = MathHelper.floor(
-                    ((SnowGolemEntity) (Object) this).getZ() + (double) ((float) (l / 2 % 2 * 2 - 1) * 0.25F));
-
-            World world = ((SnowGolemEntity) (Object) this).world;
-            if (world.getGameRules().getBoolean(SkyLandGamerules.ICE_GOLEM)) {
+        if (world.getGameRules().getBoolean(SkyLandGamerules.ICE_GOLEM)) {
+            for (int l = 0; l < 4; ++l) {
+                int i = MathHelper.floor(
+                        ((SnowGolemEntity) (Object) this).getX() + (double) ((float) (l % 2 * 2 - 1) * 0.25F));
+                int j = MathHelper.floor(((SnowGolemEntity) (Object) this).getY());
+                int k = MathHelper.floor(
+                        ((SnowGolemEntity) (Object) this).getZ() + (double) ((float) (l / 2 % 2 * 2 - 1) * 0.25F));
                 BlockPos icePos = new BlockPos(i, j - 1, k);
                 BlockState state = world.getBlockState(icePos);
                 if (state.isOf(Blocks.WATER) && state.getFluidState().isStill() && iceState.canPlaceAt(world, icePos)) {
@@ -43,7 +40,5 @@ public class SnowGolemEntityMixin {
                 }
             }
         }
-
     }
-
 }

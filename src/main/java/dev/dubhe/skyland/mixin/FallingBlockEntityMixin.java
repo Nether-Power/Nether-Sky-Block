@@ -2,6 +2,7 @@ package dev.dubhe.skyland.mixin;
 
 import static net.minecraft.block.LeveledCauldronBlock.decrementFluidLevel;
 
+import dev.dubhe.skyland.SkyLandGamerules;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -44,7 +45,8 @@ public abstract class FallingBlockEntityMixin extends Entity {
             )
     )
     private void onTick(CallbackInfo ci) {
-        if (getBlockState().isIn(BlockTags.ANVIL)) {
+        if (world.getGameRules().getBoolean(SkyLandGamerules.DOUBLE_CORAL_FANS) && getBlockState().isIn(
+                BlockTags.ANVIL)) {
             BlockPos blockPos = this.getBlockPos();
             BlockState blockState1 = this.world.getBlockState(
                     new BlockPos(this.getX(), this.getY() - 0.06, this.getZ()));
