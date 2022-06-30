@@ -77,7 +77,7 @@ public abstract class WanderingTraderManagerMixin {
                             wanderingTraderEntity.setDespawnDelay(48000);
                             wanderingTraderEntity.setWanderTarget(blockPos2);
                             wanderingTraderEntity.setPositionTarget(blockPos2, 16);
-                            cir.setReturnValue(false);
+                            cir.setReturnValue(true);
                         }
                     }
                 }
