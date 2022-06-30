@@ -51,30 +51,55 @@ public class SkyLandMod implements ModInitializer {
             }
         });
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("skyland")
-                .then(CommandManager.literal("gamerule")
-                        .then(CommandManager.argument("boolean", BoolArgumentType.bool())
-                                .executes(context -> {
-                                    ServerCommandSource serverCommandSource = context.getSource();
-                                    boolean bool = BoolArgumentType.getBool(context, "boolean");
-                                    if (bool) {
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.WATER_CAULDRON).set(true, serverCommandSource.getServer());
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.ICE_GOLEM).set(true, serverCommandSource.getServer());
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.NETHER_TRADER).set(true, serverCommandSource.getServer());
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.DOUBLE_CORAL_FANS).set(true, serverCommandSource.getServer());
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.NETHER_PATROL).set(true, serverCommandSource.getServer());
-                                        serverCommandSource.sendFeedback(Text.translatable("skyland.command.gamerule_set_succeed", "true"), true);
-                                    } else {
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.WATER_CAULDRON).set(false, serverCommandSource.getServer());
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.ICE_GOLEM).set(false, serverCommandSource.getServer());
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.NETHER_TRADER).set(false, serverCommandSource.getServer());
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.DOUBLE_CORAL_FANS).set(false, serverCommandSource.getServer());
-                                        serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.NETHER_PATROL).set(false, serverCommandSource.getServer());
-                                        serverCommandSource.sendFeedback(Text.translatable("skyland.command.gamerule_set_succeed", "false"), true);
-                                    }
-                                    return 1;
-                                }))
-                )));
+        CommandRegistrationCallback.EVENT.register(
+                (dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("skyland")
+                        .then(CommandManager.literal("gamerule")
+                                .then(CommandManager.argument("boolean", BoolArgumentType.bool())
+                                        .executes(context -> {
+                                            ServerCommandSource serverCommandSource = context.getSource();
+                                            boolean bool = BoolArgumentType.getBool(context, "boolean");
+                                            if (bool) {
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.WATER_CAULDRON)
+                                                        .set(true, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.ICE_GOLEM)
+                                                        .set(true, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.NETHER_TRADER)
+                                                        .set(true, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.DOUBLE_CORAL_FANS)
+                                                        .set(true, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.NETHER_PATROL)
+                                                        .set(true, serverCommandSource.getServer());
+                                                serverCommandSource.sendFeedback(
+                                                        Text.translatable("skyland.command.gamerule_set_succeed",
+                                                                "true"), true);
+                                            } else {
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.WATER_CAULDRON)
+                                                        .set(false, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.ICE_GOLEM)
+                                                        .set(false, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.NETHER_TRADER)
+                                                        .set(false, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.DOUBLE_CORAL_FANS)
+                                                        .set(false, serverCommandSource.getServer());
+                                                serverCommandSource.getServer().getGameRules()
+                                                        .get(SkyLandGamerules.NETHER_PATROL)
+                                                        .set(false, serverCommandSource.getServer());
+                                                serverCommandSource.sendFeedback(
+                                                        Text.translatable("skyland.command.gamerule_set_succeed",
+                                                                "false"), true);
+                                            }
+                                            return 1;
+                                        }))
+                        )));
 
     }
 }
