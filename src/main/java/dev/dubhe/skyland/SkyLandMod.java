@@ -31,7 +31,8 @@ public class SkyLandMod implements ModInitializer {
 
         SkyLandGamerules.registry();
 
-        SkyLandTrades.mergeWanderingTraderOffers(SkyLandTrades.getSkyLandWanderingTraderOffers());
+        SkyLandTrades.mergeWanderingTraderOffers(SkyLandTrades.getSkyLandWanderingTraderOffersTier1());
+        SkyLandTrades.mergeWanderingTraderOffers(SkyLandTrades.getSkyLandWanderingTraderOffersTier2());
         SkyLandTrades.removeFarmerTrades();
 
         ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killedEntity) -> {
