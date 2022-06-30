@@ -7,11 +7,9 @@ import net.minecraft.world.GameRules.Category;
 import net.minecraft.world.GameRules.Key;
 
 public class SkyLandGamerules {
-
     public static void registry() {
 
     }
-
     public static final Key<BooleanRule> LC = GameRuleRegistry.register("qnmdLC", Category.MOBS,
             GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> CHIEFTAIN = GameRuleRegistry.register("chieftainMode", Category.MISC,
@@ -20,8 +18,8 @@ public class SkyLandGamerules {
             GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> NETHER_TRADER = GameRuleRegistry.register("netherTrader", Category.SPAWNING,
             GameRuleFactory.createBooleanRule(false));
-
-    public static final Key<BooleanRule> ICE_GOLEM = GameRuleRegistry.register("ice_golem", Category.MISC,
+    public static final Key<BooleanRule> ICE_GOLEM = GameRuleRegistry.register("iceGolem", Category.MISC,
             GameRuleFactory.createBooleanRule(false));
-
+    public static final Key<BooleanRule> DOUBLE_CORAL_FANS = GameRuleRegistry.register("doubleCoralFans", Category.MISC,
+            GameRuleFactory.createBooleanRule(false));
 }

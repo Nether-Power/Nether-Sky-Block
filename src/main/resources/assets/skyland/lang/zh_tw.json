@@ -4,7 +4,8 @@
   "gamerule.chieftainMode": "非酋模式",
   "gamerule.waterCauldron": "儲水煉藥鍋將熔岩變爲黑曜石",
   "gamerule.netherTrader": "地獄游商",
-  "gamerule.ice_golem": "雪傀儡可以將水變為冰",
+  "gamerule.iceGolem": "雪傀儡可以將水變為冰",
+  "gamerule.doubleCoralFans": "再生珊瑚扇",
 
   "skyland.command.gamerule_set_succeed": "SkyLand 規則設置到 %s 成功"
 }

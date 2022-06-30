@@ -5,6 +5,7 @@
   "mixins": [
     "ChunkGeneratorsMixin",
     "EnderDragonFightMixin",
+    "FallingBlockEntityMixin",
     "FluidBlockMixin",
     "MinecraftServerMixin",
     "SellItemFactoryAccessor",

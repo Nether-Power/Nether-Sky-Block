@@ -4,7 +4,8 @@
   "gamerule.chieftainMode": "Chieftain Mode",
   "gamerule.waterCauldron": "Water Cauldron Turn lava into Obsidian",
   "gamerule.netherTrader": "Nether Trader",
-  "gamerule.ice_golem": "Snow golem can turn water into ice",
+  "gamerule.iceGolem": "Snow golem can turn water into ice",
+  "gamerule.doubleCoralFans": "Double Coral Fans",
 
   "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed"
 }
