@@ -18,7 +18,9 @@
     "WorldPresetsRegistrarMixin",
     "ZombieEntityMixin"
   ],
-  "client": [],
+  "client": [
+    "IntegratedServerLoaderMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
