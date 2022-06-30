@@ -8,6 +8,7 @@
     "FallingBlockEntityMixin",
     "FluidBlockMixin",
     "MinecraftServerMixin",
+    "PatrolSpawnerMixin",
     "SellItemFactoryAccessor",
     "SlimeEntityMixin",
     "SnowGolemEntityMixin",

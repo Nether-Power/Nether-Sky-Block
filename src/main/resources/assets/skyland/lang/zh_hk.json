@@ -6,6 +6,7 @@
   "gamerule.netherTrader": "地獄游商",
   "gamerule.iceGolem": "雪傀儡可以將水變為冰",
   "gamerule.doubleCoralFans": "再生珊瑚扇",
+  "gamerule.netherPatrol": "地獄掠奪者巡邏隊",
 
   "skyland.command.gamerule_set_succeed": "SkyLand 規則設置到 %s 成功"
 }

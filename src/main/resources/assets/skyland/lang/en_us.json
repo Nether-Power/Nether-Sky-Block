@@ -6,6 +6,7 @@
   "gamerule.netherTrader": "Nether Trader",
   "gamerule.iceGolem": "Snow golem can turn water into ice",
   "gamerule.doubleCoralFans": "Double Coral Fans",
+  "gamerule.netherPatrol": "Nether Patrol",
 
   "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed"
 }
