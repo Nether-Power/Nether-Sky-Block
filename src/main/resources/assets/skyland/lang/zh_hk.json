@@ -2,5 +2,6 @@
   "generator.skyland.skyland": "空島",
   "gamerule.qnmdLC": "忽略LC值影響",
   "gamerule.chieftainMode": "非酋模式",
-  "gamerule.water_cauldron": "儲水煉藥鍋將熔岩變爲黑曜石"
+  "gamerule.waterCauldron": "儲水煉藥鍋將熔岩變爲黑曜石",
+  "gamerule.netherTrader": "地獄游商"
 }

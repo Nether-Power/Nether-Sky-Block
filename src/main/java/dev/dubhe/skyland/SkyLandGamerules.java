@@ -18,6 +18,8 @@ public class SkyLandGamerules {
         GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> WATER_CAULDRON = GameRuleRegistry.register("waterCauldron", Category.MISC,
         GameRuleFactory.createBooleanRule(false));
+    public static final Key<BooleanRule> NETHER_TRADER = GameRuleRegistry.register("netherTrader", Category.SPAWNING,
+            GameRuleFactory.createBooleanRule(false));
 
 
 }
