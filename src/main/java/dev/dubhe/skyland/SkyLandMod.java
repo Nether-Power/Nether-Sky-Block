@@ -17,6 +17,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.gen.WorldPreset;
 
 public class SkyLandMod implements ModInitializer {
@@ -84,6 +85,9 @@ public class SkyLandMod implements ModInitializer {
                                             serverCommandSource.getServer().getGameRules()
                                                     .get(SkyLandGamerules.KILL_DRAGON_DROP_ELYTRA)
                                                     .set(bool, serverCommandSource.getServer());
+                                            serverCommandSource.getServer().getGameRules()
+                                                    .get(GameRules.DO_INSOMNIA)
+                                                    .set(!bool, serverCommandSource.getServer());
                                             serverCommandSource.sendFeedback(
                                                     Text.translatable("skyland.command.gamerule_set_succeed",
                                                             String.valueOf(bool)), true);
