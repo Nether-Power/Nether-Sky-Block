@@ -13,13 +13,13 @@
 ## Install
 ### Client
 * 下载安装 `Minecraft 1.19`, 安装 `Fabric 0.14.8`
-* 从 [Release](https://github.com/XXiuBai/Nether_Sky_Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并将 `mod` 放入 `mods` 文件夹
+* 从 [Release](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并将 `mod` 放入 `mods` 文件夹
 * 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
 * 创建世界时, 在 `更多选项` 中将 `世界类型` 调为 `空岛` 并添加数据包
 * 进入进入世界后，输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
 ### Server
 * 下载安装 `Minecraft Server 1.19`, 安装 `Fabric 0.14.8`
-* 从 [Release](https://github.com/XXiuBai/Nether_Sky_Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并分别放入 `mods` 与 `world/datapacks` 文件夹
+* 从 [Release](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并分别放入 `mods` 与 `world/datapacks` 文件夹
 * 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
 * 创建世界时, 在 `server.properties` 中将 `level-type` 调为 `skyland:skyland`
 * 开启服务器后，在控制台输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
@@ -77,10 +77,10 @@
   - 配方
     - 用黑曜石替换平滑石的高炉合成
     - 高炉里烧下界疣块以获取下界岩
-    - 修改猪灵交易(删除抗火药水|增加黑石交易概率|降低水瓶交易概率|增加萤石粉交易|删除末影珍珠交易)
-    - 拥有村庄英雄时皮匠会有概率丢岩浆桶(权重3)
-    - 拥有村庄英雄时工具匠会有概率丢下界合金碎片(权重3)
-    - 拥有村庄英雄时农民会有概率丢小麦种子
+  - 修改猪灵交易(删除抗火药水|增加黑石交易概率|降低水瓶交易概率|增加萤石粉交易|删除末影珍珠交易)
+  - 拥有村庄英雄时皮匠会有概率丢岩浆桶(权重3)
+  - 拥有村庄英雄时工具匠会有概率丢下界合金碎片(权重3)
+  - 拥有村庄英雄时农民会有概率丢小麦种子
     
 
 ## Contributor
