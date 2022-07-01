@@ -2,9 +2,6 @@ package dev.dubhe.skyland.mixin;
 
 import dev.dubhe.skyland.SkyLandChunkGenerator;
 import dev.dubhe.skyland.SkyLandStructures;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;

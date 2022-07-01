@@ -21,7 +21,7 @@
 * 下载安装 `Minecraft Server 1.19`, 安装 `Fabric 0.14.8`
 * 从 [Release](https://github.com/XXiuBai/Nether_Sky_Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并分别放入 `mods` 与 `world/datapacks` 文件夹
 * 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
-* 创建世界时, 在 `server.properties` 中将 `level-type` 调为 `skyland`
+* 创建世界时, 在 `server.properties` 中将 `level-type` 调为 `skyland:skyland`
 * 开启服务器后，在控制台输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
 ## Features
 ### 模组
