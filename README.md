@@ -35,7 +35,8 @@
   - 使流浪商人的刷新概率提升10倍
     - `/gamerule chieftainMode true`
   - 创建地图时会在Y轴64创建一个初始平台(一个绯红菌岩、一个诡异菌岩、绯红菌岩上方种植绯红菌、诡异菌岩上方挂着放着苹果的展示框)
-  - 僵尸猪灵和僵尸触发僵尸增援时有概率生成僵尸村民 
+  - 第一个玩家第一次进入世界时给予32个骨粉
+  - 僵尸猪灵和僵尸触发僵尸增援时生成僵尸村民 
     - `/gamerule villagerReinforcements true`
   - 下界会生成灾厄巡逻队 
     - `/gamerule netherPatrol true`

@@ -43,8 +43,7 @@ public class ZombieEntityMixin {
             if (livingEntity == null && source.getAttacker() instanceof LivingEntity) {
                 livingEntity = (LivingEntity) source.getAttacker();
             }
-            boolean spawnYes = (double) this.random.nextFloat() < 0.3;
-            if (world instanceof ServerWorld serverWorld && spawnYes) {
+            if (world instanceof ServerWorld serverWorld) {
                 int i = MathHelper.floor(zombie.getX());
                 int j = MathHelper.floor(zombie.getY());
                 int k = MathHelper.floor(zombie.getZ());
