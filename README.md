@@ -29,6 +29,7 @@
   - 下界会生成灾厄巡逻队 
     - `/gamerule netherPatrol true`
   - 灵魂沙峡谷刷新女巫（概率极低）
+  - 堡垒遗迹刷新劫掠者
   - 玄武岩三角洲刷新史莱姆
   - 储水炼药锅（满水）旁的熔岩转化为黑曜石并消耗储水炼药锅内的全部水
     - `/gamerule waterCauldron true`
