@@ -47,7 +47,7 @@ public class MinecraftServerMixin {
         new SkyLandStructures.TheEndPortal(worldSpawn).generate(world, world.random, new BlockPos(724, 0, -724));
         new SkyLandStructures.TheEndPortal(worldSpawn).generate(world, world.random, new BlockPos(-724, 0, 724));
         new SkyLandStructures.TheEndPortal(worldSpawn).generate(world, world.random, new BlockPos(-724, 0, -724));
-        
+
         ci.cancel();
     }
 }
