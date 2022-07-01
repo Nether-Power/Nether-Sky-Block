@@ -3,7 +3,6 @@
   "package": "dev.dubhe.skyland.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BiomeTagProviderMixin",
     "ChunkGeneratorsMixin",
     "EnderDragonFightMixin",
     "FallingBlockEntityMixin",
@@ -14,7 +13,6 @@
     "SlimeEntityMixin",
     "SnowGolemEntityMixin",
     "SpawnHelperMixin",
-    "StructuresMixin",
     "TheNetherBiomeCreatorMixin",
     "WanderingTraderManagerMixin",
     "WorldPresetsRegistrarMixin",
