@@ -1,4 +1,15 @@
 # 地狱空岛 | Nether Sky Block
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.19-66ccff)](https://www.minecraft.net/)
+[![Minecraft](https://img.shields.io/badge/Fabric-0.14.8-fcd217)](https://fabricmc.net/use/installer/)
+[![Minecraft](https://img.shields.io/badge/FabricAPI-0.57.0+1.19-b2cf87)](https://modrinth.com/mod/fabric-api)
+
+[![Build Mod](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)
+[![license](https://img.shields.io/github/license/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/blob/main/LICENSE)
+[![pull request](https://img.shields.io/github/issues-pr/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/pulls)
+[![fork](https://img.shields.io/github/forks/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/network/members)
+[![star](https://img.shields.io/github/stars/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/stargazers)
+[![issue](https://img.shields.io/github/issues/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/issues)
+[![Java](https://img.shields.io/badge/Java-17-yellow)](https://docs.microsoft.com/java/openjdk/download)
 ## Install
 ### Client
 * 下载安装 `Minecraft 1.19`, 安装 `Fabric 0.14.8`
