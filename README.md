@@ -1,15 +1,17 @@
 # 地狱空岛 | Nether Sky Block
 ## Install
-下载安装 `Minecraft 1.19`, 安装 `Fabric 0.14.8`
-
-从 [Release](https://github.com/XXiuBai/Nether_Sky_Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并放入 `mods` 文件夹
-
-下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
-
-创建世界时, 在 `更多选项` 中将 `世界类型` 调为 `空岛` 并添加数据包
-
-进入进入世界后，输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
-
+### Client
+* 下载安装 `Minecraft 1.19`, 安装 `Fabric 0.14.8`
+* 从 [Release](https://github.com/XXiuBai/Nether_Sky_Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并将 `mod` 放入 `mods` 文件夹
+* 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
+* 创建世界时, 在 `更多选项` 中将 `世界类型` 调为 `空岛` 并添加数据包
+* 进入进入世界后，输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
+### Server
+* 下载安装 `Minecraft Server 1.19`, 安装 `Fabric 0.14.8`
+* 从 [Release](https://github.com/XXiuBai/Nether_Sky_Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并分别放入 `mods` 与 `world/datapacks` 文件夹
+* 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
+* 创建世界时, 在 `server.properties` 中将 `level-type` 调为 `skyland`
+* 开启服务器后，在控制台输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
 ## Features
 ### 模组
   - 将三个维度设置为虚空
@@ -46,15 +48,15 @@
     - `/gamerule iceGolem true`
   - 游商会交易除基础物品外的额外物品
   
-| **物品** | **价格** | **交易次数** |
-|--------|--------|----------|
-| 雪球*2   |  1     | 8        |
-| 珊瑚扇    | 64     | 4        |
-| 海龟蛋    | 16     | 4        |
-| 高花     | 8      | 8        |
-| 可可豆    | 16     | 8        |
-| 竹子     | 16     | 8        |
-| 地狱疣    | 32     | 4        |
+| **物品** | **数量** | **价格** | **交易次数** |
+|--------|--------|--------|----------|
+| 雪球     | 2      | 1      | 8        |
+| 珊瑚扇    | 1      | 64     | 4        |
+| 海龟蛋    | 1      | 16     | 4        |
+| 高花     | 1      | 8      | 8        |
+| 可可豆    | 1      | 16     | 8        |
+| 竹子     | 1      | 16     | 8        |
+| 地狱疣    | 1      | 32     | 4        |
 
 
   
