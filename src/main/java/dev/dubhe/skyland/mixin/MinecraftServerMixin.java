@@ -2,6 +2,9 @@ package dev.dubhe.skyland.mixin;
 
 import dev.dubhe.skyland.SkyLandChunkGenerator;
 import dev.dubhe.skyland.SkyLandStructures;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
@@ -44,6 +47,8 @@ public class MinecraftServerMixin {
         new SkyLandStructures.TheEndPortal(worldSpawn).generate(world, world.random, new BlockPos(724, 0, -724));
         new SkyLandStructures.TheEndPortal(worldSpawn).generate(world, world.random, new BlockPos(-724, 0, 724));
         new SkyLandStructures.TheEndPortal(worldSpawn).generate(world, world.random, new BlockPos(-724, 0, -724));
+
+        new ItemEntity(world, worldSpawn.getX(), worldSpawn.getY()+1, worldSpawn.getZ(), new ItemStack(Items.BONE_MEAL,32));
 
         ci.cancel();
     }
