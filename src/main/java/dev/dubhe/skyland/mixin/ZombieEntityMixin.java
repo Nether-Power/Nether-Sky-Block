@@ -33,7 +33,8 @@ public class ZombieEntityMixin {
                     value = "INVOKE",
                     target = "Lnet/minecraft/entity/mob/ZombieEntity;getTarget()Lnet/minecraft/entity/LivingEntity;",
                     shift = At.Shift.AFTER
-            )
+            ),
+            cancellable = true
     )
     private void zombieVillager(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         ZombieEntity zombie = (ZombieEntity) (Object) this;
