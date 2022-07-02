@@ -14,6 +14,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,7 +31,7 @@ public class ZombieEntityMixin {
     @Inject(method = "damage",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/mob/ZombieEntity;getZ()D",
+                    target = "Lnet/minecraft/entity/mob/ZombieEntity;getTarget()Lnet/minecraft/entity/LivingEntity;",
                     shift = At.Shift.AFTER
             )
     )
@@ -41,7 +43,7 @@ public class ZombieEntityMixin {
             if (livingEntity == null && source.getAttacker() instanceof LivingEntity) {
                 livingEntity = (LivingEntity) source.getAttacker();
             }
-            if (world instanceof ServerWorld serverWorld) {
+            if (livingEntity != null && world.getDifficulty() == Difficulty.HARD && (double)this.random.nextFloat() < (zombie.getAttributeValue(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS) * 2.0) && world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING) && world instanceof ServerWorld serverWorld) {
                 int i = MathHelper.floor(zombie.getX());
                 int j = MathHelper.floor(zombie.getY());
                 int k = MathHelper.floor(zombie.getZ());
@@ -80,5 +82,6 @@ public class ZombieEntityMixin {
                 }
             }
         }
+        cir.setReturnValue(true);
     }
 }
