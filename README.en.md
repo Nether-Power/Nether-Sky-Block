@@ -12,7 +12,7 @@
 [![issue](https://img.shields.io/github/issues/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/issues)
 [![Java](https://img.shields.io/badge/Java-17-yellow)](https://docs.microsoft.com/java/openjdk/download)
 
-## 中文 | [English](README.en.md)
+## [中文](README.md) | English
 
 ## Install
 
