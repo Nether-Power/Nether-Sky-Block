@@ -17,6 +17,10 @@ import java.io.IOException;
 
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin {
+    
+    private static boolean last_is_sneaking = false;
+    private static int cool_down = 0;
+    private static final int MAX_COOL_DOWN = 40;
 
     @Shadow @Final public MinecraftServer server;
 
@@ -33,6 +37,54 @@ public class ServerPlayerEntityMixin {
             }catch (IOException e){
                 e.printStackTrace();
             }
+        }
+    }
+    
+    @Inject(
+            method = "tick()V",
+            at = @At("RETURN")
+    )
+    private void tick(CallbackInfo ci) {
+
+        ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
+        ServerWorld world = player.getWorld();
+
+        if (!world.getGameRules().getBoolean(SkyLandGamerules.COMPOSTER_BONE_MEAL)) {
+            return;
+        }
+
+        if ((cool_down == 0)) {
+            if (player.isSneaking()) {
+                if (!last_is_sneaking) {
+                    last_is_sneaking = true;
+
+
+                    BlockPos pos = player.getBlockPos();
+
+                    BlockState state = world.getBlockState(pos);
+
+                    if (state.getBlock() == Blocks.COMPOSTER) {
+                        int level = state.get(ComposterBlock.LEVEL);
+                        if (level < 7) {
+                            int new_level = level + 1;
+                            BlockState blockState = state.with(ComposterBlock.LEVEL, new_level);
+                            world.setBlockState(pos, blockState);
+                            if (player.getRandom().nextFloat() < 0.3) {
+                                player.getHungerManager().add(-1, -1);
+                            }
+                            if (new_level == 7) {
+                                world.createAndScheduleBlockTick(pos, blockState.getBlock(), 20);
+                            }
+                            cool_down = MAX_COOL_DOWN;
+                        }
+                    }
+                }
+            } else {
+                last_is_sneaking = false;
+            }
+        }
+        if (cool_down > 0) {
+            cool_down = cool_down - 1;
         }
     }
 }
