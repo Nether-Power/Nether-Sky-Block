@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "skyland",
   "version": "${version}",
-  "name": "SkyLand",
-  "description": "Empty world generation",
+  "name": "NetherSkyBlock",
+  "description": "A Mod for Minecraft Nether SkyBlock",
   "authors": [
     "Nether-Power"
   ],
