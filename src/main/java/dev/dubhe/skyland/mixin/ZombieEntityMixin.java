@@ -25,9 +25,7 @@ import java.util.Objects;
 
 @Mixin(ZombieEntity.class)
 public class ZombieEntityMixin {
-
     protected final Random random = Random.create();
-
     @Inject(method = "damage",
             at = @At(
                     value = "INVOKE",
