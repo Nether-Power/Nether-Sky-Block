@@ -10,6 +10,7 @@
   "gamerule.villagerReinforcements": "Villager Reinforcements",
   "gamerule.killDragonSpawnShulker": "Kill Dragon Spawn Shulker",
   "gamerule.killDragonDropElytra": "Kill Dragon Drop Elytra",
+  "gamerule.ComposterBoneMeal": "Squat down in a composter to get bone meal",
 
   "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed"
 }

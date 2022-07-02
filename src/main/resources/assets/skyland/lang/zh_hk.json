@@ -10,6 +10,7 @@
   "gamerule.villagerReinforcements": "村民增援",
   "gamerule.killDragonSpawnShulker": "龍亡貝誕",
   "gamerule.killDragonDropElytra": "戰龍奪翅",
+  "gamerule.ComposterBoneMeal": "在堆肥桶下蹲獲得骨粉",
 
   "skyland.command.gamerule_set_succeed": "SkyLand 規則設置到 %s 成功"
 }
