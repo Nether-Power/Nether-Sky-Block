@@ -4,6 +4,7 @@ import com.mojang.brigadier.arguments.BoolArgumentType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
@@ -12,6 +13,7 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
@@ -51,6 +53,17 @@ public class SkyLandMod implements ModInitializer {
                 Vec3d pos = enderDragonEntity.getPos();
                 itemEntity.setPosition(pos);
                 world.spawnEntityAndPassengers(itemEntity);
+            }
+        });
+
+        ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+            ServerWorld world = newPlayer.getWorld();
+            if (world.getGameRules().getBoolean(SkyLandGamerules.MEMORY_FOOD_LEVEL)) {
+                int old_food_level = oldPlayer.getHungerManager().getFoodLevel();
+                int new_food_level = Math.max(old_food_level, world.getGameRules().getInt(SkyLandGamerules.RESPAWN_MIN_FOOD_LEVEL));
+                float old_saturation_level = oldPlayer.getHungerManager().getSaturationLevel();
+                newPlayer.getHungerManager().setFoodLevel(new_food_level);
+                newPlayer.getHungerManager().setSaturationLevel(old_saturation_level);
             }
         });
 

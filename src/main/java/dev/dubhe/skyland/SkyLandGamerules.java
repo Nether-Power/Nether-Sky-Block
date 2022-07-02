@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.world.GameRules.BooleanRule;
 import net.minecraft.world.GameRules.Category;
+import net.minecraft.world.GameRules.IntRule;
 import net.minecraft.world.GameRules.Key;
 
 public class SkyLandGamerules {
@@ -30,6 +31,10 @@ public class SkyLandGamerules {
             GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> KILL_DRAGON_DROP_ELYTRA = GameRuleRegistry.register("killDragonDropElytra", Category.DROPS,
             GameRuleFactory.createBooleanRule(false));
-    public static final Key<BooleanRule> COMPOSTER_BONE_MEAL = GameRuleRegistry.register("ComposterBoneMeal", Category.MISC,
+    public static final Key<BooleanRule> COMPOSTER_BONE_MEAL = GameRuleRegistry.register("composterBoneMeal", Category.MISC,
             GameRuleFactory.createBooleanRule(false));
+    public static final Key<BooleanRule> MEMORY_FOOD_LEVEL = GameRuleRegistry.register("memoryFoodLevel", Category.PLAYER,
+            GameRuleFactory.createBooleanRule(false));
+    public static final Key<IntRule> RESPAWN_MIN_FOOD_LEVEL = GameRuleRegistry.register("respawnMinFoodLevel", Category.PLAYER,
+            GameRuleFactory.createIntRule(4));
 }

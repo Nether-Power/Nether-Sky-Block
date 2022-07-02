@@ -10,7 +10,9 @@
   "gamerule.villagerReinforcements": "Villager Reinforcements",
   "gamerule.killDragonSpawnShulker": "Kill Dragon Spawn Shulker",
   "gamerule.killDragonDropElytra": "Kill Dragon Drop Elytra",
-  "gamerule.ComposterBoneMeal": "Squat down in a composter to get bone meal",
+  "gamerule.composterBoneMeal": "Squat down in a composter to get bone meal",
+  "gamerule.memoryFoodLevel": "Memories of satiety before death",
+  "gamerule.respawnMinFoodLevel": "Minimum satiety after respawn",
 
   "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed"
 }
