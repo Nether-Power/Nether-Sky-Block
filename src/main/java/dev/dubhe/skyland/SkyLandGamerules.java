@@ -30,4 +30,6 @@ public class SkyLandGamerules {
             GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> KILL_DRAGON_DROP_ELYTRA = GameRuleRegistry.register("killDragonDropElytra", Category.DROPS,
             GameRuleFactory.createBooleanRule(false));
+    public static final Key<BooleanRule> COMPOSTER_BONE_MEAL = GameRuleRegistry.register("ComposterBoneMeal", Category.MISC,
+            GameRuleFactory.createBooleanRule(false));
 }
