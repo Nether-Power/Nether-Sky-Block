@@ -71,7 +71,11 @@
 - 雪傀儡站在水上面会将水变为冰
   - `/gamerule iceGolem true`
 - 站在堆肥桶中下蹲，可以产生骨粉
-  - `/gamerule ComposterBoneMeal true`
+  - `/gamerule composterBoneMeal true`
+- 死亡后会记忆死亡前的饱食度
+  - `/gamerule memoryFoodLevel true`
+- 死亡复活后最低饱食度（在规则 `memoryFoodLevel` 开启后有效）默认为 4
+  - `/gamerule respawnMinFoodLevel 4`
 - 游商会交易除基础物品外的额外物品
 
 | **物品** | **数量** | **价格** | **交易次数** |
