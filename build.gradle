@@ -12,10 +12,33 @@ targetCompatibility = JavaVersion.VERSION_17
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
-loom {
-    accessWidenerPath =  file("src/main/resources/skyland.accesswidener")
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    "src/main/generated"
+            ]
+        }
+    }
 }
 
+loom {
+    accessWidenerPath =  file("src/main/resources/skyland.accesswidener")
+
+    runs {
+        datagen {
+            server()
+
+            name "Minecraft Data"
+
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+
+            runDir "build/datagen"
+        }
+    }
+}
+assemble.dependsOn runDatagen
 dependencies {
     minecraft "com.mojang:minecraft:${project.mc_version}"
     mappings "net.fabricmc:yarn:${project.yarn_version}:v2"

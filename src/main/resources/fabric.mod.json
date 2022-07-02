@@ -16,6 +16,9 @@
   "entrypoints": {
     "main": [
       "dev.dubhe.skyland.SkyLandMod"
+    ],
+    "fabric-datagen": [
+      "dev.dubhe.skyland.data.SkyLandDataGenerator"
     ]
   },
   "mixins": [

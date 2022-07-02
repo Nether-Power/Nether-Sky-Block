@@ -14,5 +14,8 @@
   "gamerule.memoryFoodLevel": "記憶死亡前的飽食度",
   "gamerule.respawnMinFoodLevel": "重生後的最低飽食度",
 
-  "skyland.command.gamerule_set_succeed": "SkyLand 規則設置到 %s 成功"
+  "skyland.command.gamerule_set_succeed": "SkyLand 規則設置到 %s 成功",
+
+  "advancement.skyland.root.title": "Nether Skyblock",
+  "advancement.skyland.root.desc": "開始你的 Nether Skyblock 之旅"
 }

@@ -14,5 +14,8 @@
   "gamerule.memoryFoodLevel": "Memories of satiety before death",
   "gamerule.respawnMinFoodLevel": "Minimum satiety after respawn",
 
-  "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed"
+  "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed",
+
+  "advancement.skyland.root.title": "Nether Skyblock",
+  "advancement.skyland.root.desc": "Start your Nether Skyblock journey"
 }
