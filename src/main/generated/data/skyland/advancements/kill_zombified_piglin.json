@@ -8,7 +8,7 @@
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "type": "minecraft:piglin"
+              "type": "minecraft:zombified_piglin"
             }
           }
         ]
@@ -20,7 +20,7 @@
     "announce_to_chat": false,
     "background": "minecraft:textures/block/crimson_planks.png",
     "description": {
-      "translate": "advancement.skyland.piglin.desc"
+      "translate": "advancement.skyland.kill_zombified_piglin.desc"
     },
     "frame": "task",
     "hidden": false,
@@ -30,7 +30,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "advancement.skyland.piglin.title"
+      "translate": "advancement.skyland.kill_zombified_piglin.title"
     }
   },
   "requirements": [
