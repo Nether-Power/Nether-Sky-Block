@@ -65,8 +65,11 @@
   - `/gamerule killDragonDropElytra true`
 - 下界内生成末地传送门
   - 世界内会以 `出生点` 为中心, 半径 `1024` 生成 `8` 个末地门框架
-- 珊瑚扇在有水炼药锅里用铁砧砸一下会消耗一层水并增加多一个珊瑚扇
-  - `/gamerule doubleCoralFans true`
+- 铁砧处理
+  - `/gamerule anvilHandle true`
+  - 珊瑚扇在有水炼药锅里用铁砧砸一下会消耗一层水并增加多一个珊瑚扇
+  - 用铁砧砸一下滴水石块将其变为滴水石锥
+  - 在储水炼药锅内把消耗一层水玄武岩洗涤为滴水石块
 - 在下界里可以触发袭击
 - 雪傀儡站在水上面会将水变为冰
   - `/gamerule iceGolem true`
@@ -74,7 +77,7 @@
   - `/gamerule composterBoneMeal true`
 - 死亡后会记忆死亡前的饱食度
   - `/gamerule memoryFoodLevel true`
-- 死亡复活后最低饱食度（在规则 `memoryFoodLevel` 开启后有效）默认为 4
+- 死亡复活后最低饱食度（在规则 `memoryFoodLevel` 开启后有效, 默认为 `4`）
   - `/gamerule respawnMinFoodLevel 4`
 - 游商会交易除基础物品外的额外物品
 

@@ -45,25 +45,38 @@ public abstract class FallingBlockEntityMixin extends Entity {
             )
     )
     private void onTick(CallbackInfo ci) {
-        if (world.getGameRules().getBoolean(SkyLandGamerules.DOUBLE_CORAL_FANS) && getBlockState().isIn(
+        if (world.getGameRules().getBoolean(SkyLandGamerules.ANVIL_HANDLE) && getBlockState().isIn(
                 BlockTags.ANVIL)) {
             BlockPos blockPos = this.getBlockPos();
-            BlockState blockState1 = this.world.getBlockState(
+            BlockState blockState = this.world.getBlockState(
                     new BlockPos(this.getX(), this.getY() - 0.06, this.getZ()));
-            if (blockState1.getBlock() == Blocks.WATER_CAULDRON) {
-                ServerWorld world1 = (ServerWorld) world;
-                List<Entity> entityList = world1.getOtherEntities(this, new Box(blockPos.down()));
-                for (Entity i : entityList) {
-                    if (i instanceof ItemEntity itemEntity) {
-                        ItemStack itemStack = itemEntity.getStack();
-                        List<Item> itemList = new ArrayList<>(
+            ServerWorld serverWorld = (ServerWorld) world;
+            List<Entity> downBlockEntityList = serverWorld.getOtherEntities(this, new Box(blockPos.down()));
+            List<Entity> thisBlockEntityList = serverWorld.getOtherEntities(this, new Box(blockPos));
+            for (Entity entity : downBlockEntityList) {
+                if (entity instanceof ItemEntity itemEntity) {
+                    ItemStack itemStack = itemEntity.getStack();
+                    Item item = itemStack.getItem();
+                    // 膨发
+                    if (blockState.getBlock() == Blocks.WATER_CAULDRON) {
+                        List<Item> coralFan = new ArrayList<>(
                                 List.of(new Item[]{Items.FIRE_CORAL_FAN, Items.BUBBLE_CORAL_FAN, Items.BRAIN_CORAL_FAN,
                                         Items.HORN_CORAL_FAN, Items.TUBE_CORAL_FAN}));
-                        Item item = itemStack.getItem();
-                        if (itemList.contains(item)) {
+                        if (coralFan.contains(item)) {
                             itemStack.setCount(Math.min(itemStack.getCount() * 2, 64));
-                            decrementFluidLevel(blockState1, this.world, blockPos.down());
+                            decrementFluidLevel(blockState, this.world, blockPos.down());
                         }
+                    }
+                }
+            }
+            for (Entity entity : thisBlockEntityList) {
+                if (entity instanceof ItemEntity itemEntity) {
+                    ItemStack itemStack = itemEntity.getStack();
+                    Item item = itemStack.getItem();
+                    // 砸碎
+                    if (item == Items.DRIPSTONE_BLOCK){
+                        serverWorld.spawnEntityAndPassengers(new ItemEntity(serverWorld, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), new ItemStack(Items.POINTED_DRIPSTONE, itemStack.getCount())));
+                        itemEntity.kill();
                     }
                 }
             }

@@ -71,13 +71,20 @@
     - `/gamerule killDragonDropElytra true`
 - Generate the End Portal in the nether
     - The world will generate `8` End Portal frames with a radius of `1024` centered on `spawnpoint`
-- Smashing a coral fan with an anvil in a Water Cauldron will consume a layer of water and add another coral fan
-    - `/gamerule doubleCoralFans true`
+- Anvil Handle
+    - `/gamerule anvilHandle true`
+    - Smashing a coral fan with an anvil in a Water Cauldron will consume a layer of water and add another coral fan
+    - Hit the Dripstone Block with an Anvil to turn it into a Dripstone 
+    - Wash the basalt that consumes a layer of water into Dripstone Block in the Water Cauldron
 - The Raid can be triggered in the nether
 - The Snow Golem standing on the water will turn the water into ice
     - `/gamerule iceGolem true`
 - Sneak in composer can produce bone meal
     - `/gamerule ComposterBoneMeal true`
+- The FoodLevel before death will be remembered after death
+  - `/gamerule memoryFoodLevel true`
+- Minimum FoodLevel after death and resurrection (effective after the rule `memoryFoodLevel` is turned on, the default is `4`)
+  - `/gamerule respawnMinFoodLevel 4`
 - The Wandering Trader deals in additional items
 
 | **Item**    | **Count** | **Price** | **Transactions Count** |
