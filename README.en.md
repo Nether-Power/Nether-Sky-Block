@@ -40,7 +40,7 @@
 
 - Set three dimensions to void
 - Replace overworld with nether
-- Removed the experimental world warning
+- **\[WIP\]** Removed the experimental world warning
 - All features of one key switch
     - `/skyland gamerule <true|false>`
 - Ignore the influence of LC value on monster spawn efficiency
@@ -55,7 +55,7 @@
 - The nether will generate patrol
     - `/gamerule netherPatrol true`
 - Soul Sand Valley spawn Witch (extremely low probability)
-- Bastion Remnant spawn Pillager
+- **\[WIP\]** Bastion Remnant spawn Pillager
 - Basalt Deltas spawn Slime
 - The lava beside the Water Cauldron (full of water) is converted into obsidian and consumes all the water in the Water
   Cauldron
