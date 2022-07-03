@@ -1,0 +1,90 @@
+{
+  "parent": "skyland:lava_bucket",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:brain_coral_fan"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "1": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:tube_coral_fan"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "2": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:bubble_coral_fan"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "3": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:fire_coral_fan"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "4": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:horn_coral_fan"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.coral_fan.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:fire_coral_fan"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.coral_fan.title"
+    }
+  },
+  "requirements": [
+    [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+    ]
+  ]
+}

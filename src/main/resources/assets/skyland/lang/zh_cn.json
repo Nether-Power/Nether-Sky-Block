@@ -17,7 +17,11 @@
   "skyland.command.gamerule_set_succeed": "SkyLand 规则设置到 %s 成功",
 
   "advancement.skyland.root.title": "Nether Skyblock",
-  "advancement.skyland.root.desc": "开始你的 Nether Skyblock 之旅",
+  "advancement.skyland.root.desc": "开始你的 Nether Skyblock 之旅\n在开始之前使用 §b/skyland gamerule true§a 命令打开需要的规则",
+  "advancement.skyland.wood.title": "木头！",
+  "advancement.skyland.wood.desc": "用骨粉催熟绯红菌获得木头",
+  "advancement.skyland.composter.title": "堆肥桶！",
+  "advancement.skyland.composter.desc": "在堆肥桶中堆肥可以获得骨粉",
 
   "skyland.tooltip.cool_down": "冷却: %d",
   "skyland.tooltip.ready": "就绪",

@@ -1,7 +1,16 @@
 {
+  "parent": "skyland:water",
   "criteria": {
     "0": {
-      "conditions": {},
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ice"
+            ]
+          }
+        ]
+      },
       "trigger": "minecraft:inventory_changed"
     }
   },
@@ -9,16 +18,16 @@
     "announce_to_chat": false,
     "background": "minecraft:textures/block/crimson_planks.png",
     "description": {
-      "translate": "advancement.skyland.root.desc"
+      "translate": "advancement.skyland.ice.desc"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "minecraft:crimson_fungus"
+      "item": "minecraft:ice"
     },
-    "show_toast": false,
+    "show_toast": true,
     "title": {
-      "translate": "advancement.skyland.root.title"
+      "translate": "advancement.skyland.ice.title"
     }
   },
   "requirements": [

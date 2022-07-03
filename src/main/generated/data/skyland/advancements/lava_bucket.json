@@ -1,0 +1,38 @@
+{
+  "parent": "skyland:village_hero",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:lava_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.lava_bucket.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:lava_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.lava_bucket.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

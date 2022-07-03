@@ -1,0 +1,39 @@
+{
+  "parent": "skyland:the_end",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:elytra"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.elytra.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:elytra",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.elytra.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

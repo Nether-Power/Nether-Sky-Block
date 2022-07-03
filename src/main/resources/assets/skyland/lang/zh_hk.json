@@ -18,6 +18,10 @@
 
   "advancement.skyland.root.title": "Nether Skyblock",
   "advancement.skyland.root.desc": "開始你的 Nether Skyblock 之旅",
+  "advancement.skyland.wood.title": "木頭!",
+  "advancement.skyland.wood.desc": "用骨粉催熟緋紅菌獲得木頭\n在開始之前使用 §b/skyland gamerule true§a 命令打開需要的規則",
+  "advancement.skyland.composter.title": "堆肥桶！",
+  "advancement.skyland.composter.desc": "在堆肥桶中堆肥可以獲得骨粉",
 
   "skyland.tooltip.cool_down": "冷卻: %d",
   "skyland.tooltip.ready": "就緒",

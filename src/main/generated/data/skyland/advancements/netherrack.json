@@ -1,0 +1,38 @@
+{
+  "parent": "skyland:blast_furnace",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:netherrack"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.netherrack.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:netherrack"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.netherrack.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

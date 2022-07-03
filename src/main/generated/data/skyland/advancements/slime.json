@@ -1,7 +1,16 @@
 {
+  "parent": "skyland:bedrock_layer",
   "criteria": {
     "0": {
-      "conditions": {},
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:slime_ball"
+            ]
+          }
+        ]
+      },
       "trigger": "minecraft:inventory_changed"
     }
   },
@@ -9,16 +18,16 @@
     "announce_to_chat": false,
     "background": "minecraft:textures/block/crimson_planks.png",
     "description": {
-      "translate": "advancement.skyland.root.desc"
+      "translate": "advancement.skyland.slime.desc"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "minecraft:crimson_fungus"
+      "item": "minecraft:slime_ball"
     },
-    "show_toast": false,
+    "show_toast": true,
     "title": {
-      "translate": "advancement.skyland.root.title"
+      "translate": "advancement.skyland.slime.title"
     }
   },
   "requirements": [

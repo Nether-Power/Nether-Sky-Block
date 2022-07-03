@@ -1,0 +1,38 @@
+{
+  "parent": "skyland:ice",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:pointed_dripstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.bulk_lava.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:pointed_dripstone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.bulk_lava.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

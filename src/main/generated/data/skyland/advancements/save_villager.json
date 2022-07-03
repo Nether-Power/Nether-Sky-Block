@@ -1,0 +1,30 @@
+{
+  "parent": "skyland:weakness",
+  "criteria": {
+    "0": {
+      "conditions": {},
+      "trigger": "minecraft:cured_zombie_villager"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.save_villager.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:golden_apple"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.save_villager.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

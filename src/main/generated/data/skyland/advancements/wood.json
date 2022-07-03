@@ -1,0 +1,38 @@
+{
+  "parent": "skyland:root",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:crimson_stem"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.wood.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:crimson_stem"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.wood.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

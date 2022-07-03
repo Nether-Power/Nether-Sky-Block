@@ -1,5 +1,5 @@
 {
-  "parent": "skyland:root",
+  "parent": "skyland:the_end",
   "criteria": {
     "0": {
       "conditions": {
@@ -14,18 +14,18 @@
   },
   "display": {
     "announce_to_chat": true,
-    "background": "minecraft:textures/block/netherrack.png",
+    "background": "minecraft:textures/block/crimson_planks.png",
     "description": {
-      "translate": "advancement.skyland.next.desc"
+      "translate": "advancement.skyland.water.desc"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "minecraft:acacia_door"
+      "item": "minecraft:water_bucket"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancement.skyland.next.title"
+      "translate": "advancement.skyland.water.title"
     }
   },
   "requirements": [

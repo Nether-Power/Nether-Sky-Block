@@ -1,7 +1,16 @@
 {
+  "parent": "skyland:root",
   "criteria": {
     "0": {
-      "conditions": {},
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ender_eye"
+            ]
+          }
+        ]
+      },
       "trigger": "minecraft:inventory_changed"
     }
   },
@@ -9,16 +18,16 @@
     "announce_to_chat": false,
     "background": "minecraft:textures/block/crimson_planks.png",
     "description": {
-      "translate": "advancement.skyland.root.desc"
+      "translate": "advancement.skyland.the_end.desc"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "minecraft:crimson_fungus"
+      "item": "minecraft:end_portal_frame"
     },
-    "show_toast": false,
+    "show_toast": true,
     "title": {
-      "translate": "advancement.skyland.root.title"
+      "translate": "advancement.skyland.the_end.title"
     }
   },
   "requirements": [

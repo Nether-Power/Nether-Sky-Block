@@ -1,0 +1,38 @@
+{
+  "parent": "skyland:piglin",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:respawn_anchor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.respawn.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:respawn_anchor"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.respawn.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

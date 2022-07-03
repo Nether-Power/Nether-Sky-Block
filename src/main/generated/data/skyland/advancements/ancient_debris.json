@@ -1,0 +1,38 @@
+{
+  "parent": "skyland:village_hero",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ancient_debris"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.ancient_debris.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:ancient_debris"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.ancient_debris.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

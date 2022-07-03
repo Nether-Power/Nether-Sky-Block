@@ -17,7 +17,11 @@
   "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed",
 
   "advancement.skyland.root.title": "Nether Skyblock",
-  "advancement.skyland.root.desc": "Start your Nether Skyblock journey",
+  "advancement.skyland.root.desc": "Start your Nether Skyblock journey\nUse the §b/skyland gamerule true§a command to open the desired rule before starting",
+  "advancement.skyland.wood.title": "Wood!",
+  "advancement.skyland.wood.desc": "Use bone meal to ripen Crimson Fungus to obtain wood",
+  "advancement.skyland.composter.title": "Composter!",
+  "advancement.skyland.composter.desc": "Compost in a composter to get bone meal",
 
   "skyland.tooltip.cool_down": "Cool down: %d",
   "skyland.tooltip.ready": "Ready",

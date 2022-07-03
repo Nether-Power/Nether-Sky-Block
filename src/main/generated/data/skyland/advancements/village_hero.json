@@ -1,0 +1,35 @@
+{
+  "parent": "skyland:save_villager",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "effects": {
+          "minecraft:bad_omen": {},
+          "minecraft:hero_of_the_village": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.village_hero.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:emerald"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.village_hero.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

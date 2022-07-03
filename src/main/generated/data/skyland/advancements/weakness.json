@@ -1,0 +1,34 @@
+{
+  "parent": "skyland:composter",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "effects": {
+          "minecraft:weakness": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/crimson_planks.png",
+    "description": {
+      "translate": "advancement.skyland.weakness.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:splash_potion"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.skyland.weakness.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}
