@@ -102,6 +102,7 @@
 - recipes
     - Blast furnace recipe of replacing Smooth Stone with Obsidian
     - Burn the Nether Wart Block in the blast furnace to obtain the Nether Wart Block
+    - Craft a Soul Soil from 9 Soul Sand
 - Modify piglin transaction
     - Delete Fire Resistance Potion trading
     - Increase Blackstone trading probability
