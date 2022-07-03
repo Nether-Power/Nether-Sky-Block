@@ -1,8 +1,8 @@
 # 下界空岛 | Nether Sky Block
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.19-66ccff)](https://www.minecraft.net/)
-[![Minecraft](https://img.shields.io/badge/Fabric-0.14.8-fcd217)](https://fabricmc.net/use/installer/)
-[![Minecraft](https://img.shields.io/badge/FabricAPI-0.57.0+1.19-b2cf87)](https://modrinth.com/mod/fabric-api)
+[![Fabric](https://img.shields.io/badge/Fabric-0.14.8-fcd217)](https://fabricmc.net/use/installer/)
+[![Fabric API](https://img.shields.io/badge/FabricAPI-0.57.0+1.19-b2cf87)](https://modrinth.com/mod/fabric-api)
 [![Discord](https://img.shields.io/badge/Discord-nEt5QTRYTN-c6574b)](https://discord.gg/nEt5QTRYTN)
 
 [![Build Mod](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)
