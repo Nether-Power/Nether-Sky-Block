@@ -75,7 +75,7 @@
     - `/gamerule anvilHandle true`
     - Smashing a coral fan with an anvil in a Water Cauldron will consume a layer of water and add another coral fan
     - Hit the Dripstone Block with an Anvil to turn it into a Dripstone 
-    - Wash the basalt that consumes a layer of water into Dripstone Block in the Water Cauldron
+    - Wash the basalt that consumes all water into Dripstone Block in the Water Cauldron (full of water)
 - The Raid can be triggered in the nether
 - The Snow Golem standing on the water will turn the water into ice
     - `/gamerule iceGolem true`
