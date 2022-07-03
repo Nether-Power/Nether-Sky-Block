@@ -45,13 +45,13 @@ public class AdvancementProvider extends FabricAdvancementProvider {
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.CRIMSON_STEM)), consumer);
         Advancement COMPOSTER = newAdvancement("composter", Items.COMPOSTER, TaskType.NORMAL, WOOD,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.COMPOSTER)), consumer);
-        Advancement KILL_PIGLIN = newAdvancement("piglin", Items.DIAMOND_SWORD, TaskType.NORMAL, WOOD,
+        Advancement KILL_ZOMBIFIED_PIGLIN = newAdvancement("kill_zombified_piglin", Items.DIAMOND_SWORD, TaskType.NORMAL, WOOD,
                 new Criterion("0", OnKilledCriterion.Conditions.createPlayerKilledEntity(
-                        EntityPredicate.Builder.create().type(EntityType.PIGLIN))), consumer);
-        Advancement KILL_WRONG = newAdvancement("kill_wrong", Items.WOODEN_SWORD, TaskType.NORMAL, KILL_PIGLIN,
+                        EntityPredicate.Builder.create().type(EntityType.ZOMBIFIED_PIGLIN))), consumer);
+        Advancement KILL_WRONG = newAdvancement("kill_wrong", Items.WOODEN_SWORD, TaskType.NORMAL, KILL_ZOMBIFIED_PIGLIN,
                 new Criterion("0", OnKilledCriterion.Conditions.createPlayerKilledEntity(
                         EntityPredicate.Builder.create().type(EntityType.ZOMBIE_VILLAGER))), consumer);
-        Advancement GOLD_INGOT = newAdvancement("gold_ingot", Items.GOLD_INGOT, TaskType.NORMAL, KILL_PIGLIN,
+        Advancement GOLD_INGOT = newAdvancement("gold_ingot", Items.GOLD_INGOT, TaskType.NORMAL, KILL_ZOMBIFIED_PIGLIN,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.GOLD_INGOT)), consumer);
         Advancement BLAST_FURNACE = newAdvancement("blast_furnace", Items.BLAST_FURNACE, TaskType.NORMAL, GOLD_INGOT,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.BLAST_FURNACE)), consumer);
@@ -110,7 +110,7 @@ public class AdvancementProvider extends FabricAdvancementProvider {
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.ELYTRA)), consumer);
         Advancement BULK_LAVA = newAdvancement("bulk_lava", Items.POINTED_DRIPSTONE, TaskType.GOAL, ICE,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.POINTED_DRIPSTONE)), consumer);
-        Advancement RESPAWN = newAdvancement("respawn", Items.RESPAWN_ANCHOR, TaskType.GOAL, KILL_PIGLIN,
+        Advancement RESPAWN = newAdvancement("respawn", Items.RESPAWN_ANCHOR, TaskType.GOAL, KILL_ZOMBIFIED_PIGLIN,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.RESPAWN_ANCHOR)), consumer);
     }
 

@@ -1,5 +1,5 @@
 {
-  "parent": "skyland:piglin",
+  "parent": "skyland:kill_zombified_piglin",
   "criteria": {
     "0": {
       "conditions": {
