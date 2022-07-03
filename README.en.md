@@ -1,4 +1,4 @@
-# 地狱空岛 | Nether Sky Block
+# 下界空岛 | Nether Sky Block
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.18.2-66ccff)](https://www.minecraft.net/)
 [![Minecraft](https://img.shields.io/badge/Fabric-0.14.8-fcd217)](https://fabricmc.net/use/installer/)
