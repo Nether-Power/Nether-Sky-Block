@@ -3,6 +3,7 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.19-66ccff)](https://www.minecraft.net/)
 [![Minecraft](https://img.shields.io/badge/Fabric-0.14.8-fcd217)](https://fabricmc.net/use/installer/)
 [![Minecraft](https://img.shields.io/badge/FabricAPI-0.57.0+1.19-b2cf87)](https://modrinth.com/mod/fabric-api)
+[![Discord](https://img.shields.io/badge/Discord-nEt5QTRYTN-c6574b)](https://discord.gg/nEt5QTRYTN)
 
 [![Build Mod](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)
 [![license](https://img.shields.io/github/license/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/blob/main/LICENSE)
