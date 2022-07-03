@@ -1,0 +1,21 @@
+{
+  "generator.skyland": "空島",
+  "gamerule.qnmdLC": "忽略LC值影響",
+  "gamerule.chieftainMode": "非酋模式",
+  "gamerule.waterCauldron": "儲水煉藥鍋將熔岩變爲黑曜石",
+  "gamerule.netherTrader": "地獄游商",
+  "gamerule.iceGolem": "雪傀儡可以將水變為冰",
+  "gamerule.doubleCoralFans": "再生珊瑚扇",
+  "gamerule.netherPatrol": "地獄掠奪者巡邏隊",
+  "gamerule.villagerReinforcements": "村民增援",
+  "gamerule.killDragonSpawnShulker": "龍亡貝誕",
+  "gamerule.killDragonDropElytra": "戰龍奪翅",
+  "gamerule.composterBoneMeal": "在堆肥桶下蹲獲得骨粉",
+  "gamerule.memoryFoodLevel": "記憶死亡前的飽食度",
+  "gamerule.respawnMinFoodLevel": "重生後的最低飽食度",
+
+  "skyland.command.gamerule_set_succeed": "SkyLand 規則設置到 %s 成功",
+
+  "advancement.skyland.root.title": "Nether Skyblock",
+  "advancement.skyland.root.desc": "開始你的 Nether Skyblock 之旅"
+}

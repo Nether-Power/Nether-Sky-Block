@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "package": "dev.dubhe.skyland.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ChunkGeneratorSettingsMixin",
+    "DimensionTypeMixin",
+    "EnderDragonFightMixin",
+    "FallingBlockEntityMixin",
+    "FluidBlockMixin",
+    "GeneratorOptionsMixin",
+    "MinecraftServerMixin",
+    "PatrolSpawnerMixin",
+    "RegistryMixin",
+    "SellItemFactoryAccessor",
+    "ServerPlayerEntityMixin",
+    "SlimeEntityMixin",
+    "SnowGolemEntityMixin",
+    "SpawnHelperMixin",
+    "TheNetherBiomeCreatorMixin",
+    "WanderingTraderManagerMixin",
+    "ZombieEntityMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

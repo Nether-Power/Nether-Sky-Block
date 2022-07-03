@@ -1,0 +1,21 @@
+{
+  "generator.skyland": "SkyLand",
+  "gamerule.qnmdLC": "qnmdLC",
+  "gamerule.chieftainMode": "Chieftain Mode",
+  "gamerule.waterCauldron": "Water Cauldron Turn lava into Obsidian",
+  "gamerule.netherTrader": "Nether Trader",
+  "gamerule.iceGolem": "Snow golem can turn water into ice",
+  "gamerule.doubleCoralFans": "Double Coral Fans",
+  "gamerule.netherPatrol": "Nether Patrol",
+  "gamerule.villagerReinforcements": "Villager Reinforcements",
+  "gamerule.killDragonSpawnShulker": "Kill Dragon Spawn Shulker",
+  "gamerule.killDragonDropElytra": "Kill Dragon Drop Elytra",
+  "gamerule.composterBoneMeal": "Squat down in a composter to get bone meal",
+  "gamerule.memoryFoodLevel": "Memories of satiety before death",
+  "gamerule.respawnMinFoodLevel": "Minimum satiety after respawn",
+
+  "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed",
+
+  "advancement.skyland.root.title": "Nether Skyblock",
+  "advancement.skyland.root.desc": "Start your Nether Skyblock journey"
+}
