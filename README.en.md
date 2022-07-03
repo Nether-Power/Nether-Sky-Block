@@ -71,8 +71,9 @@
     - `/gamerule killDragonDropElytra true`
 - Generate the End Portal in the nether
     - The world will generate `8` End Portal frames with a radius of `1024` centered on `spawnpoint`
-- Smashing a coral fan with an anvil in a Water Cauldron will consume a layer of water and add another coral fan
-    - `/gamerule doubleCoralFans true`
+- Anvil Handle
+    - `/gamerule anvilHandle true`
+    - Smashing a coral fan with an anvil in a Water Cauldron will consume a layer of water and add another coral fan
 - The Raid can be triggered in the nether
 - The Snow Golem standing on the water will turn the water into ice
     - `/gamerule iceGolem true`

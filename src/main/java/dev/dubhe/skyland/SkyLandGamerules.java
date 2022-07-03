@@ -21,7 +21,7 @@ public class SkyLandGamerules {
             GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> ICE_GOLEM = GameRuleRegistry.register("iceGolem", Category.MISC,
             GameRuleFactory.createBooleanRule(false));
-    public static final Key<BooleanRule> DOUBLE_CORAL_FANS = GameRuleRegistry.register("doubleCoralFans", Category.MISC,
+    public static final Key<BooleanRule> ANVIL_HANDLE = GameRuleRegistry.register("anvilHandle", Category.MISC,
             GameRuleFactory.createBooleanRule(false));
     public static final Key<BooleanRule> NETHER_PATROL = GameRuleRegistry.register("netherPatrol", Category.SPAWNING,
             GameRuleFactory.createBooleanRule(false));

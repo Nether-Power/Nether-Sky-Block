@@ -84,7 +84,7 @@ public class SkyLandMod implements ModInitializer {
                                                     .get(SkyLandGamerules.NETHER_TRADER)
                                                     .set(bool, serverCommandSource.getServer());
                                             serverCommandSource.getServer().getGameRules()
-                                                    .get(SkyLandGamerules.DOUBLE_CORAL_FANS)
+                                                    .get(SkyLandGamerules.ANVIL_HANDLE)
                                                     .set(bool, serverCommandSource.getServer());
                                             serverCommandSource.getServer().getGameRules()
                                                     .get(SkyLandGamerules.NETHER_PATROL)
