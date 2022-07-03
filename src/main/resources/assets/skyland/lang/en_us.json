@@ -17,5 +17,9 @@
   "skyland.command.gamerule_set_succeed": "SkyLand gamerules set to %s succeed",
 
   "advancement.skyland.root.title": "Nether Skyblock",
-  "advancement.skyland.root.desc": "Start your Nether Skyblock journey"
+  "advancement.skyland.root.desc": "Start your Nether Skyblock journey",
+
+  "skyland.tooltip.cool_down": "Cool down: %d",
+  "skyland.tooltip.ready": "Ready",
+  "config.jade.plugin_skyland.composter_cool_down": "Composter cool down"
 }

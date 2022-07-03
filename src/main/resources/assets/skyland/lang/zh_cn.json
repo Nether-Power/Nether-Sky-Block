@@ -17,5 +17,9 @@
   "skyland.command.gamerule_set_succeed": "SkyLand 规则设置到 %s 成功",
 
   "advancement.skyland.root.title": "Nether Skyblock",
-  "advancement.skyland.root.desc": "开始你的 Nether Skyblock 之旅"
+  "advancement.skyland.root.desc": "开始你的 Nether Skyblock 之旅",
+
+  "skyland.tooltip.cool_down": "冷却: %d",
+  "skyland.tooltip.ready": "就绪",
+  "config.jade.plugin_skyland.composter_cool_down": "堆肥桶冷却"
 }

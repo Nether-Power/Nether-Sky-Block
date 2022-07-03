@@ -19,6 +19,9 @@
     ],
     "fabric-datagen": [
       "dev.dubhe.skyland.data.SkyLandDataGenerator"
+    ],
+    "jade": [
+      "dev.dubhe.skyland.plugin.ComposterPlugin"
     ]
   },
   "mixins": [

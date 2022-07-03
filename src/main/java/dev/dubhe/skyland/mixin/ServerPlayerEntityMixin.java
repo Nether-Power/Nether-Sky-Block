@@ -1,5 +1,6 @@
 package dev.dubhe.skyland.mixin;
 
+import dev.dubhe.skyland.ComposterCoolDown;
 import dev.dubhe.skyland.SkyLandGamerules;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -23,10 +24,7 @@ import java.io.IOException;
 
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin {
-    
-    private static boolean last_is_sneaking = false;
-    private static int cool_down = 0;
-    private static final int MAX_COOL_DOWN = 40;
+
 
     @Shadow @Final public MinecraftServer server;
 
@@ -59,10 +57,10 @@ public class ServerPlayerEntityMixin {
             return;
         }
 
-        if ((cool_down == 0)) {
+        if ((ComposterCoolDown.cool_down == 0)) {
             if (player.isSneaking()) {
-                if (!last_is_sneaking) {
-                    last_is_sneaking = true;
+                if (!ComposterCoolDown.last_is_sneaking) {
+                    ComposterCoolDown.last_is_sneaking = true;
 
 
                     BlockPos pos = player.getBlockPos();
@@ -81,16 +79,16 @@ public class ServerPlayerEntityMixin {
                             if (new_level == 7) {
                                 world.createAndScheduleBlockTick(pos, blockState.getBlock(), 20);
                             }
-                            cool_down = MAX_COOL_DOWN;
+                            ComposterCoolDown.cool_down = ComposterCoolDown.MAX_COOL_DOWN;
                         }
                     }
                 }
             } else {
-                last_is_sneaking = false;
+                ComposterCoolDown.last_is_sneaking = false;
             }
         }
-        if (cool_down > 0) {
-            cool_down = cool_down - 1;
+        if (ComposterCoolDown.cool_down > 0) {
+            ComposterCoolDown.cool_down = ComposterCoolDown.cool_down - 1;
         }
     }
 }
