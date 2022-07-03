@@ -81,6 +81,10 @@
     - `/gamerule iceGolem true`
 - Sneak in composer can produce bone meal
     - `/gamerule ComposterBoneMeal true`
+- The FoodLevel before death will be remembered after death
+  - `/gamerule memoryFoodLevel true`
+- Minimum FoodLevel after death and resurrection (effective after the rule `memoryFoodLevel` is turned on, the default is `4`)
+  - `/gamerule respawnMinFoodLevel 4`
 - The Wandering Trader deals in additional items
 
 | **Item**    | **Count** | **Price** | **Transactions Count** |

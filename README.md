@@ -77,7 +77,7 @@
   - `/gamerule composterBoneMeal true`
 - 死亡后会记忆死亡前的饱食度
   - `/gamerule memoryFoodLevel true`
-- 死亡复活后最低饱食度（在规则 `memoryFoodLevel` 开启后有效）默认为 4
+- 死亡复活后最低饱食度（在规则 `memoryFoodLevel` 开启后有效, 默认为 `4`）
   - `/gamerule respawnMinFoodLevel 4`
 - 游商会交易除基础物品外的额外物品
 
