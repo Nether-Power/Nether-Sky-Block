@@ -1,10 +1,9 @@
 package dev.dubhe.skyland.mixin;
 
-import static net.minecraft.block.LeveledCauldronBlock.decrementFluidLevel;
-
 import dev.dubhe.skyland.SkyLandGamerules;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,13 +25,13 @@ public class ItemEntityMixin {
             BlockPos blockPos = itemEntity.getBlockPos();
             BlockState blockState = world.getBlockState(blockPos);
             // 洗涤
-            if (blockState.getBlock() == Blocks.WATER_CAULDRON) {
+            if (blockState.getBlock() == Blocks.WATER_CAULDRON && ((LeveledCauldronBlock)blockState.getBlock()).isFull(blockState)) {
                 ItemStack itemStack = itemEntity.getStack();
                 Item item = itemStack.getItem();
                 if (item == Items.BASALT){
                     world.spawnEntity(new ItemEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), new ItemStack(Items.DRIPSTONE_BLOCK, itemStack.getCount())));
                     itemEntity.kill();
-                    decrementFluidLevel(blockState, world, blockPos);
+                    world.setBlockState(blockPos,Blocks.CAULDRON.getDefaultState());
                 }
             }
         }
