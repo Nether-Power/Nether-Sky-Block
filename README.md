@@ -1,8 +1,8 @@
 # 地狱空岛 | Nether Sky Block
 
-[![Minecraft](https://img.shields.io/badge/Minecraft-1.19-66ccff)](https://www.minecraft.net/)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.18.2-66ccff)](https://www.minecraft.net/)
 [![Minecraft](https://img.shields.io/badge/Fabric-0.14.8-fcd217)](https://fabricmc.net/use/installer/)
-[![Minecraft](https://img.shields.io/badge/FabricAPI-0.57.0+1.19-b2cf87)](https://modrinth.com/mod/fabric-api)
+[![Minecraft](https://img.shields.io/badge/FabricAPI-0.57.0+1.18.2-b2cf87)](https://modrinth.com/mod/fabric-api)
 
 [![Build Mod](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)
 [![license](https://img.shields.io/github/license/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/blob/main/LICENSE)
@@ -18,17 +18,17 @@
 
 ### Client
 
-* 下载安装 `Minecraft 1.19`, 安装 `Fabric 0.14.8`
+* 下载安装 `Minecraft 1.18.2`, 安装 `Fabric 0.14.8`
 * 从 [Release](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并将 `mod` 放入 `mods` 文件夹
-* 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
+* 下载 `Fabric API 0.57.0+ 1.18.2`, 并放入 `mods` 文件夹
 * 创建世界时, 在 `更多选项` 中将 `世界类型` 调为 `空岛` 并添加数据包
 * 进入进入世界后，输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
 
 ### Server
 
-* 下载安装 `Minecraft Server 1.19`, 安装 `Fabric 0.14.8`
+* 下载安装 `Minecraft Server 1.18.2`, 安装 `Fabric 0.14.8`
 * 从 [Release](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并分别放入 `mods` 与 `world/datapacks` 文件夹
-* 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
+* 下载 `Fabric API 0.57.0+1.18.2`, 并放入 `mods` 文件夹
 * 创建世界时, 在 `server.properties` 中将 `level-type` 调为 `skyland:skyland`
 * 开启服务器后，在控制台输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
 

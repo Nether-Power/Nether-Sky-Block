@@ -1,8 +1,8 @@
 # 地狱空岛 | Nether Sky Block
 
-[![Minecraft](https://img.shields.io/badge/Minecraft-1.19-66ccff)](https://www.minecraft.net/)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.18.2-66ccff)](https://www.minecraft.net/)
 [![Minecraft](https://img.shields.io/badge/Fabric-0.14.8-fcd217)](https://fabricmc.net/use/installer/)
-[![Minecraft](https://img.shields.io/badge/FabricAPI-0.57.0+1.19-b2cf87)](https://modrinth.com/mod/fabric-api)
+[![Minecraft](https://img.shields.io/badge/FabricAPI-0.57.0+1.18.2-b2cf87)](https://modrinth.com/mod/fabric-api)
 
 [![Build Mod](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)
 [![license](https://img.shields.io/github/license/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/blob/main/LICENSE)
@@ -18,19 +18,19 @@
 
 ### Client
 
-* Download and install `Minecraft 1.19` , install `Fabric 0.14.8` .
+* Download and install `Minecraft 1.18.2` , install `Fabric 0.14.8` .
 * From [Release](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest) download the last release `mod`
   and `datapack` , then put the `mod` to `mods` directory.
-* Download `Fabric API 0.57.0+1.19`, then put it to `mods` directory.
+* Download `Fabric API 0.57.0+1.18.2`, then put it to `mods` directory.
 * When you create new world, Set `World Type` to `SkyLand` in `More World Options` , and add the DataPack.
 * After entering the world, type `/skyland gamerule true` command to enable Nether-Sky-Block settings.
 
 ### Server
 
-* Download and install `Minecraft Server 1.19` , install `Fabric 0.14.8` .
+* Download and install `Minecraft Server 1.18.2` , install `Fabric 0.14.8` .
 * From [Release](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest) download the last release `mod`
   and `datapack` , then put the `mod` to `mods` directory and put the `datapack` to `world/datapacks` directory.
-* Download `Fabric API 0.57.0+1.19`, then put it to `mods` directory.
+* Download `Fabric API 0.57.0+1.18.2`, then put it to `mods` directory.
 * Set `level-type` to `skyland:skyland` in `server.properties` .
 * After starting the server, type `/skyland gamerule true` command in console to enable Nether-Sky-Block settings.
 
