@@ -12,6 +12,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
+import net.minecraft.world.biome.OverworldBiomeCreator;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.TheNetherBiomeCreator;
 import net.minecraft.world.gen.GenerationStep;
@@ -28,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(TheNetherBiomeCreator.class)
 public class TheNetherBiomeCreatorMixin {
+
     @Inject(method = "createSoulSandValley", at = @At("HEAD"), cancellable = true)
     private static void createSoulSandValley(CallbackInfoReturnable<Biome> cir) {
         SpawnSettings spawnSettings = new SpawnSettings.Builder()
@@ -59,6 +61,7 @@ public class TheNetherBiomeCreatorMixin {
         cir.setReturnValue(
                 new Biome.Builder()
                         .precipitation(Biome.Precipitation.NONE)
+                        .category(Biome.Category.NETHER)
                         .temperature(2.0f).downfall(0.0f)
                         .effects(new BiomeEffects.Builder()
                                 .waterColor(4159204)
@@ -69,8 +72,8 @@ public class TheNetherBiomeCreatorMixin {
                                 .loopSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_LOOP)
                                 .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0))
                                 .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, 0.0111))
-                                .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_SOUL_SAND_VALLEY))
-                                .build())
+                                .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_SOUL_SAND_VALLEY)
+                                ).build())
                         .spawnSettings(spawnSettings)
                         .generationSettings(builder.build())
                         .build()
@@ -108,6 +111,7 @@ public class TheNetherBiomeCreatorMixin {
         cir.setReturnValue(
                 new Biome.Builder()
                         .precipitation(Biome.Precipitation.NONE)
+                        .category(Biome.Category.NETHER)
                         .temperature(2.0f)
                         .downfall(0.0f)
                         .effects(new BiomeEffects.Builder()
@@ -118,7 +122,8 @@ public class TheNetherBiomeCreatorMixin {
                                 .particleConfig(new BiomeParticleConfig(ParticleTypes.WHITE_ASH, 0.118093334f))
                                 .loopSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP)
                                 .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0))
-                                .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111))
+                                .additionsSound(
+                                        new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111))
                                 .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_BASALT_DELTAS)).build())
                         .spawnSettings(spawnSettings).generationSettings(builder.build())
                         .build()
@@ -126,8 +131,10 @@ public class TheNetherBiomeCreatorMixin {
     }
 
     private static int getSkyColor() {
-        float temperature = MathHelper.clamp(2.0f / 3.0f, -1.0f, 1.0f);
-        return MathHelper.hsvToRgb(0.62222224f - temperature * 0.05f, 0.5f + temperature * 0.1f, 1.0f);
+        float f = 2.0f;
+        f /= 3.0f;
+        f = MathHelper.clamp(f, -1.0f, 1.0f);
+        return MathHelper.hsvToRgb(0.62222224f - f * 0.05f, 0.5f + f * 0.1f, 1.0f);
     }
 
 }
