@@ -89,7 +89,7 @@ public class AdvancementProvider extends FabricAdvancementProvider {
         Advancement ANCIENT_DEBRIS = newAdvancement("ancient_debris", Items.ANCIENT_DEBRIS, TaskType.CHALLENGE, VILLAGE_HERO,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.ANCIENT_DEBRIS)), consumer);
         Advancement BEDROCK_LAYER = newAdvancement("bedrock_layer", Items.BEDROCK, TaskType.GOAL, ROOT,
-                new Criterion("0", TickCriterion.Conditions.createLocation(LocationPredicate.y(FloatRange.atMost(0)))), consumer);
+                new Criterion("0", TickCriterion.Conditions.createLocation(LocationPredicate.y(FloatRange.atMost(1)))), consumer);
         Advancement SLIME = newAdvancement("slime", Items.SLIME_BALL, TaskType.MILESTONE, BEDROCK_LAYER,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.SLIME_BALL)), consumer);
         Advancement THE_END = newAdvancement("the_end", Items.END_PORTAL_FRAME, TaskType.MILESTONE, ROOT,
