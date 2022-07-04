@@ -17,7 +17,7 @@
     }
   },
   "display": {
-    "announce_to_chat": false,
+    "announce_to_chat": true,
     "background": "minecraft:textures/block/crimson_planks.png",
     "description": {
       "translate": "advancement.skyland.kill_wrong.desc"

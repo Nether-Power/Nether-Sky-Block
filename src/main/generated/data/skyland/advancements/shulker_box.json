@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "minecraft:elytra"
+              "minecraft:shulker_shell"
             ]
           }
         ]
@@ -23,7 +23,7 @@
     "frame": "challenge",
     "hidden": false,
     "icon": {
-      "item": "minecraft:shulker_box"
+      "item": "minecraft:shulker_shell"
     },
     "show_toast": true,
     "title": {

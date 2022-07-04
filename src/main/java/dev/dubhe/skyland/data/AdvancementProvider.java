@@ -43,29 +43,34 @@ public class AdvancementProvider extends FabricAdvancementProvider {
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(new ItemPredicate[]{})), consumer);
         Advancement WOOD = newAdvancement("wood", Items.CRIMSON_STEM, TaskType.MILESTONE, ROOT,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.CRIMSON_STEM)), consumer);
-        Advancement COMPOSTER = newAdvancement("composter", Items.COMPOSTER, TaskType.NORMAL, WOOD,
+        Advancement COMPOSTER = newAdvancement("composter", Items.COMPOSTER, TaskType.MILESTONE, WOOD,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.COMPOSTER)), consumer);
-        Advancement KILL_ZOMBIFIED_PIGLIN = newAdvancement("kill_zombified_piglin", Items.DIAMOND_SWORD, TaskType.NORMAL, WOOD,
+        Advancement KILL_ZOMBIFIED_PIGLIN = newAdvancement("kill_zombified_piglin", Items.DIAMOND_SWORD, TaskType.MILESTONE, WOOD,
                 new Criterion("0", OnKilledCriterion.Conditions.createPlayerKilledEntity(
                         EntityPredicate.Builder.create().type(EntityType.ZOMBIFIED_PIGLIN))), consumer);
-        Advancement KILL_WRONG = newAdvancement("kill_wrong", Items.WOODEN_SWORD, TaskType.NORMAL, KILL_ZOMBIFIED_PIGLIN,
+        Advancement KILL_WRONG = newAdvancement("kill_wrong", Items.WOODEN_SWORD, TaskType.MILESTONE, KILL_ZOMBIFIED_PIGLIN,
                 new Criterion("0", OnKilledCriterion.Conditions.createPlayerKilledEntity(
                         EntityPredicate.Builder.create().type(EntityType.ZOMBIE_VILLAGER))), consumer);
-        Advancement GOLD_INGOT = newAdvancement("gold_ingot", Items.GOLD_INGOT, TaskType.NORMAL, KILL_ZOMBIFIED_PIGLIN,
+        Advancement GOLD_INGOT = newAdvancement("gold_ingot", Items.GOLD_INGOT, TaskType.MILESTONE, KILL_ZOMBIFIED_PIGLIN,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.GOLD_INGOT)), consumer);
-        Advancement BLAST_FURNACE = newAdvancement("blast_furnace", Items.BLAST_FURNACE, TaskType.NORMAL, GOLD_INGOT,
+        Advancement BLAST_FURNACE = newAdvancement("blast_furnace", Items.BLAST_FURNACE, TaskType.MILESTONE, GOLD_INGOT,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.BLAST_FURNACE)), consumer);
-        Advancement NETHERRACK = newAdvancement("netherrack", Items.NETHERRACK, TaskType.NORMAL, BLAST_FURNACE,
+        Advancement NETHERRACK = newAdvancement("netherrack", Items.NETHERRACK, TaskType.MILESTONE, BLAST_FURNACE,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.NETHERRACK)), consumer);
-        Advancement WEAKNESS = newAdvancement("weakness", Items.SPLASH_POTION, TaskType.NORMAL, COMPOSTER,
+        Advancement WEAKNESS = newAdvancement("weakness", Items.SPLASH_POTION, TaskType.MILESTONE, COMPOSTER,
                 new Criterion("0", EffectsChangedCriterion.Conditions.create(EntityEffectPredicate.create().withEffect(
                         StatusEffects.WEAKNESS))), consumer);
         Advancement SAVE_VILLAGER = newAdvancement("save_villager", Items.GOLDEN_APPLE, TaskType.GOAL, WEAKNESS,
                 new Criterion("0", CuredZombieVillagerCriterion.Conditions.any()), consumer);
-        Advancement VILLAGE_HERO = newAdvancement("village_hero", Items.EMERALD, TaskType.CHALLENGE, SAVE_VILLAGER,
-                new Criterion("0", EffectsChangedCriterion.Conditions.create(EntityEffectPredicate.create()
-                        .withEffect(StatusEffects.BAD_OMEN).withEffect(StatusEffects.HERO_OF_THE_VILLAGE))), consumer);
-        Advancement BREED_VILLAGERS = newAdvancement("breed_villagers", Items.BREAD, TaskType.NORMAL, VILLAGE_HERO,
+        Advancement VILLAGE_HERO = Advancement.Builder.create().parent(SAVE_VILLAGER)
+                .display(Items.EMERALD, getTranslatableTitle("village_hero"), getTranslatableDesc("village_hero"), BACK_GROUND,
+                        AdvancementFrame.CHALLENGE, true, true, false)
+                .criterion("0", EffectsChangedCriterion.Conditions.create(EntityEffectPredicate.create()
+                        .withEffect(StatusEffects.BAD_OMEN)))
+                .criterion("1", EffectsChangedCriterion.Conditions.create(EntityEffectPredicate.create()
+                        .withEffect(StatusEffects.HERO_OF_THE_VILLAGE)))
+                .build(consumer, SkyLandMod.MOD_ID + ":village_hero");
+        Advancement BREED_VILLAGERS = newAdvancement("breed_villagers", Items.BREAD, TaskType.MILESTONE, VILLAGE_HERO,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.BREAD)), consumer);
         Advancement LAVA_BUCKET = newAdvancement("lava_bucket", Items.LAVA_BUCKET, TaskType.GOAL, VILLAGE_HERO,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.LAVA_BUCKET)), consumer);
@@ -85,14 +90,14 @@ public class AdvancementProvider extends FabricAdvancementProvider {
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.ANCIENT_DEBRIS)), consumer);
         Advancement BEDROCK_LAYER = newAdvancement("bedrock_layer", Items.BEDROCK, TaskType.GOAL, ROOT,
                 new Criterion("0", TickCriterion.Conditions.createLocation(LocationPredicate.y(FloatRange.atMost(0)))), consumer);
-        Advancement SLIME = newAdvancement("slime", Items.SLIME_BALL, TaskType.NORMAL, BEDROCK_LAYER,
+        Advancement SLIME = newAdvancement("slime", Items.SLIME_BALL, TaskType.MILESTONE, BEDROCK_LAYER,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.SLIME_BALL)), consumer);
-        Advancement THE_END = newAdvancement("the_end", Items.END_PORTAL_FRAME, TaskType.NORMAL, ROOT,
+        Advancement THE_END = newAdvancement("the_end", Items.END_PORTAL_FRAME, TaskType.MILESTONE, ROOT,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.ENDER_EYE)), consumer);
         Advancement WATER = newAdvancement("water", Items.WATER_BUCKET, TaskType.GOAL, THE_END,
                 new Criterion("0", FilledBucketCriterion.Conditions.create(ItemPredicate.Builder
                         .create().items(Items.WATER_BUCKET).build())), consumer);
-        Advancement ICE = newAdvancement("ice", Items.ICE, TaskType.NORMAL, WATER,
+        Advancement ICE = newAdvancement("ice", Items.ICE, TaskType.MILESTONE, WATER,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.ICE)), consumer);
         Advancement CORAL_FAN = Advancement.Builder.create().parent(LAVA_BUCKET)
                 .display(Items.FIRE_CORAL_FAN, getTranslatableTitle("coral_fan"), getTranslatableDesc("coral_fan"),
@@ -106,8 +111,8 @@ public class AdvancementProvider extends FabricAdvancementProvider {
                 .build(consumer, SkyLandMod.MOD_ID + ":coral_fan");
         Advancement ELYTRA = newAdvancement("elytra", Items.ELYTRA, TaskType.CHALLENGE, THE_END,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.ELYTRA)), consumer);
-        Advancement SHULKER_BOX = newAdvancement("shulker_box", Items.SHULKER_BOX, TaskType.CHALLENGE, ELYTRA,
-                new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.ELYTRA)), consumer);
+        Advancement SHULKER_BOX = newAdvancement("shulker_box", Items.SHULKER_SHELL, TaskType.CHALLENGE, ELYTRA,
+                new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.SHULKER_SHELL)), consumer);
         Advancement BULK_LAVA = newAdvancement("bulk_lava", Items.POINTED_DRIPSTONE, TaskType.GOAL, ICE,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.POINTED_DRIPSTONE)), consumer);
         Advancement RESPAWN = newAdvancement("respawn", Items.RESPAWN_ANCHOR, TaskType.GOAL, KILL_ZOMBIFIED_PIGLIN,
@@ -142,7 +147,6 @@ public class AdvancementProvider extends FabricAdvancementProvider {
 
     enum TaskType {
         ROOT(AdvancementFrame.TASK, false, false, false),
-        NORMAL(AdvancementFrame.TASK, true, false, false),
         MILESTONE(AdvancementFrame.TASK, true, true, false),
         GOAL(AdvancementFrame.GOAL, true, true, false),
         SECRET(AdvancementFrame.GOAL, true, true, true),

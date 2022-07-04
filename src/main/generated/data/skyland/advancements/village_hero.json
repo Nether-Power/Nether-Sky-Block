@@ -4,7 +4,14 @@
     "0": {
       "conditions": {
         "effects": {
-          "minecraft:bad_omen": {},
+          "minecraft:bad_omen": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    },
+    "1": {
+      "conditions": {
+        "effects": {
           "minecraft:hero_of_the_village": {}
         }
       },
@@ -30,6 +37,9 @@
   "requirements": [
     [
       "0"
+    ],
+    [
+      "1"
     ]
   ]
 }
