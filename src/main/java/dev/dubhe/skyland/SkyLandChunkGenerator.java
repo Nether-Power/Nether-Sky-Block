@@ -40,12 +40,12 @@ public class SkyLandChunkGenerator extends NoiseChunkGenerator {
     private final Registry<DoublePerlinNoiseSampler.NoiseParameters> structuresRegistry;
 
     public static final Codec<SkyLandChunkGenerator> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            RegistryOps.createRegistryCodec(Registry.STRUCTURE_SET_KEY)
-                    .forGetter(generator -> generator.structureSetRegistry),
-            RegistryOps.createRegistryCodec(Registry.NOISE_KEY).forGetter(generator -> generator.structuresRegistry),
-            BiomeSource.CODEC.fieldOf("biome_source").forGetter(generator -> generator.biomeSource),
-            ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings").forGetter(generator -> generator.settings)
-    ).apply(instance, instance.stable(SkyLandChunkGenerator::new)));
+                    RegistryOps.createRegistryCodec(Registry.STRUCTURE_SET_KEY)
+                            .forGetter(generator -> generator.structureSetRegistry),
+                    RegistryOps.createRegistryCodec(Registry.NOISE_KEY).forGetter(generator -> generator.structuresRegistry),
+                    BiomeSource.CODEC.fieldOf("biome_source").forGetter(generator -> generator.biomeSource),
+                    ChunkGeneratorSettings.REGISTRY_CODEC.fieldOf("settings").forGetter(generator -> generator.settings))
+            .apply(instance, instance.stable(SkyLandChunkGenerator::new)));
 
     public SkyLandChunkGenerator(Registry<StructureSet> noiseRegistry,
             Registry<DoublePerlinNoiseSampler.NoiseParameters> structuresRegistry, BiomeSource biomeSource,
@@ -75,19 +75,19 @@ public class SkyLandChunkGenerator extends NoiseChunkGenerator {
         ChunkPos chunkPos = chunk.getPos();
         BlockPos pos = new BlockPos(chunkPos.getStartX(), chunk.getBottomY(), chunkPos.getStartZ());
 
-        structureAccessor.getStructureStarts(
-                ChunkSectionPos.from(pos),
-                world.getRegistryManager().get(Registry.STRUCTURE_KEY).get(new Identifier("minecraft:stronghold"))
-        ).forEach(structureStart -> {
-            for (StructurePiece piece : structureStart.getChildren()) {
-                if (piece.getType() == StructurePieceType.STRONGHOLD_PORTAL_ROOM) {
-                    if (piece.intersectsChunk(chunkPos, 0)) {
-                        ChunkRandom random = new ChunkRandom(new Xoroshiro128PlusPlusRandom(RandomSeed.getSeed()));
-                        random.setCarverSeed(world.getSeed(), chunkPos.x, chunkPos.z);
+        structureAccessor.getStructureStarts(ChunkSectionPos.from(pos),
+                        world.getRegistryManager().get(Registry.STRUCTURE_KEY).get(new Identifier("minecraft:stronghold")))
+                .forEach(structureStart -> {
+                    for (StructurePiece piece : structureStart.getChildren()) {
+                        if (piece.getType() == StructurePieceType.STRONGHOLD_PORTAL_ROOM) {
+                            if (piece.intersectsChunk(chunkPos, 0)) {
+                                ChunkRandom random = new ChunkRandom(
+                                        new Xoroshiro128PlusPlusRandom(RandomSeed.getSeed()));
+                                random.setCarverSeed(world.getSeed(), chunkPos.x, chunkPos.z);
+                            }
+                        }
                     }
-                }
-            }
-        });
+                });
     }
 
     @Override

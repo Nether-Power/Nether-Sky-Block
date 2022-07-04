@@ -57,23 +57,10 @@ public class WorldPresetsRegistrarMixin {
     @Shadow
     private RegistryEntry<DimensionType> theEndDimensionType;
 
-    private static final DimensionType overNether = new DimensionType(
-            OptionalLong.of(18000L),
-            false,
-            true,
-            true,
-            false,
-            1.0,
-            false,
-            true,
-            0,
-            256,
-            128,
-            BlockTags.INFINIBURN_NETHER,
-            net.minecraft.world.dimension.DimensionTypes.THE_NETHER_ID,
-            0.1F,
-            new DimensionType.MonsterSettings(true, true, ConstantIntProvider.create(11), 15)
-    );
+    private static final DimensionType overNether = new DimensionType(OptionalLong.of(18000L), false, true, true, false,
+            1.0, false, true, 0, 256, 128, BlockTags.INFINIBURN_NETHER,
+            net.minecraft.world.dimension.DimensionTypes.THE_NETHER_ID, 0.1F,
+            new DimensionType.MonsterSettings(true, true, ConstantIntProvider.create(11), 15));
 
     private static final RegistryKey<DimensionType> OVER_NETHER = RegistryKey.of(Registry.DIMENSION_TYPE_KEY,
             new Identifier("over_nether"));

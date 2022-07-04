@@ -26,28 +26,24 @@ import java.io.IOException;
 public class ServerPlayerEntityMixin {
 
 
-    @Shadow @Final public MinecraftServer server;
+    @Shadow
+    @Final
+    public MinecraftServer server;
 
-    @Inject(
-            method = "onSpawn",
-            at = @At("HEAD")
-    )
-    private void spawn(CallbackInfo ci){
+    @Inject(method = "onSpawn", at = @At("HEAD"))
+    private void spawn(CallbackInfo ci) {
         File ojng = server.getSavePath(WorldSavePath.ROOT).resolve("skyland.ojng").toFile();
         if (!ojng.isFile()) {
-            ((ServerPlayerEntity)(Object)this).giveItemStack(new ItemStack(Items.BONE_MEAL, 32));
-            try{
+            ((ServerPlayerEntity) (Object) this).giveItemStack(new ItemStack(Items.BONE_MEAL, 32));
+            try {
                 ojng.createNewFile();
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-    
-    @Inject(
-            method = "tick()V",
-            at = @At("RETURN")
-    )
+
+    @Inject(method = "tick()V", at = @At("RETURN"))
     private void tick(CallbackInfo ci) {
 
         ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
@@ -61,7 +57,6 @@ public class ServerPlayerEntityMixin {
             if (player.isSneaking()) {
                 if (!ComposterCoolDown.last_is_sneaking) {
                     ComposterCoolDown.last_is_sneaking = true;
-
 
                     BlockPos pos = player.getBlockPos();
 

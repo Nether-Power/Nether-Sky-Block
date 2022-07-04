@@ -18,11 +18,7 @@ public class SlimeEntityMixin {
 
     private static final Identifier BASALT_DELTAS = new Identifier("basalt_deltas");
 
-    @Inject(
-            method = "canSpawn(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;)Z",
-            at = @At("RETURN"),
-            cancellable = true
-    )
+    @Inject(method = "canSpawn(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;)Z", at = @At("RETURN"), cancellable = true)
     private static void canSpawnMixin(EntityType<SlimeEntity> type, WorldAccess world, SpawnReason spawnReason,
             BlockPos pos, Random random, CallbackInfoReturnable<Boolean> cir) {
         if (cir.getReturnValue()) {

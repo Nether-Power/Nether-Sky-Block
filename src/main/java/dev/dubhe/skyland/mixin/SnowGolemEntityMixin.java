@@ -16,13 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(SnowGolemEntity.class)
 public class SnowGolemEntityMixin {
 
-    @Inject(
-            method = "tickMovement()V",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/block/Block;getDefaultState()Lnet/minecraft/block/BlockState;"
-            )
-    )
+    @Inject(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getDefaultState()Lnet/minecraft/block/BlockState;"))
     private void setIce(CallbackInfo ci) {
         World world = ((SnowGolemEntity) (Object) this).world;
         BlockState iceState = Blocks.ICE.getDefaultState();

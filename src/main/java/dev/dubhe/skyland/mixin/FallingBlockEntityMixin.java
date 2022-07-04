@@ -74,8 +74,10 @@ public abstract class FallingBlockEntityMixin extends Entity {
                     ItemStack itemStack = itemEntity.getStack();
                     Item item = itemStack.getItem();
                     // 砸碎
-                    if (item == Items.DRIPSTONE_BLOCK){
-                        serverWorld.spawnEntityAndPassengers(new ItemEntity(serverWorld, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), new ItemStack(Items.POINTED_DRIPSTONE, itemStack.getCount())));
+                    if (item == Items.DRIPSTONE_BLOCK) {
+                        serverWorld.spawnEntityAndPassengers(
+                                new ItemEntity(serverWorld, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(),
+                                        new ItemStack(Items.POINTED_DRIPSTONE, itemStack.getCount())));
                         itemEntity.kill();
                     }
                 }

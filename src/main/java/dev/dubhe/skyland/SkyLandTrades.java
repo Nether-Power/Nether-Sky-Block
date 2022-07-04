@@ -43,28 +43,28 @@ public class SkyLandTrades {
     }
 
     public static Int2ObjectMap<TradeOffers.Factory[]> getSkyLandWanderingTraderOffersTier2() {
-        return new Int2ObjectOpenHashMap<>(ImmutableMap.of(2, new TradeOffers.Factory[]{
-                sell(Items.NETHER_WART, 32, 4),
-                sell(Items.BAMBOO, 16, 8),
-                sell(Items.SEA_PICKLE, 16, 8),
-                sell(Items.COCOA_BEANS, 16, 8),
-                sell(Items.SUNFLOWER, 8, 8),
-                sell(Items.LILAC, 8, 8),
-                sell(Items.ROSE_BUSH, 8, 8),
-                sell(Items.PEONY, 8, 8),
-                sell(Items.TURTLE_EGG, 16, 4),
-                sell(Items.TUBE_CORAL_FAN, 64, 4),
-                sell(Items.BRAIN_CORAL_FAN, 64, 4),
-                sell(Items.BUBBLE_CORAL_FAN, 64, 4),
-                sell(Items.FIRE_CORAL_FAN, 64, 4),
-                sell(Items.HORN_CORAL_FAN, 64, 4)
+        return new Int2ObjectOpenHashMap<>(ImmutableMap.of(2,
+                new TradeOffers.Factory[] {
+                        sell(Items.NETHER_WART, 32, 4),
+                        sell(Items.BAMBOO, 16, 8),
+                        sell(Items.SEA_PICKLE, 16, 8),
+                        sell(Items.COCOA_BEANS, 16, 8),
+                        sell(Items.SUNFLOWER, 8, 8),
+                        sell(Items.LILAC, 8, 8),
+                        sell(Items.ROSE_BUSH, 8, 8),
+                        sell(Items.PEONY, 8, 8),
+                        sell(Items.TURTLE_EGG, 16, 4),
+                        sell(Items.TUBE_CORAL_FAN, 64, 4),
+                        sell(Items.BRAIN_CORAL_FAN, 64, 4),
+                        sell(Items.BUBBLE_CORAL_FAN, 64, 4),
+                        sell(Items.FIRE_CORAL_FAN, 64, 4),
+                        sell(Items.HORN_CORAL_FAN, 64, 4)
         }));
     }
 
     public static Int2ObjectMap<TradeOffers.Factory[]> getSkyLandWanderingTraderOffersTier1() {
-        return new Int2ObjectOpenHashMap<>(ImmutableMap.of(2, new TradeOffers.Factory[]{
-                sell(Items.SNOWBALL, 2, 1, 8)
-        }));
+        return new Int2ObjectOpenHashMap<>(
+                ImmutableMap.of(2, new TradeOffers.Factory[]{sell(Items.SNOWBALL, 2, 1, 8)}));
     }
 
     public static void removeFarmerTrades() {

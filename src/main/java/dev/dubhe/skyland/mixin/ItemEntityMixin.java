@@ -17,21 +17,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ItemEntity.class)
 public class ItemEntityMixin {
+
     @Inject(method = "tick", at = @At(value = "HEAD"))
-    private void onTick(CallbackInfo ci){
+    private void onTick(CallbackInfo ci) {
         ItemEntity itemEntity = (ItemEntity) (Object) this;
         World world = itemEntity.getWorld();
-        if(world.getGameRules().getBoolean(SkyLandGamerules.ANVIL_HANDLE)){
+        if (world.getGameRules().getBoolean(SkyLandGamerules.ANVIL_HANDLE)) {
             BlockPos blockPos = itemEntity.getBlockPos();
             BlockState blockState = world.getBlockState(blockPos);
             // 洗涤
-            if (blockState.getBlock() == Blocks.WATER_CAULDRON && ((LeveledCauldronBlock)blockState.getBlock()).isFull(blockState)) {
+            if (blockState.getBlock() == Blocks.WATER_CAULDRON && ((LeveledCauldronBlock) blockState.getBlock()).isFull(
+                    blockState)) {
                 ItemStack itemStack = itemEntity.getStack();
                 Item item = itemStack.getItem();
-                if (item == Items.BASALT){
-                    world.spawnEntity(new ItemEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), new ItemStack(Items.DRIPSTONE_BLOCK, itemStack.getCount())));
+                if (item == Items.BASALT) {
+                    world.spawnEntity(new ItemEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(),
+                            new ItemStack(Items.DRIPSTONE_BLOCK, itemStack.getCount())));
                     itemEntity.kill();
-                    world.setBlockState(blockPos,Blocks.CAULDRON.getDefaultState());
+                    world.setBlockState(blockPos, Blocks.CAULDRON.getDefaultState());
                 }
             }
         }

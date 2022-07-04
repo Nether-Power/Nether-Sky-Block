@@ -17,14 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FluidBlock.class)
 public class FluidBlockMixin {
 
-    @Inject(
-            method = "receiveNeighborFluids",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z",
-                    shift = At.Shift.AFTER
-            )
-    )
+    @Inject(method = "receiveNeighborFluids", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", shift = At.Shift.AFTER))
     private void cauldronObsidian(World world, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
         if (world.getGameRules().getBoolean(SkyLandGamerules.WATER_CAULDRON)) {
             for (Direction direction : FluidBlock.FLOW_DIRECTIONS) {

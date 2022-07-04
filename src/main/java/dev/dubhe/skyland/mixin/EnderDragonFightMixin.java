@@ -48,7 +48,7 @@ public class EnderDragonFightMixin {
             )
     )
     private void spawnShulker(EnderDragonEntity dragon, CallbackInfo ci) {
-        if(world.getGameRules().getBoolean(SkyLandGamerules.KILL_DRAGON_SPAWN_SHULKER)){
+        if (world.getGameRules().getBoolean(SkyLandGamerules.KILL_DRAGON_SPAWN_SHULKER)) {
             ShulkerEntity shulker = EntityType.SHULKER.create(world);
             if (!previouslyKilled || shulker == null) {
                 return;

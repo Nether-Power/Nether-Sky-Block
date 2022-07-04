@@ -17,12 +17,10 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
-    @Inject(
-        method = "setupSpawn",
-        locals = LocalCapture.CAPTURE_FAILHARD,
-        at = @At(value = "HEAD"),
-        cancellable = true)
-    private static void generateSpawnPlatform(ServerWorld world, ServerWorldProperties worldProperties, boolean bonusChest, boolean debugWorld, CallbackInfo ci) {
+
+    @Inject(method = "setupSpawn", locals = LocalCapture.CAPTURE_FAILHARD, at = @At(value = "HEAD"), cancellable = true)
+    private static void generateSpawnPlatform(ServerWorld world, ServerWorldProperties worldProperties,
+            boolean bonusChest, boolean debugWorld, CallbackInfo ci) {
         ServerChunkManager chunkManager = world.getChunkManager();
         ChunkGenerator chunkGenerator = chunkManager.getChunkGenerator();
         if (!(chunkGenerator instanceof SkyLandChunkGenerator)) {

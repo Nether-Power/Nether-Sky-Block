@@ -27,15 +27,10 @@ import java.util.Objects;
 
 @Mixin(ZombieEntity.class)
 public class ZombieEntityMixin {
+
     protected final Random random = Random.create();
-    @Inject(method = "damage",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/entity/mob/ZombieEntity;getTarget()Lnet/minecraft/entity/LivingEntity;",
-                    shift = At.Shift.AFTER
-            ),
-            cancellable = true
-    )
+
+    @Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/ZombieEntity;getTarget()Lnet/minecraft/entity/LivingEntity;", shift = At.Shift.AFTER), cancellable = true)
     private void zombieVillager(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         ZombieEntity zombie = (ZombieEntity) (Object) this;
         World world = zombie.world;
@@ -44,7 +39,10 @@ public class ZombieEntityMixin {
             if (livingEntity == null && source.getAttacker() instanceof LivingEntity) {
                 livingEntity = (LivingEntity) source.getAttacker();
             }
-            if (livingEntity != null && world.getDifficulty() == Difficulty.HARD && (double)this.random.nextFloat() < (zombie.getAttributeValue(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS) * 2.0) && world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING) && world instanceof ServerWorld serverWorld) {
+            if (livingEntity != null && world.getDifficulty() == Difficulty.HARD && (double) this.random.nextFloat() < (
+                    zombie.getAttributeValue(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS) * 2.0)
+                    && world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)
+                    && world instanceof ServerWorld serverWorld) {
                 int i = MathHelper.floor(zombie.getX());
                 int j = MathHelper.floor(zombie.getY());
                 int k = MathHelper.floor(zombie.getZ());

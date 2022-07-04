@@ -24,11 +24,7 @@ public class SpawnHelperMixin {
             SpawnHelper.Checker checker, SpawnHelper.Runner runner) {
     }
 
-    @Inject(
-            method = "spawnEntitiesInChunk(Lnet/minecraft/entity/SpawnGroup;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/chunk/WorldChunk;Lnet/minecraft/world/SpawnHelper$Checker;Lnet/minecraft/world/SpawnHelper$Runner;)V",
-            at = @At("HEAD"),
-            cancellable = true
-    )
+    @Inject(method = "spawnEntitiesInChunk(Lnet/minecraft/entity/SpawnGroup;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/chunk/WorldChunk;Lnet/minecraft/world/SpawnHelper$Checker;Lnet/minecraft/world/SpawnHelper$Runner;)V", at = @At("HEAD"), cancellable = true)
     private static void spawnEntities(SpawnGroup group, ServerWorld world, WorldChunk chunk,
             SpawnHelper.Checker checker, SpawnHelper.Runner runner, CallbackInfo ci) {
         if (world.getGameRules().getBoolean(SkyLandGamerules.LC)) {

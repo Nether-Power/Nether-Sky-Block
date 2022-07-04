@@ -60,53 +60,43 @@ public class SkyLandMod implements ModInitializer {
             ServerWorld world = newPlayer.getWorld();
             if (world.getGameRules().getBoolean(SkyLandGamerules.MEMORY_FOOD_LEVEL)) {
                 int old_food_level = oldPlayer.getHungerManager().getFoodLevel();
-                int new_food_level = Math.max(old_food_level, world.getGameRules().getInt(SkyLandGamerules.RESPAWN_MIN_FOOD_LEVEL));
+                int new_food_level = Math.max(old_food_level,
+                        world.getGameRules().getInt(SkyLandGamerules.RESPAWN_MIN_FOOD_LEVEL));
                 float old_saturation_level = oldPlayer.getHungerManager().getSaturationLevel();
                 newPlayer.getHungerManager().setFoodLevel(new_food_level);
                 newPlayer.getHungerManager().setSaturationLevel(old_saturation_level);
             }
         });
 
-        CommandRegistrationCallback.EVENT.register(
-                (dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("skyland")
-                        .then(CommandManager.literal("gamerule")
-                                .then(CommandManager.argument("boolean", BoolArgumentType.bool())
-                                        .executes(context -> {
-                                            ServerCommandSource serverCommandSource = context.getSource();
-                                            boolean bool = BoolArgumentType.getBool(context, "boolean");
-                                            serverCommandSource.getServer().getGameRules()
-                                                    .get(SkyLandGamerules.WATER_CAULDRON)
-                                                    .set(bool, serverCommandSource.getServer());
-                                            serverCommandSource.getServer().getGameRules()
-                                                    .get(SkyLandGamerules.ICE_GOLEM)
-                                                    .set(bool, serverCommandSource.getServer());
-                                            serverCommandSource.getServer().getGameRules()
-                                                    .get(SkyLandGamerules.NETHER_TRADER)
-                                                    .set(bool, serverCommandSource.getServer());
-                                            serverCommandSource.getServer().getGameRules()
-                                                    .get(SkyLandGamerules.ANVIL_HANDLE)
-                                                    .set(bool, serverCommandSource.getServer());
-                                            serverCommandSource.getServer().getGameRules()
-                                                    .get(SkyLandGamerules.NETHER_PATROL)
-                                                    .set(bool, serverCommandSource.getServer());
-                                            serverCommandSource.getServer().getGameRules()
-                                                    .get(SkyLandGamerules.VILLAGER_REINFORCEMENTS)
-                                                    .set(bool, serverCommandSource.getServer());
-                                            serverCommandSource.getServer().getGameRules()
-                                                    .get(SkyLandGamerules.KILL_DRAGON_SPAWN_SHULKER)
-                                                    .set(bool, serverCommandSource.getServer());
-                                            serverCommandSource.getServer().getGameRules()
-                                                    .get(SkyLandGamerules.KILL_DRAGON_DROP_ELYTRA)
-                                                    .set(bool, serverCommandSource.getServer());
-                                            serverCommandSource.getServer().getGameRules()
-                                                    .get(GameRules.DO_INSOMNIA)
-                                                    .set(!bool, serverCommandSource.getServer());
-                                            serverCommandSource.sendFeedback(
-                                                    Text.translatable("skyland.command.gamerule_set_succeed",
-                                                            String.valueOf(bool)), true);
-                                            return 1;
-                                        }))
-                        )));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(
+                CommandManager.literal("skyland").then(CommandManager.literal("gamerule")
+                        .then(CommandManager.argument("boolean", BoolArgumentType.bool()).executes(context -> {
+                            ServerCommandSource serverCommandSource = context.getSource();
+                            boolean bool = BoolArgumentType.getBool(context, "boolean");
+                            serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.WATER_CAULDRON)
+                                    .set(bool, serverCommandSource.getServer());
+                            serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.ICE_GOLEM)
+                                    .set(bool, serverCommandSource.getServer());
+                            serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.NETHER_TRADER)
+                                    .set(bool, serverCommandSource.getServer());
+                            serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.ANVIL_HANDLE)
+                                    .set(bool, serverCommandSource.getServer());
+                            serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.NETHER_PATROL)
+                                    .set(bool, serverCommandSource.getServer());
+                            serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.VILLAGER_REINFORCEMENTS)
+                                    .set(bool, serverCommandSource.getServer());
+                            serverCommandSource.getServer().getGameRules()
+                                    .get(SkyLandGamerules.KILL_DRAGON_SPAWN_SHULKER)
+                                    .set(bool, serverCommandSource.getServer());
+                            serverCommandSource.getServer().getGameRules().get(SkyLandGamerules.KILL_DRAGON_DROP_ELYTRA)
+                                    .set(bool, serverCommandSource.getServer());
+                            serverCommandSource.getServer().getGameRules().get(GameRules.DO_INSOMNIA)
+                                    .set(!bool, serverCommandSource.getServer());
+                            serverCommandSource.sendFeedback(
+                                    Text.translatable("skyland.command.gamerule_set_succeed", String.valueOf(bool)),
+                                    true);
+                            return 1;
+                        })))));
 
     }
 }
