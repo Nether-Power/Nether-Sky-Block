@@ -42,7 +42,7 @@
             }
           ],
           "name": "minecraft:iron_nugget",
-          "weight": 20
+          "weight": 15
         },
         {
           "type": "minecraft:item",
@@ -180,7 +180,7 @@
             }
           ],
           "name": "minecraft:gravel",
-          "weight": 40
+          "weight": 30
         },
         {
           "type": "minecraft:item",
@@ -196,7 +196,7 @@
             }
           ],
           "name": "minecraft:blackstone",
-          "weight": 55
+          "weight": 60
         },
         {
           "type": "minecraft:item",
