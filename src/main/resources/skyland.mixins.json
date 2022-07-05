@@ -9,6 +9,7 @@
     "FallingBlockEntityMixin",
     "FluidBlockMixin",
     "GeneratorOptionsMixin",
+    "LevelPropertiesMixin",
     "MinecraftServerMixin",
     "PatrolSpawnerMixin",
     "RegistryMixin",

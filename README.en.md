@@ -40,7 +40,7 @@
 
 - Set three dimensions to void
 - Replace overworld with nether
-- **\[WIP\]** Removed the experimental world warning
+- Removed the experimental world warning
 - All features of one key switch
     - `/skyland gamerule <true|false>`
 - Ignore the influence of LC value on monster spawn efficiency
