@@ -28,7 +28,6 @@ import java.util.List;
 
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntityMixin extends Entity {
-
     @Shadow
     public abstract BlockState getBlockState();
 
@@ -48,8 +47,10 @@ public abstract class FallingBlockEntityMixin extends Entity {
         if (world.getGameRules().getBoolean(SkyLandGamerules.ANVIL_HANDLE) && getBlockState().isIn(
                 BlockTags.ANVIL)) {
             BlockPos blockPos = this.getBlockPos();
-            BlockState blockState = this.world.getBlockState(
+            BlockState downBlockState = this.world.getBlockState(
                     new BlockPos(this.getX(), this.getY() - 0.06, this.getZ()));
+            BlockState downDownBlockState = this.world.getBlockState(
+                    new BlockPos(this.getX(), this.getY() - 1.12, this.getZ()));
             ServerWorld serverWorld = (ServerWorld) world;
             List<Entity> downBlockEntityList = serverWorld.getOtherEntities(this, new Box(blockPos.down()));
             List<Entity> thisBlockEntityList = serverWorld.getOtherEntities(this, new Box(blockPos));
@@ -58,13 +59,13 @@ public abstract class FallingBlockEntityMixin extends Entity {
                     ItemStack itemStack = itemEntity.getStack();
                     Item item = itemStack.getItem();
                     // 膨发
-                    if (blockState.getBlock() == Blocks.WATER_CAULDRON) {
+                    if (downBlockState.getBlock() == Blocks.WATER_CAULDRON) {
                         List<Item> coralFan = new ArrayList<>(
                                 List.of(new Item[]{Items.FIRE_CORAL_FAN, Items.BUBBLE_CORAL_FAN, Items.BRAIN_CORAL_FAN,
                                         Items.HORN_CORAL_FAN, Items.TUBE_CORAL_FAN}));
                         if (coralFan.contains(item)) {
                             itemStack.setCount(Math.min(itemStack.getCount() * 2, 64));
-                            decrementFluidLevel(blockState, this.world, blockPos.down());
+                            decrementFluidLevel(downBlockState, this.world, blockPos.down());
                         }
                     }
                 }
@@ -81,6 +82,11 @@ public abstract class FallingBlockEntityMixin extends Entity {
                         itemEntity.kill();
                     }
                 }
+            }
+            // 压合
+            if (downBlockState.getBlock() == Blocks.MOSS_BLOCK && downDownBlockState.getBlock() == Blocks.DIRT) {
+                world.setBlockState(new BlockPos(this.getX(), this.getY() - 1.06, this.getZ()), Blocks.GRASS_BLOCK.getDefaultState());
+                world.setBlockState(new BlockPos(this.getX(), this.getY() - 0.06, this.getZ()), Blocks.AIR.getDefaultState());
             }
         }
     }

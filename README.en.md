@@ -77,11 +77,19 @@
     - Smashing a coral fan with an anvil in a Water Cauldron will consume a layer of water and add another coral fan
     - Hit the Dripstone Block with an Anvil to turn it into a Dripstone 
     - Wash the basalt that consumes all water into Dripstone Block in the Water Cauldron (full of water)
+    - Press a Moss Block and a Dirt into a Grass Block
 - The Raid can be triggered in the nether
 - The Snow Golem standing on the water will turn the water into ice
     - `/gamerule iceGolem true`
 - Sneak in composer can produce bone meal
     - `/gamerule ComposterBoneMeal true`
+- The following animals will be spawn on the Grass Block of the Nether Waste
+  - Cow
+  - Sheep
+  - Llama
+  - Wolf
+  - Horse
+  - Donkey
 - The FoodLevel before death will be remembered after death
   - `/gamerule memoryFoodLevel true`
 - Minimum FoodLevel after death and resurrection (effective after the rule `memoryFoodLevel` is turned on, the default is `4`)
