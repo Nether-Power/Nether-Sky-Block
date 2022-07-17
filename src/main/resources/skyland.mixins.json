@@ -10,6 +10,7 @@
     "ItemEntityMixin",
     "MinecraftServerMixin",
     "PatrolSpawnerMixin",
+    "PlayerInventoryMixin",
     "SellItemFactoryAccessor",
     "ServerPlayerEntityMixin",
     "SlimeEntityMixin",

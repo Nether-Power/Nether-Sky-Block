@@ -79,6 +79,7 @@
     - Wash the basalt that consumes all water into Dripstone Block in the Water Cauldron (full of water)
     - Press a Moss Block and a Dirt into a Grass Block
 - The Raid can be triggered in the nether
+- Items no longer scatter when you death
 - The Snow Golem standing on the water will turn the water into ice
     - `/gamerule iceGolem true`
 - Sneak in composer can produce bone meal
@@ -111,7 +112,6 @@
 - recipes
     - Blast furnace recipe of replacing Smooth Stone with Obsidian
     - Burn the Nether Wart Block in the blast furnace to obtain the Nether Wart Block
-    - Craft a Soul Soil from 9 Soul Sand
 - Modify piglin transaction
     - Delete Fire Resistance Potion trading
     - Increase Blackstone trading probability
