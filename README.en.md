@@ -121,7 +121,6 @@
 - When owning a Hero of the Village Status Effect
     - the Mason Villager has a probability to throw Lava Bucket (weight 3)
     - the Toolsmith Villager has a probability to throw Netherite Scrap (weight 3)
-    - the Farmer Villager has a probability to throw Wheat Seeds
 
 ## Contributor
 
