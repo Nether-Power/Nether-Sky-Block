@@ -34,7 +34,6 @@ public class SkyLandMod implements ModInitializer {
 
         SkyLandGamerules.registry();
 
-        SkyLandTrades.mergeWanderingTraderOffers(SkyLandTrades.getSkyLandWanderingTraderOffersTier1());
         SkyLandTrades.mergeWanderingTraderOffers(SkyLandTrades.getSkyLandWanderingTraderOffersTier2());
         SkyLandTrades.removeFarmerTrades();
 

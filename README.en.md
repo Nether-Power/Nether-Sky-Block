@@ -74,12 +74,11 @@
     - The world will generate `8` End Portal frames with a radius of `1024` centered on `spawnpoint`
 - Anvil Handle
     - `/gamerule anvilHandle true`
-    - Smashing a coral fan with an anvil in a Water Cauldron will consume a layer of water and add another coral fan
-    - Hit the Dripstone Block with an Anvil to turn it into a Dripstone 
     - Wash the basalt that consumes all water into Dripstone Block in the Water Cauldron (full of water)
     - Press a Moss Block and a Dirt into a Grass Block
 - The Raid can be triggered in the nether
 - Items no longer scatter when you death
+- Use bone meal on the side of the coral block to make it grow a coral fan, and use bone meal on the top to grow coral
 - The Snow Golem standing on the water will turn the water into ice
     - `/gamerule iceGolem true`
 - Sneak in composer can produce bone meal
@@ -96,11 +95,10 @@
 - Minimum FoodLevel after death and resurrection (effective after the rule `memoryFoodLevel` is turned on, the default is `4`)
   - `/gamerule respawnMinFoodLevel 4`
 - The Wandering Trader deals in additional items
+- You can containing powder snow in Basalt Deltas
 
 | **Item**    | **Count** | **Price** | **Transactions Count** |
 |-------------|-----------|-----------|------------------------|
-| Snowball    | 2         | 1         | 8                      |
-| Coral Fans  | 1         | 64        | 4                      |
 | Turtle Egg  | 1         | 16        | 4                      |
 | Tall Flower | 1         | 8         | 8                      |
 | Cocoa Bean  | 1         | 16        | 8                      |
@@ -112,6 +110,7 @@
 - recipes
     - Blast furnace recipe of replacing Smooth Stone with Obsidian
     - Burn the Nether Wart Block in the blast furnace to obtain the Nether Wart Block
+    - Use the stone cutter to cut the dripstone block to obtain dripstone
 - Modify piglin transaction
     - Delete Fire Resistance Potion trading
     - Increase Blackstone trading probability

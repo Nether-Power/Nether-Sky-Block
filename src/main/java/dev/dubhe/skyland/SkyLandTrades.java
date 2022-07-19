@@ -38,10 +38,6 @@ public class SkyLandTrades {
         return new TradeOffers.SellItemFactory(item, price, 1, maxUses, 1);
     }
 
-    private static TradeOffers.Factory sell(Item item, int count, int price, int maxUses) {
-        return new TradeOffers.SellItemFactory(item, price, count, maxUses, 1);
-    }
-
     public static Int2ObjectMap<TradeOffers.Factory[]> getSkyLandWanderingTraderOffersTier2() {
         return new Int2ObjectOpenHashMap<>(ImmutableMap.of(2,
                 new TradeOffers.Factory[] {
@@ -53,18 +49,8 @@ public class SkyLandTrades {
                         sell(Items.LILAC, 8, 8),
                         sell(Items.ROSE_BUSH, 8, 8),
                         sell(Items.PEONY, 8, 8),
-                        sell(Items.TURTLE_EGG, 16, 4),
-                        sell(Items.TUBE_CORAL_FAN, 64, 4),
-                        sell(Items.BRAIN_CORAL_FAN, 64, 4),
-                        sell(Items.BUBBLE_CORAL_FAN, 64, 4),
-                        sell(Items.FIRE_CORAL_FAN, 64, 4),
-                        sell(Items.HORN_CORAL_FAN, 64, 4)
+                        sell(Items.TURTLE_EGG, 16, 4)
         }));
-    }
-
-    public static Int2ObjectMap<TradeOffers.Factory[]> getSkyLandWanderingTraderOffersTier1() {
-        return new Int2ObjectOpenHashMap<>(
-                ImmutableMap.of(2, new TradeOffers.Factory[]{sell(Items.SNOWBALL, 2, 1, 8)}));
     }
 
     public static void removeFarmerTrades() {

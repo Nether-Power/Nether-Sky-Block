@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.CriterionMerger;
+import net.minecraft.advancement.criterion.ChangedDimensionCriterion;
 import net.minecraft.advancement.criterion.CriterionConditions;
 import net.minecraft.advancement.criterion.CuredZombieVillagerCriterion;
 import net.minecraft.advancement.criterion.EffectsChangedCriterion;
@@ -24,6 +25,7 @@ import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 
 import java.util.function.Consumer;
 
@@ -95,7 +97,7 @@ public class AdvancementProvider extends FabricAdvancementProvider {
         Advancement SLIME = newAdvancement("slime", Items.SLIME_BALL, TaskType.MILESTONE, BEDROCK_LAYER,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.SLIME_BALL)), consumer);
         Advancement THE_END = newAdvancement("the_end", Items.END_PORTAL_FRAME, TaskType.MILESTONE, ROOT,
-                new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.ENDER_EYE)), consumer);
+                new Criterion("0", ChangedDimensionCriterion.Conditions.to(World.END)), consumer);
         Advancement WATER = newAdvancement("water", Items.WATER_BUCKET, TaskType.GOAL, THE_END, new Criterion("0",
                 FilledBucketCriterion.Conditions.create(
                         ItemPredicate.Builder.create().items(Items.WATER_BUCKET).build())), consumer);
@@ -104,11 +106,11 @@ public class AdvancementProvider extends FabricAdvancementProvider {
         Advancement CORAL_FAN = Advancement.Builder.create().parent(LAVA_BUCKET)
                 .display(Items.FIRE_CORAL_FAN, getTranslatableTitle("coral_fan"), getTranslatableDesc("coral_fan"),
                         BACK_GROUND, AdvancementFrame.GOAL, true, true, false).criteriaMerger(CriterionMerger.OR)
-                .criterion("0", InventoryChangedCriterion.Conditions.items(Items.BRAIN_CORAL_FAN))
-                .criterion("1", InventoryChangedCriterion.Conditions.items(Items.TUBE_CORAL_FAN))
-                .criterion("2", InventoryChangedCriterion.Conditions.items(Items.BUBBLE_CORAL_FAN))
-                .criterion("3", InventoryChangedCriterion.Conditions.items(Items.FIRE_CORAL_FAN))
-                .criterion("4", InventoryChangedCriterion.Conditions.items(Items.HORN_CORAL_FAN))
+                .criterion("0", InventoryChangedCriterion.Conditions.items(Items.BRAIN_CORAL_BLOCK))
+                .criterion("1", InventoryChangedCriterion.Conditions.items(Items.TUBE_CORAL_BLOCK))
+                .criterion("2", InventoryChangedCriterion.Conditions.items(Items.BUBBLE_CORAL_BLOCK))
+                .criterion("3", InventoryChangedCriterion.Conditions.items(Items.FIRE_CORAL_BLOCK))
+                .criterion("4", InventoryChangedCriterion.Conditions.items(Items.HORN_CORAL_BLOCK))
                 .build(consumer, SkyLandMod.MOD_ID + ":coral_fan");
         Advancement ELYTRA = newAdvancement("elytra", Items.ELYTRA, TaskType.CHALLENGE, THE_END,
                 new Criterion("0", InventoryChangedCriterion.Conditions.items(Items.ELYTRA)), consumer);
