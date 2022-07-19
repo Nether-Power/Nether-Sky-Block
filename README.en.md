@@ -79,6 +79,7 @@
 - The Raid can be triggered in the nether
 - Items no longer scatter when you death
 - Use bone meal on the side of the coral block to make it grow a coral fan, and use bone meal on the top to grow coral
+- Dig powder snow to get snowballs
 - The Snow Golem standing on the water will turn the water into ice
     - `/gamerule iceGolem true`
 - Sneak in composer can produce bone meal
