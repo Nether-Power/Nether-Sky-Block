@@ -127,7 +127,7 @@ public class TheNetherBiomeCreatorMixin {
         );
     }
 
-    @Inject(method = "createBasaltDeltas", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "createNetherWastes", at = @At("HEAD"), cancellable = true)
     private static void createNetherWastes(CallbackInfoReturnable<Biome> cir){
         SpawnSettings spawnSettings = new SpawnSettings.Builder()
                 .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 4, 4))

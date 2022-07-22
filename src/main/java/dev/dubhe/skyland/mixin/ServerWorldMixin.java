@@ -24,7 +24,7 @@ public class ServerWorldMixin {
         ChunkPos chunkPos = chunk.getPos();
         int i = chunkPos.getStartX();
         int j = chunkPos.getStartZ();
-        if (((ServerWorld) (Object) this).random.nextInt(16) == 0) {
+        if (((ServerWorld) (Object) this).random.nextInt(64) == 0) {
             blockPos = ((ServerWorld) (Object) this).getTopPosition(Heightmap.Type.MOTION_BLOCKING,
                     ((ServerWorld) (Object) this).getRandomPosInChunk(i, 0, j, 15));
             BlockPos blockPos2 = blockPos.down();
