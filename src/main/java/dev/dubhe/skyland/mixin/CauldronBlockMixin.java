@@ -19,7 +19,7 @@ public class CauldronBlockMixin {
     @Inject(method = "precipitationTick", at = @At("HEAD"))
     private void precipitationTick(BlockState state, World world, BlockPos pos, Precipitation precipitation,
             CallbackInfo ci){
-        if (world.getBiome(pos).matchesKey(BiomeKeys.BASALT_DELTAS)){
+        if (world.getBiome(pos).matchesId(BiomeKeys.BASALT_DELTAS.getValue())){
             world.setBlockState(pos, Blocks.POWDER_SNOW_CAULDRON.getDefaultState());
             world.emitGameEvent(null, GameEvent.BLOCK_CHANGE, pos);
         }

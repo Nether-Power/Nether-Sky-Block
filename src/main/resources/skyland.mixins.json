@@ -16,6 +16,7 @@
     "PlayerInventoryMixin",
     "SellItemFactoryAccessor",
     "ServerPlayerEntityMixin",
+    "ServerWorldMixin",
     "SlimeEntityMixin",
     "SnowGolemEntityMixin",
     "SpawnHelperMixin",
