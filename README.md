@@ -3,7 +3,7 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.19-66ccff)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Fabric-0.14.8-fcd217)](https://fabricmc.net/use/installer/)
 [![Fabric API](https://img.shields.io/badge/FabricAPI-0.57.0+1.19-b2cf87)](https://modrinth.com/mod/fabric-api)
-[![Version](https://img.shields.io/badge/Version-1.0.0-9787c5)](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest)
+[![Version](https://img.shields.io/badge/Version-1.1.0-9787c5)](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest)
 [![KOOK](https://img.shields.io/badge/KOOK-eZ59fk-c6574b)](https://kook.top/eZ59fk)
 
 
