@@ -137,12 +137,12 @@ public class TheNetherBiomeCreatorMixin {
                 .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 4, 4))
                 .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2))
 
-                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 1, 1, 1))
-                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.COW, 1, 1, 1))
-                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.SHEEP, 1, 1, 1))
-                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.LLAMA, 1, 1, 1))
-                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.HORSE, 1, 1, 1))
-                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.DONKEY, 1, 1, 1))
+                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 7, 1, 3))
+                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.COW, 7, 1, 3))
+                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.SHEEP, 7, 1, 3))
+                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.LLAMA, 7, 1, 3))
+                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.HORSE, 7, 1, 3))
+                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.DONKEY, 7, 1, 3))
 
                 .build();
         GenerationSettings.Builder builder = new GenerationSettings.Builder()
