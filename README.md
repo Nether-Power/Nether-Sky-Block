@@ -85,7 +85,7 @@
   - 马
   - 羊
   - 驴
-  - 骆驼
+  - 羊驼
   - 狼
 - 死亡后会记忆死亡前的饱食度
   - `/gamerule memoryFoodLevel true`

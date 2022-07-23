@@ -23,7 +23,7 @@ import java.io.File;
 import java.io.IOException;
 
 @Mixin(ServerPlayerEntity.class)
-public class ServerPlayerEntityMixin {
+public abstract class ServerPlayerEntityMixin {
 
 
     @Shadow
