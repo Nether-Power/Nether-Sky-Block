@@ -85,7 +85,7 @@ public class TheNetherBiomeCreatorMixin {
                 .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 40, 1, 1))
                 .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 100, 2, 5))
                 .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2))
-                .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SLIME, 100, 2, 5))
+                .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SLIME, 10, 2, 5))
                 .build();
         GenerationSettings.Builder builder = new GenerationSettings.Builder()
                 .carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE)
