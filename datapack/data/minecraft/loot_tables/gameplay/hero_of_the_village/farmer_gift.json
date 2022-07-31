@@ -6,19 +6,23 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:bread"
+          "name": "minecraft:bread",
+          "weight": 30
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:pumpkin_pie"
+          "name": "minecraft:pumpkin_pie",
+          "weight": 30
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:cookie"
+          "name": "minecraft:cookie",
+          "weight": 30
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:pumpkin_seeds"
+          "name": "minecraft:pumpkin",
+          "weight": 1
         }
       ],
       "rolls": 1.0
