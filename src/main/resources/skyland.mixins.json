@@ -9,7 +9,6 @@
     "EnderDragonFightMixin",
     "FallingBlockEntityMixin",
     "FluidBlockMixin",
-    "ItemEntityMixin",
     "LeveledCauldronBlockMixin",
     "MinecraftServerMixin",
     "PatrolSpawnerMixin",

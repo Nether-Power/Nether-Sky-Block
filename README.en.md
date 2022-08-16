@@ -75,7 +75,6 @@
     - The world will generate `8` End Portal frames with a radius of `1024` centered on `spawnpoint`
 - Anvil Handle
     - `/gamerule anvilHandle true`
-    - Wash the basalt that consumes all water into Dripstone Block in the Water Cauldron (full of water)
     - Press a Moss Block and a Dirt into a Grass Block
 - The Raid can be triggered in the nether
 - Items no longer scatter when you death
