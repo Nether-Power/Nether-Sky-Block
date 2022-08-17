@@ -19,16 +19,15 @@ public class WaterCreatureEntityMixin {
     @Inject(method = "canSpawn(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;)Z", at = @At("RETURN"), cancellable = true)
     private static void canSpawn(EntityType<? extends WaterCreatureEntity> type, WorldAccess world, SpawnReason reason,
             BlockPos pos, Random random, CallbackInfoReturnable<Boolean> cir){
-        int i = world.getSeaLevel();
-        int j = i - 13;
-        boolean bl = pos.getY() >= j && pos.getY() <= i && world.getFluidState(pos.down()).isIn(FluidTags.WATER) && world.getBlockState(pos.up()).isOf(
-                Blocks.WATER);
-        boolean bl2 = world.getBlockState(pos.down()).isOf(Blocks.BRAIN_CORAL_BLOCK)
-                || world.getBlockState(pos.down()).isOf(Blocks.BUBBLE_CORAL_BLOCK)
-                || world.getBlockState(pos.down()).isOf(Blocks.FIRE_CORAL_BLOCK)
-                || world.getBlockState(pos.down()).isOf(Blocks.BUBBLE_CORAL_BLOCK)
-                || world.getBlockState(pos.down()).isOf(Blocks.TUBE_CORAL_BLOCK);
-        boolean bl3 = bl && bl2;
-        cir.setReturnValue(bl3);
+        boolean bl = world.getFluidState(pos).isIn(FluidTags.WATER);
+        while (world.getFluidState(pos).isIn(FluidTags.WATER)){
+            pos = pos.down();
+        }
+        boolean bl2 = world.getBlockState(pos).isOf(Blocks.BRAIN_CORAL_BLOCK) ||
+                world.getBlockState(pos).isOf(Blocks.BUBBLE_CORAL_BLOCK) ||
+                world.getBlockState(pos).isOf(Blocks.FIRE_CORAL_BLOCK) ||
+                world.getBlockState(pos).isOf(Blocks.BUBBLE_CORAL_BLOCK) ||
+                world.getBlockState(pos).isOf(Blocks.TUBE_CORAL_BLOCK);
+        cir.setReturnValue(bl && bl2);
     }
 }

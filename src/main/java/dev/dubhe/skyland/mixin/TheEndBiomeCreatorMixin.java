@@ -25,10 +25,20 @@ public class TheEndBiomeCreatorMixin {
                 new SpawnSettings.SpawnEntry(EntityType.SQUID, 2, 1, 4)
         );
         DefaultBiomeFeatures.addEndMobs(builder2);
-        Biome biome = new Biome.Builder().precipitation(Biome.Precipitation.NONE).temperature(0.5f).downfall(0.5f)
-                .effects(new BiomeEffects.Builder().waterColor(4159204).waterFogColor(329011).fogColor(0xA080A0)
-                        .skyColor(0).moodSound(
-                                BiomeMoodSound.CAVE).build()).spawnSettings(builder2.build())
+        Biome biome = new Biome.Builder()
+                .precipitation(Biome.Precipitation.NONE)
+                .temperature(0.5f)
+                .downfall(0.5f)
+                .effects(
+                        new BiomeEffects.Builder()
+                                .waterColor(4159204)
+                                .waterFogColor(329011)
+                                .fogColor(0xA080A0)
+                                .skyColor(0)
+                                .moodSound(BiomeMoodSound.CAVE)
+                                .build()
+                )
+                .spawnSettings(builder2.build())
                 .generationSettings(builder.build()).build();
         cir.setReturnValue(biome);
     }
