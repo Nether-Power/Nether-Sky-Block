@@ -19,8 +19,10 @@
     "SlimeEntityMixin",
     "SnowGolemEntityMixin",
     "SpawnHelperMixin",
+    "TheEndBiomeCreatorMixin",
     "TheNetherBiomeCreatorMixin",
     "WanderingTraderManagerMixin",
+    "WaterCreatureEntityMixin",
     "WorldPresetsRegistrarMixin",
     "ZombieEntityMixin"
   ],

@@ -67,6 +67,7 @@
   spawn increases to 30%）
     - `/gamerule netherTrader true`
 - Delete the Emerald for Pumpkin Pie transaction when the Farmer Villager apprentice level is removed
+- The water above the coral blocks will spawn squid
 - When you kill the resurrected Ender Dragon, you will refresh the Shulker above the Exit portal
     - `/gamerule killDragonSpawnShulker true`
 - When you kill the Ender Dragon, you will drop an Elytra with the remaining 1% durability
@@ -112,6 +113,7 @@
     - Blast furnace recipe of replacing Smooth Stone with Obsidian
     - Burn the Nether Wart Block in the blast furnace to obtain the Nether Wart Block
     - Use the stone cutter to cut the dripstone block to obtain dripstone
+    - Glow ink sac synthesized by glowstone powder and ink sac
 - Modify piglin transaction
     - Delete Fire Resistance Potion trading
     - Increase Blackstone trading probability
