@@ -1,0 +1,40 @@
+{
+  "values": [
+    {
+      "id": "skyland:wandering_trader/nether_wart",
+      "required": false
+    },
+    {
+      "id": "skyland:wandering_trader/bamboo",
+      "required": false
+    },
+    {
+      "id": "skyland:wandering_trader/sea_pickle",
+      "required": false
+    },
+    {
+      "id": "skyland:wandering_trader/cocoa_beans",
+      "required": false
+    },
+    {
+      "id": "skyland:wandering_trader/sunflower",
+      "required": false
+    },
+    {
+      "id": "skyland:wandering_trader/lilac",
+      "required": false
+    },
+    {
+      "id": "skyland:wandering_trader/rose_bush",
+      "required": false
+    },
+    {
+      "id": "skyland:wandering_trader/peony",
+      "required": false
+    },
+    {
+      "id": "skyland:wandering_trader/turtle_egg",
+      "required": false
+    }
+  ]
+}

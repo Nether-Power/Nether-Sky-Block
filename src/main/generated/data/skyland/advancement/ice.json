@@ -1,0 +1,33 @@
+{
+  "parent": "skyland:water",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:ice"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:block/crimson_planks",
+    "description": {
+      "translate": "advancement.skyland.ice.desc"
+    },
+    "icon": {
+      "id": "minecraft:ice"
+    },
+    "title": {
+      "translate": "advancement.skyland.ice.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

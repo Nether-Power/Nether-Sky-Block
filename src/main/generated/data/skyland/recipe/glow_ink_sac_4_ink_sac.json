@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:ink_sac",
+    "minecraft:glowstone_dust"
+  ],
+  "result": {
+    "id": "minecraft:glow_ink_sac"
+  }
+}

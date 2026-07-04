@@ -1,0 +1,33 @@
+{
+  "parent": "skyland:kill_zombified_piglin",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:gold_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:block/crimson_planks",
+    "description": {
+      "translate": "advancement.skyland.gold_ingot.desc"
+    },
+    "icon": {
+      "id": "minecraft:gold_ingot"
+    },
+    "title": {
+      "translate": "advancement.skyland.gold_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "skyland:gold_ingot",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:blast_furnace"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:block/crimson_planks",
+    "description": {
+      "translate": "advancement.skyland.blast_furnace.desc"
+    },
+    "icon": {
+      "id": "minecraft:blast_furnace"
+    },
+    "title": {
+      "translate": "advancement.skyland.blast_furnace.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "minecraft:farmer/2/pumpkin_emerald",
+      "required": false
+    },
+    {
+      "id": "minecraft:farmer/2/emerald_apple",
+      "required": false
+    }
+  ]
+}

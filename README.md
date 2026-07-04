@@ -1,19 +1,21 @@
+<div align="center" style="align-items: center">
+
 # 下界空岛 | Nether Sky Block
 
-[![Minecraft](https://img.shields.io/badge/Minecraft-1.19-66ccff)](https://www.minecraft.net/)
-[![Fabric](https://img.shields.io/badge/Fabric-0.14.8-fcd217)](https://fabricmc.net/use/installer/)
-[![Fabric API](https://img.shields.io/badge/FabricAPI-0.57.0+1.19-b2cf87)](https://modrinth.com/mod/fabric-api)
-[![Version](https://img.shields.io/badge/Version-1.1.0-9787c5)](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest)
-[![KOOK](https://img.shields.io/badge/KOOK-eZ59fk-c6574b)](https://kook.top/eZ59fk)
+![Java25](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/built-with/java25_vector.svg)
+![Fabric](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg)
 
+![Unsupported Forge](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/unsupported/forge_vector.svg)
+![Unsupported NeoForge](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/unsupported/neoforge_vector.svg)
 
-[![Build Mod](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)](https://github.com/Nether-Power/Nether-Sky-Block/actions/workflows/build.yml/badge.svg)
-[![license](https://img.shields.io/github/license/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/blob/main/LICENSE)
-[![pull request](https://img.shields.io/github/issues-pr/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/pulls)
-[![fork](https://img.shields.io/github/forks/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/network/members)
-[![star](https://img.shields.io/github/stars/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/stargazers)
-[![issue](https://img.shields.io/github/issues/Nether-Power/Nether-Sky-Block)](https://github.com/Nether-Power/Nether-Sky-Block/issues)
-[![Java](https://img.shields.io/badge/Java-17-yellow)](https://docs.microsoft.com/java/openjdk/download)
+[![HeyBox Chat](https://cdn.jsdelivr.net/npm/@gugle/devins-badges-plus/assets/cozy/social/heybox-chat_vector.svg)][HeyBox Chat]
+
+[![License](https://cdn.jsdelivr.net/npm/@gugle/devins-badges-plus/assets/cozy/license/lgpl-v3_vector.svg)][License]
+
+[HeyBox Chat]: https://chat.xiaoheihe.cn/378432
+[License]: https://spdx.org/licenses/LGPL-3.0-only.html
+
+</div>
 
 ## 中文 | [English](README.en.md)
 
@@ -21,17 +23,17 @@
 
 ### Client
 
-* 下载安装 `Minecraft 1.19`, 安装 `Fabric 0.14.8`
+* 下载安装 `Minecraft 26.1.2`, 安装 `Fabric 0.19.3`
 * 从 [Release](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并将 `mod` 放入 `mods` 文件夹
-* 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
+* 下载 `Fabric API 0.154.0+26.1.2`, 并放入 `mods` 文件夹
 * 创建世界时, 在 `更多选项` 中将 `世界类型` 调为 `空岛` 并添加数据包
 * 进入进入世界后，输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
 
 ### Server
 
-* 下载安装 `Minecraft Server 1.19`, 安装 `Fabric 0.14.8`
+* 下载安装 `Minecraft Server 26.1.2`, 安装 `Fabric 0.19.3`
 * 从 [Release](https://github.com/Nether-Power/Nether-Sky-Block/releases/latest) 下载最新发行版 `mod` 和 `datapack`, 并分别放入 `mods` 与 `world/datapacks` 文件夹
-* 下载 `Fabric API 0.57.0+1.19`, 并放入 `mods` 文件夹
+* 下载 `Fabric API 0.154.0+26.1.2`, 并放入 `mods` 文件夹
 * 创建世界时, 在 `server.properties` 中将 `level-type` 调为 `skyland:skyland`
 * 开启服务器后，在控制台输入 `/skyland gamerule true` 命令打开地狱空岛的所需规则
 
@@ -45,41 +47,41 @@
 - 一键开关所有特性
   - `/skyland gamerule <true|false>`
 - 忽略LC值对刷怪效率的影响
-  - `/gamerule qnmdLC true`
+  - `/gamerule skyland:qnmd_lc true`
 - 使流浪商人的刷新概率提升10倍
-  - `/gamerule chieftainMode true`
+  - `/gamerule skyland:chieftain_mode true`
 - 创建地图时会在Y轴64创建一个初始平台(一个绯红菌岩、一个诡异菌岩、绯红菌岩上方种植绯红菌、诡异菌岩上方挂着放着苹果的展示框)
 - 第一个玩家第一次进入世界时给予32个骨粉
 - 僵尸猪灵和僵尸触发僵尸增援时生成僵尸村民
-  - `/gamerule villagerReinforcements true`
+  - `/gamerule skyland:villager_reinforcements true`
 - 下界会生成灾厄巡逻队
-  - `/gamerule netherPatrol true`
+  - `/gamerule skyland:nether_patrol true`
 - 灵魂沙峡谷刷新女巫（概率极低）
 - 堡垒遗迹刷新劫掠者
 - 玄武岩三角洲刷新史莱姆
 - 储水炼药锅（满水）旁的熔岩转化为黑曜石并消耗储水炼药锅内的全部水
-  - `/gamerule waterCauldron true`
+  - `/gamerule skyland:water_cauldron true`
 - 使下界群系可以生成骑着赤足兽的游商（玩家40格半径最高点为熔岩时，每20min有10%概率生成，当第一次生成失败时后续生成概率提高至30%）
-  - `/gamerule netherTrader true`
+  - `/gamerule skyland:nether_trader true`
 - 删除农民学徒等级时的绿宝石换南瓜派交易
 - 珊瑚块上方的水会生成鱿鱼
 - 击杀复活的末影龙时会在祭坛上方刷新潜影贝
-  - `/gamerule killDragonSpawnShulker true`
+  - `/gamerule skyland:kill_dragon_spawn_shulker true`
 - 击杀末影龙时会掉落一个剩余1%耐久的鞘翅
-  - `/gamerule killDragonDropElytra true`
+  - `/gamerule skyland:kill_dragon_drop_elytra true`
 - 下界内生成末地传送门
   - 世界内会以 `出生点` 为中心, 半径 `1024` 生成 `8` 个末地门框架
 - 铁砧处理
-  - `/gamerule anvilHandle true`
+  - `/gamerule skyland:anvil_handle true`
   - 将一个苔藓块与一个泥土压合成草方块
 - 在下界里可以触发袭击
 - 死亡时物品不再散开
 - 对着珊瑚块侧面使用骨粉使之生长出珊瑚扇，对其顶面使用骨粉生长出珊瑚
 - 挖掘细雪获取雪球
 - 雪傀儡站在水上面会将水变为冰
-  - `/gamerule iceGolem true`
+  - `/gamerule skyland:ice_golem true`
 - 站在堆肥桶中下蹲，可以产生骨粉
-  - `/gamerule composterBoneMeal true`
+  - `/gamerule skyland:composter_bone_meal true`
 - 下界荒地的草方块上会生成以下动物
   - 牛
   - 马
@@ -88,9 +90,9 @@
   - 羊驼
   - 狼
 - 死亡后会记忆死亡前的饱食度
-  - `/gamerule memoryFoodLevel true`
-- 死亡复活后最低饱食度（在规则 `memoryFoodLevel` 开启后有效, 默认为 `4`）
-  - `/gamerule respawnMinFoodLevel 4`
+  - `/gamerule skyland:memory_food_level true`
+- 死亡复活后最低饱食度（在规则 `memory_food_level` 开启后有效, 默认为 `4`）
+  - `/gamerule skyland:respawn_min_food_level 4`
 - 玄武岩三角洲接细雪
 - 游商会交易除基础物品外的额外物品
 

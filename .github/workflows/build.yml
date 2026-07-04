@@ -2,8 +2,7 @@ name: build
 on:
   push:
     branches:
-      - "1.19"
-      - "1.18.2"
+      - "26.1.2"
     paths:
       - "*.gradle"
       - "gradle.properties"
@@ -16,7 +15,7 @@ jobs:
   build:
     strategy:
       matrix:
-        java: [ 17 ]
+        java: [ 25 ]
         os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     steps:
@@ -32,7 +31,7 @@ jobs:
           java-version: ${{ matrix.java }}
       
       - name: Cache gradle files
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -49,7 +48,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build --no-daemon --stacktrace
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: build-artifact
           path: build/libs/**

@@ -1,124 +1,93 @@
 plugins {
-    id 'fabric-loom' version '0.12-SNAPSHOT'
-    id 'io.github.juuxel.loom-quiltflower' version '1.7.3'
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
     id 'maven-publish'
 }
 
 version = project.mod_version
 group = project.maven_group
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-
-sourceSets {
-    main {
-        resources {
-            srcDirs += [
-                    "src/main/generated"
-            ]
-        }
+repositories {
+    maven {
+        name = "CurseForge"
+        url = "https://cursemaven.com"
+        content { includeGroup "curse.maven" }
     }
 }
 
 loom {
-    accessWidenerPath =  file("src/main/resources/skyland.accesswidener")
+    splitEnvironmentSourceSets()
 
-    runs {
-        datagen {
-            server()
+    accessWidenerPath = file("src/main/resources/skyland.accesswidener")
 
-            name "Minecraft Data"
-
-            vmArg "-Dfabric-api.datagen"
-            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-
-            runDir "build/datagen"
+    mods {
+        "modid" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
         }
     }
 }
-assemble.dependsOn runDatagen
 
-repositories {
-    maven {
-        url "https://cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
+fabricApi {
+    configureDataGeneration()
 }
+
 dependencies {
-    minecraft "com.mojang:minecraft:${project.mc_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_version}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    // To change the versions see the gradle.properties file
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-    // Nullable
-    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
-
-    // Add other mod.
-    modImplementation "curse.maven:jade-324717:${jade_file}"
-
+    // Jade (compile only - client side)
+    "clientCompileOnly" "curse.maven:jade-324717:${project.jade_file}"
 }
 
 processResources {
-    inputs.property "version", project.version
+    def version = project.version
+    inputs.property "version", version
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand "version": version
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = 17
+    it.options.release = 25
 }
 
 java {
-//    withSourcesJar()
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+    // if it is present.
+    // If you remove this line, sources will not be generated.
+    withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
 
 jar {
+    def projectName = project.name
+    inputs.property "projectName", projectName
+
     from("LICENSE") {
-        rename { "${it}_${project.name}" }
+        rename { "${it}_$projectName"}
     }
 }
 
+// configure the maven publication
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            artifact(remapJar) {
-                builtBy remapJar
-            }
-//            artifact(sourcesJar) {
-//                builtBy remapSourcesJar
-//            }
+        create("mavenJava", MavenPublication) {
+            from components.java
         }
     }
 
-    def ENV = System.getenv()
-    if (ENV.MAVEN_URL) {
-        repositories.maven {
-            url ENV.MAVEN_URL
-            credentials {
-                username ENV.MAVEN_USERNAME
-                password ENV.MAVEN_PASSWORD
-            }
-        }
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+        // Notice: This block does NOT have the same function as the block in the top level.
+        // The repositories here will be used for publishing your artifact, not for
+        // retrieving dependencies.
     }
 }
-
-task build_datapack(type: Zip) {
-    archiveName "${project.name}-datapack-${project.version}.zip"
-
-    destinationDir file('build/libs')
-
-    from 'datapack'
-    from("LICENSE") {
-        rename { "${it}_${project.name}" }
-    }
-}
-
-build.dependsOn build_datapack

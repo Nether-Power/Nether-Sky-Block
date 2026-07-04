@@ -1,4 +1,2 @@
-accessWidener	v1	named
-extendable	class	net/minecraft/world/gen/chunk/NoiseChunkGenerator
-
-accessible  class   net/minecraft/village/TradeOffers$SellItemFactory
+accessWidener	v1	official
+extendable	class	net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator

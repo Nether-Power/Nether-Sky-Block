@@ -1,49 +1,49 @@
 package dev.dubhe.skyland.mixin;
 
 import dev.dubhe.skyland.SkyLandGamerules;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.SpawnHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.ChunkSection;
-import net.minecraft.world.chunk.WorldChunk;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.NaturalSpawner;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunkSection;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(SpawnHelper.class)
+@Mixin(NaturalSpawner.class)
 public class SpawnHelperMixin {
-
-    @Shadow
-    public static void spawnEntitiesInChunk(SpawnGroup group, ServerWorld world, Chunk chunk, BlockPos pos,
-            SpawnHelper.Checker checker, SpawnHelper.Runner runner) {
-    }
-
-    @Inject(method = "spawnEntitiesInChunk(Lnet/minecraft/entity/SpawnGroup;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/chunk/WorldChunk;Lnet/minecraft/world/SpawnHelper$Checker;Lnet/minecraft/world/SpawnHelper$Runner;)V", at = @At("HEAD"), cancellable = true)
-    private static void spawnEntities(SpawnGroup group, ServerWorld world, WorldChunk chunk,
-            SpawnHelper.Checker checker, SpawnHelper.Runner runner, CallbackInfo ci) {
-        if (world.getGameRules().getBoolean(SkyLandGamerules.LC)) {
-            for (int i = chunk.getBottomY(); i < chunk.getTopY(); i += 16) {
-                ChunkSection chunkSection = chunk.getSectionArray()[chunk.getSectionIndex(i)];
-                if (chunkSection != null && !chunkSection.isEmpty()) {
-                    BlockPos blockPos = getRandomPosInChunk(world, chunk).add(0, i, 0);
-                    spawnEntitiesInChunk(group, world, chunk, blockPos, checker, runner);
+    @Inject(
+        method = "spawnCategoryForChunk("
+                 + "Lnet/minecraft/world/entity/MobCategory;"
+                 + "Lnet/minecraft/server/level/ServerLevel;"
+                 + "Lnet/minecraft/world/level/chunk/LevelChunk;"
+                 + "Lnet/minecraft/world/level/NaturalSpawner$SpawnPredicate;"
+                 + "Lnet/minecraft/world/level/NaturalSpawner$AfterSpawnCallback;"
+                 + ")V",
+        at = @At("HEAD"),
+        cancellable = true
+    )
+    private static void spawnEntities(
+        MobCategory category, ServerLevel level, LevelChunk chunk,
+        NaturalSpawner.SpawnPredicate predicate, NaturalSpawner.AfterSpawnCallback callback,
+        CallbackInfo ci
+    ) {
+        if (level.getGameRules().get(SkyLandGamerules.LC)) {
+            ChunkPos chunkPos = chunk.getPos();
+            for (int i = chunk.getMinY(); i < chunk.getMaxY(); i += 16) {
+                LevelChunkSection section = chunk.getSections()[chunk.getSectionIndex(i)];
+                if (section != null && !section.hasOnlyAir()) {
+                    int x = chunkPos.getMinBlockX() + level.getRandom().nextInt(16);
+                    int z = chunkPos.getMinBlockZ() + level.getRandom().nextInt(16);
+                    int y = level.getRandom().nextInt(16) + 1 + i;
+                    BlockPos blockPos = new BlockPos(x, y, z);
+                    NaturalSpawner.spawnCategoryForPosition(category, level, chunk, blockPos, predicate, callback);
                 }
             }
             ci.cancel();
         }
-    }
-
-    private static BlockPos getRandomPosInChunk(World world, WorldChunk chunk) {
-        ChunkPos chunkPos = chunk.getPos();
-        int x = chunkPos.getStartX() + world.random.nextInt(16);
-        int z = chunkPos.getStartZ() + world.random.nextInt(16);
-        int y = world.random.nextInt(16) + 1;
-        return new BlockPos(x, y, z);
     }
 }

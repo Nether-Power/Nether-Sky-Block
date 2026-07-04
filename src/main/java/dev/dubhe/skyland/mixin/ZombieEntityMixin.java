@@ -1,23 +1,22 @@
 package dev.dubhe.skyland.mixin;
 
 import dev.dubhe.skyland.SkyLandGamerules;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.entity.mob.ZombieVillagerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
+import dev.dubhe.skyland.SkyLandMod;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.SpawnHelper;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.zombie.Zombie;
+import net.minecraft.world.entity.monster.zombie.ZombieVillager;
+import net.minecraft.world.level.NaturalSpawner;
+import net.minecraft.world.level.gamerules.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,62 +24,75 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
 
-@Mixin(ZombieEntity.class)
+@Mixin(Zombie.class)
 public class ZombieEntityMixin {
+    @Inject(method = "hurtServer", at = @At("TAIL"))
+    private void zombieVillagerReinforcements(
+        ServerLevel level,
+        DamageSource source,
+        float damage,
+        CallbackInfoReturnable<Boolean> cir
+    ) {
+        Zombie zombie = (Zombie) (Object) this;
+        if (!level.getGameRules().get(SkyLandGamerules.VILLAGER_REINFORCEMENTS)) return;
 
-    protected final Random random = Random.create();
-
-    @Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/ZombieEntity;getTarget()Lnet/minecraft/entity/LivingEntity;", shift = At.Shift.AFTER), cancellable = true)
-    private void zombieVillager(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        ZombieEntity zombie = (ZombieEntity) (Object) this;
-        World world = zombie.world;
-        if (world.getGameRules().getBoolean(SkyLandGamerules.VILLAGER_REINFORCEMENTS)) {
-            LivingEntity livingEntity = zombie.getTarget();
-            if (livingEntity == null && source.getAttacker() instanceof LivingEntity) {
-                livingEntity = (LivingEntity) source.getAttacker();
-            }
-            if (livingEntity != null && world.getDifficulty() == Difficulty.HARD && (double) this.random.nextFloat() < (
-                    zombie.getAttributeValue(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS) * 2.0)
-                    && world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)
-                    && world instanceof ServerWorld serverWorld) {
-                int i = MathHelper.floor(zombie.getX());
-                int j = MathHelper.floor(zombie.getY());
-                int k = MathHelper.floor(zombie.getZ());
-                ZombieVillagerEntity zombieVillager = new ZombieVillagerEntity(EntityType.ZOMBIE_VILLAGER, serverWorld);
-                for (int l = 0; l < 50; ++l) {
-                    int m = i + MathHelper.nextInt(random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
-                    int n = j + MathHelper.nextInt(random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
-                    int o = k + MathHelper.nextInt(random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
-                    BlockPos blockPos = new BlockPos(m, n, o);
-                    EntityType<?> entityType = zombieVillager.getType();
-                    SpawnRestriction.Location location = SpawnRestriction.getLocation(entityType);
-                    if (!SpawnHelper.canSpawn(location, world, blockPos, entityType) || !SpawnRestriction.canSpawn(
-                            entityType, serverWorld, SpawnReason.REINFORCEMENT, blockPos, world.random)) {
-                        continue;
-                    }
-                    zombieVillager.setPosition(m, n, o);
-                    if (world.isPlayerInRange(m, n, o, 7.0) || !world.doesNotIntersectEntities(zombieVillager)
-                            || !world.isSpaceEmpty(zombieVillager) || world.containsFluid(
-                            zombieVillager.getBoundingBox())) {
-                        continue;
-                    }
-                    zombieVillager.setTarget(livingEntity);
-                    zombieVillager.initialize(serverWorld, world.getLocalDifficulty(zombieVillager.getBlockPos()),
-                            SpawnReason.REINFORCEMENT, null, null);
-                    serverWorld.spawnEntityAndPassengers(zombieVillager);
-                    Objects.requireNonNull(zombie.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS))
-                            .addPersistentModifier(
-                                    new EntityAttributeModifier("Zombie reinforcement caller charge", -0.05f,
-                                            EntityAttributeModifier.Operation.ADDITION));
-                    Objects.requireNonNull(
-                                    zombieVillager.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS))
-                            .addPersistentModifier(
-                                    new EntityAttributeModifier("Zombie reinforcement callee charge", -0.05f,
-                                            EntityAttributeModifier.Operation.ADDITION));
-                    break;
-                }
-            }
+        LivingEntity target = zombie.getTarget();
+        if (target == null && source.getEntity() instanceof LivingEntity attacker) {
+            target = attacker;
         }
-        cir.setReturnValue(true);
+        if (target == null) return;
+        if (level.getDifficulty() != Difficulty.HARD) return;
+
+        RandomSource random = zombie.getRandom();
+        double reinforcementChance = zombie.getAttributeValue(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+        if (random.nextFloat() >= reinforcementChance * 2.0) return;
+        if (!level.getGameRules().get(GameRules.SPAWN_MOBS)) return;
+
+        ZombieVillager zombieVillager = new ZombieVillager(EntityType.ZOMBIE_VILLAGER, level);
+        int i = Mth.floor(zombie.getX());
+        int j = Mth.floor(zombie.getY());
+        int k = Mth.floor(zombie.getZ());
+
+        for (int l = 0; l < 50; ++l) {
+            int m = i + Mth.nextInt(random, 7, 40) * Mth.nextInt(random, -1, 1);
+            int n = j + Mth.nextInt(random, 7, 40) * Mth.nextInt(random, -1, 1);
+            int o = k + Mth.nextInt(random, 7, 40) * Mth.nextInt(random, -1, 1);
+            BlockPos blockPos = new BlockPos(m, n, o);
+            if (!NaturalSpawner.isValidEmptySpawnBlock(
+                level,
+                blockPos,
+                level.getBlockState(blockPos),
+                level.getFluidState(blockPos),
+                EntityType.ZOMBIE_VILLAGER
+            )) {
+                continue;
+            }
+            zombieVillager.setPos(m, n, o);
+            if (level.hasNearbyAlivePlayer(m, n, o, 7.0) || !level.noCollision(zombieVillager) || level.containsAnyLiquid(
+                zombieVillager.getBoundingBox())) {
+                continue;
+            }
+            zombieVillager.setTarget(target);
+            zombieVillager.finalizeSpawn(
+                level,
+                level.getCurrentDifficultyAt(zombieVillager.blockPosition()),
+                EntitySpawnReason.REINFORCEMENT,
+                null
+            );
+            level.addFreshEntityWithPassengers(zombieVillager);
+            Objects.requireNonNull(zombie.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE))
+                .addPermanentModifier(new AttributeModifier(
+                    SkyLandMod.of("zombie_reinforcement_caller_charge"),
+                    -0.05,
+                    AttributeModifier.Operation.ADD_VALUE
+                ));
+            Objects.requireNonNull(zombieVillager.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE))
+                .addPermanentModifier(new AttributeModifier(
+                    SkyLandMod.of("zombie_reinforcement_callee_charge"),
+                    -0.05,
+                    AttributeModifier.Operation.ADD_VALUE
+                ));
+            break;
+        }
     }
 }

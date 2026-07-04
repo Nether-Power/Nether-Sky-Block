@@ -26,12 +26,16 @@
     ]
   },
   "mixins": [
-    "skyland.mixins.json"
+    "skyland.mixins.json",
+    {
+      "config": "skyland.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "accessWidener": "skyland.accesswidener",
   "depends": {
-    "minecraft": ">=1.19",
+    "minecraft": ">=26.1.2",
     "fabricloader": "*",
-    "fabric": "*"
+    "fabric-api": "*"
   }
 }

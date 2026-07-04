@@ -23,7 +23,7 @@ jobs:
           java-version: ${{ matrix.java }}
 
       - name: Cache gradle files
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -52,13 +52,13 @@ jobs:
           output="$(find build/libs/ ! -name "*.jar" -type f -printf "%f\n")"
           echo "::set-output name=zipname::$output"
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: build-artifact
           path: build/libs/**
 
       - name: Upload mod to Github
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
@@ -68,7 +68,7 @@ jobs:
           asset_content_type: application/java-archive
 
       - name: Upload datapack to Github
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:

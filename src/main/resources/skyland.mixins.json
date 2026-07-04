@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "dev.dubhe.skyland.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_25",
   "mixins": [
     "BoneMealItemMixin",
     "CauldronBlockMixin",
@@ -13,23 +13,19 @@
     "MinecraftServerMixin",
     "PatrolSpawnerMixin",
     "PlayerInventoryMixin",
-    "SellItemFactoryAccessor",
     "ServerPlayerEntityMixin",
-    "ServerWorldMixin",
     "SlimeEntityMixin",
     "SnowGolemEntityMixin",
     "SpawnHelperMixin",
-    "TheEndBiomeCreatorMixin",
-    "TheNetherBiomeCreatorMixin",
     "WanderingTraderManagerMixin",
     "WaterCreatureEntityMixin",
     "WorldPresetsRegistrarMixin",
     "ZombieEntityMixin"
   ],
-  "client": [
-    "IntegratedServerLoaderMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
   }
 }

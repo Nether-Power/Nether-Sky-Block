@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "dev.dubhe.skyland.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "client.IntegratedServerLoaderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

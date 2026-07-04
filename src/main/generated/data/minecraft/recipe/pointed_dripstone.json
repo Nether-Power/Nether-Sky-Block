@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "minecraft:dripstone_block",
+  "result": {
+    "id": "minecraft:pointed_dripstone"
+  }
+}

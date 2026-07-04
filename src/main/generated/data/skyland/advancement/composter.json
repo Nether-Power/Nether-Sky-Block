@@ -1,0 +1,33 @@
+{
+  "parent": "skyland:wood",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:composter"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:block/crimson_planks",
+    "description": {
+      "translate": "advancement.skyland.composter.desc"
+    },
+    "icon": {
+      "id": "minecraft:composter"
+    },
+    "title": {
+      "translate": "advancement.skyland.composter.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

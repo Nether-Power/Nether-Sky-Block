@@ -1,13 +1,13 @@
 package dev.dubhe.skyland.mixin;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CauldronBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome.Precipitation;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CauldronBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,13 +15,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CauldronBlock.class)
 public class CauldronBlockMixin {
-
-    @Inject(method = "precipitationTick", at = @At("HEAD"))
-    private void precipitationTick(BlockState state, World world, BlockPos pos, Precipitation precipitation,
-            CallbackInfo ci){
-        if (world.getBiome(pos).matchesId(BiomeKeys.BASALT_DELTAS.getValue())){
-            world.setBlockState(pos, Blocks.POWDER_SNOW_CAULDRON.getDefaultState());
-            world.emitGameEvent(null, GameEvent.BLOCK_CHANGE, pos);
+    @Inject(method = "handlePrecipitation", at = @At("HEAD"))
+    private void handleBasaltDeltasPrecipitation(
+        BlockState state, Level level, BlockPos pos,
+        Biome.Precipitation precipitation, CallbackInfo ci
+    ) {
+        if (level.getBiome(pos).is(Biomes.BASALT_DELTAS)) {
+            level.setBlockAndUpdate(pos, Blocks.POWDER_SNOW_CAULDRON.defaultBlockState());
+            level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
         }
     }
 }

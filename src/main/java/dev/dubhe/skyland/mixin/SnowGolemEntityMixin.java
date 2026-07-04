@@ -1,37 +1,44 @@
 package dev.dubhe.skyland.mixin;
 
-
 import dev.dubhe.skyland.SkyLandGamerules;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.passive.SnowGolemEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.animal.golem.SnowGolem;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(SnowGolemEntity.class)
+@Mixin(SnowGolem.class)
 public class SnowGolemEntityMixin {
-
-    @Inject(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getDefaultState()Lnet/minecraft/block/BlockState;"))
+    @Inject(
+        method = "aiStep",
+        at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/world/level/block/Block;defaultBlockState()Lnet/minecraft/world/level/block/state/BlockState;",
+            ordinal = 0
+        )
+    )
     private void setIce(CallbackInfo ci) {
-        World world = ((SnowGolemEntity) (Object) this).world;
-        BlockState iceState = Blocks.ICE.getDefaultState();
-        if (world.getGameRules().getBoolean(SkyLandGamerules.ICE_GOLEM)) {
-            for (int l = 0; l < 4; ++l) {
-                int i = MathHelper.floor(
-                        ((SnowGolemEntity) (Object) this).getX() + (double) ((float) (l % 2 * 2 - 1) * 0.25F));
-                int j = MathHelper.floor(((SnowGolemEntity) (Object) this).getY());
-                int k = MathHelper.floor(
-                        ((SnowGolemEntity) (Object) this).getZ() + (double) ((float) (l / 2 % 2 * 2 - 1) * 0.25F));
-                BlockPos icePos = new BlockPos(i, j - 1, k);
-                BlockState state = world.getBlockState(icePos);
-                if (state.isOf(Blocks.WATER) && state.getFluidState().isStill() && iceState.canPlaceAt(world, icePos)) {
-                    world.setBlockState(icePos, iceState);
-                }
+        SnowGolem self = (SnowGolem) (Object) this;
+        Level level = self.level();
+        if (!(level instanceof ServerLevel serverLevel)) return;
+        if (!serverLevel.getGameRules().get(SkyLandGamerules.ICE_GOLEM)) return;
+
+        BlockState iceState = Blocks.ICE.defaultBlockState();
+        for (int l = 0; l < 4; ++l) {
+            int i = Mth.floor(self.getX() + (l % 2 * 2 - 1) * 0.25F);
+            int j = Mth.floor(self.getY());
+            int k = Mth.floor(self.getZ() + (l / 2.0 % 2 * 2 - 1) * 0.25F);
+            BlockPos icePos = new BlockPos(i, j - 1, k);
+            BlockState state = level.getBlockState(icePos);
+            if (state.is(Blocks.WATER) && state.getFluidState().isSource()
+                && iceState.canSurvive(level, icePos)) {
+                level.setBlockAndUpdate(icePos, iceState);
             }
         }
     }

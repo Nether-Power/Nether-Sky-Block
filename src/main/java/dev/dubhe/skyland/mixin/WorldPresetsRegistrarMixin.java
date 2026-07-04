@@ -1,89 +1,75 @@
 package dev.dubhe.skyland.mixin;
 
-import dev.dubhe.skyland.SkyLandMod;
 import dev.dubhe.skyland.SkyLandChunkGenerator;
-import net.minecraft.structure.StructureSet;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.BiomeSource;
-import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
-import net.minecraft.world.biome.source.TheEndBiomeSource;
-import net.minecraft.world.dimension.DimensionOptions;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.gen.WorldPreset;
-import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
+import dev.dubhe.skyland.SkyLandMod;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterLists;
+import net.minecraft.world.level.biome.TheEndBiomeSource;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+import net.minecraft.world.level.levelgen.presets.WorldPreset;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Map;
-import java.util.OptionalLong;
 
-@Mixin(targets = "net.minecraft.world.gen.WorldPresets$Registrar")
+@Mixin(targets = "net.minecraft.world.level.levelgen.presets.WorldPresets$Bootstrap")
 public class WorldPresetsRegistrarMixin {
+    @Unique
+    private static final ResourceKey<WorldPreset> SKYLAND = ResourceKey.create(
+        Registries.WORLD_PRESET, SkyLandMod.ID);
 
-    @Final
     @Shadow
-    private Registry<WorldPreset> worldPresetRegistry;
     @Final
+    private BootstrapContext<WorldPreset> context;
     @Shadow
-    private Registry<Biome> biomeRegistry;
     @Final
+    private HolderGetter<NoiseGeneratorSettings> noiseSettings;
     @Shadow
-    private Registry<StructureSet> structureSetRegistry;
     @Final
-    @Shadow
-    private Registry<ChunkGeneratorSettings> chunkGeneratorSettingsRegistry;
-    @Final
-    @Shadow
-    private Registry<DoublePerlinNoiseSampler.NoiseParameters> noiseParametersRegistry;
-    @Final
-    @Shadow
-    private RegistryEntry<DimensionType> theNetherDimensionType;
-    @Final
-    @Shadow
-    private Registry<DimensionType> dimensionTypeRegistry;
-    @Final
-    @Shadow
-    private RegistryEntry<DimensionType> theEndDimensionType;
+    private HolderGetter<MultiNoiseBiomeSourceParameterList> multiNoiseBiomeSourceParameterLists;
 
-    private static final DimensionType overNether = new DimensionType(OptionalLong.of(18000L), false, true, true, false,
-            1.0, false, true, 0, 256, 128, BlockTags.INFINIBURN_NETHER,
-            net.minecraft.world.dimension.DimensionTypes.THE_NETHER_ID, 0.1F,
-            new DimensionType.MonsterSettings(true, true, ConstantIntProvider.create(11), 15));
+    @Inject(method = "bootstrap", at = @At("TAIL"))
+    private void registerSkyLand(CallbackInfo ci) {
+        HolderGetter<DimensionType> dimensionTypes = context.lookup(Registries.DIMENSION_TYPE);
+        HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
+        Holder<DimensionType> netherDimensionType = dimensionTypes.getOrThrow(BuiltinDimensionTypes.NETHER);
+        Holder<NoiseGeneratorSettings> netherNoiseSettings = this.noiseSettings.getOrThrow(NoiseGeneratorSettings.NETHER);
+        Holder<NoiseGeneratorSettings> endNoiseSettings = this.noiseSettings.getOrThrow(NoiseGeneratorSettings.END);
+        Holder.Reference<MultiNoiseBiomeSourceParameterList> netherBiomePreset =
+            this.multiNoiseBiomeSourceParameterLists.getOrThrow(MultiNoiseBiomeSourceParameterLists.NETHER);
 
-    private static final RegistryKey<DimensionType> OVER_NETHER = RegistryKey.of(Registry.DIMENSION_TYPE_KEY,
-            new Identifier("over_nether"));
-
-    @Inject(method = "initAndGetDefault", at = @At("RETURN"))
-    private void register(CallbackInfoReturnable<RegistryEntry<WorldPreset>> cir) {
-        BuiltinRegistries.add(dimensionTypeRegistry, OVER_NETHER, overNether);
-        DimensionOptions overworld = this.createSkyDimensionOptions(
-                this.dimensionTypeRegistry.getOrCreateEntry(OVER_NETHER),
-                MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
-        DimensionOptions nether = this.createSkyDimensionOptions(this.theNetherDimensionType,
-                MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.NETHER);
-        DimensionOptions end = this.createSkyDimensionOptions(this.theEndDimensionType,
-                new TheEndBiomeSource(this.biomeRegistry), ChunkGeneratorSettings.END);
-        BuiltinRegistries.add(this.worldPresetRegistry, SkyLandMod.SKYLAND, new WorldPreset(
-                Map.of(DimensionOptions.OVERWORLD, overworld, DimensionOptions.NETHER, nether, DimensionOptions.END,
-                        end)));
-    }
-
-    private DimensionOptions createSkyDimensionOptions(RegistryEntry<DimensionType> type, BiomeSource biomes,
-            RegistryKey<ChunkGeneratorSettings> key) {
-        return new DimensionOptions(type,
-                new SkyLandChunkGenerator(this.structureSetRegistry, this.noiseParametersRegistry, biomes,
-                        this.chunkGeneratorSettingsRegistry.getOrCreateEntry(key)));
+        LevelStem overworld = new LevelStem(
+            netherDimensionType,
+            new SkyLandChunkGenerator(MultiNoiseBiomeSource.createFromPreset(netherBiomePreset), netherNoiseSettings)
+        );
+        LevelStem nether = new LevelStem(
+            netherDimensionType,
+            new SkyLandChunkGenerator(MultiNoiseBiomeSource.createFromPreset(netherBiomePreset), netherNoiseSettings)
+        );
+        Holder<DimensionType> endDimensionType = dimensionTypes.getOrThrow(BuiltinDimensionTypes.END);
+        LevelStem end = new LevelStem(
+            endDimensionType,
+            new SkyLandChunkGenerator(TheEndBiomeSource.create(biomes), endNoiseSettings)
+        );
+        context.register(
+            SKYLAND, new WorldPreset(
+                Map.of(LevelStem.OVERWORLD, overworld, LevelStem.NETHER, nether, LevelStem.END, end)
+            )
+        );
     }
 }

@@ -1,72 +1,87 @@
 package dev.dubhe.skyland.mixin;
 
-
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CoralWallFanBlock;
-import net.minecraft.item.BoneMealItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.BoneMealItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseCoralWallFanBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BoneMealItem.class)
 public class BoneMealItemMixin {
-
-    @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
-    private void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir){
-        World world = context.getWorld();
-        BlockPos blockPos = context.getBlockPos();
-        BlockPos blockPos2 = blockPos.offset(context.getSide());
-        BlockState blockState = world.getBlockState(blockPos);
-        boolean bl = blockState.isSideSolidFullSquare(world, blockPos, context.getSide());
-        if (bl && useOnGround(context.getStack(), world, blockPos2, blockState, context.getSide())) {
-            if (!world.isClient) {
-                world.syncWorldEvent(WorldEvents.BONE_MEAL_USED, blockPos2, 0);
+    @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
+    private void useOnCoral(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
+        Level level = context.getLevel();
+        BlockPos blockPos = context.getClickedPos();
+        BlockPos relativePos = blockPos.relative(context.getClickedFace());
+        BlockState blockState = level.getBlockState(blockPos);
+        boolean solid = blockState.isFaceSturdy(level, blockPos, context.getClickedFace());
+        if (solid && useOnGround(context.getItemInHand(), level, relativePos, blockState, context.getClickedFace())) {
+            if (!level.isClientSide()) {
+                level.levelEvent(1505, relativePos, 15);
             }
-            cir.setReturnValue(ActionResult.success(world.isClient));
+            cir.setReturnValue(InteractionResult.SUCCESS);
         }
     }
 
-    private static boolean useOnGround(ItemStack stack, World world, BlockPos blockPos, BlockState blockState, @Nullable Direction facing) {
-        BlockState blockState2 = world.getBlockState(blockPos);
-        if (facing == Direction.DOWN || !blockState2.getFluidState().isStill()) {
+    @Unique
+    private static boolean useOnGround(ItemStack stack, Level level, BlockPos blockPos, BlockState blockState, @Nullable Direction facing) {
+        BlockState stateAt = level.getBlockState(blockPos);
+        if (facing == null) return false;
+        if (facing == Direction.DOWN || !stateAt.getFluidState().isSource()) {
             return false;
         }
-        if (facing == Direction.UP){
-            if (blockState.getBlock() == Blocks.BUBBLE_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.BUBBLE_CORAL.getDefaultState());
-            } else if (blockState.getBlock() == Blocks.BRAIN_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.BRAIN_CORAL.getDefaultState());
-            } else if (blockState.getBlock() == Blocks.FIRE_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.FIRE_CORAL.getDefaultState());
-            } else if (blockState.getBlock() == Blocks.HORN_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.HORN_CORAL.getDefaultState());
-            } else if (blockState.getBlock() == Blocks.TUBE_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.TUBE_CORAL.getDefaultState());
+        if (facing == Direction.UP) {
+            if (blockState.is(Blocks.BUBBLE_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(blockPos, Blocks.BUBBLE_CORAL.defaultBlockState());
+            } else if (blockState.is(Blocks.BRAIN_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(blockPos, Blocks.BRAIN_CORAL.defaultBlockState());
+            } else if (blockState.is(Blocks.FIRE_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(blockPos, Blocks.FIRE_CORAL.defaultBlockState());
+            } else if (blockState.is(Blocks.HORN_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(blockPos, Blocks.HORN_CORAL.defaultBlockState());
+            } else if (blockState.is(Blocks.TUBE_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(blockPos, Blocks.TUBE_CORAL.defaultBlockState());
             }
         } else {
-            if (blockState.getBlock() == Blocks.BUBBLE_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.BUBBLE_CORAL_WALL_FAN.getDefaultState().with(CoralWallFanBlock.FACING, facing));
-            } else if (blockState.getBlock() == Blocks.BRAIN_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.BRAIN_CORAL_WALL_FAN.getDefaultState().with(CoralWallFanBlock.FACING, facing));
-            } else if (blockState.getBlock() == Blocks.FIRE_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.FIRE_CORAL_WALL_FAN.getDefaultState().with(CoralWallFanBlock.FACING, facing));
-            } else if (blockState.getBlock() == Blocks.HORN_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.HORN_CORAL_WALL_FAN.getDefaultState().with(CoralWallFanBlock.FACING, facing));
-            } else if (blockState.getBlock() == Blocks.TUBE_CORAL_BLOCK){
-                world.setBlockState(blockPos, Blocks.TUBE_CORAL_WALL_FAN.getDefaultState().with(CoralWallFanBlock.FACING, facing));
+            if (blockState.is(Blocks.BUBBLE_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(
+                    blockPos,
+                    Blocks.BUBBLE_CORAL_WALL_FAN.defaultBlockState().setValue(BaseCoralWallFanBlock.FACING, facing)
+                );
+            } else if (blockState.is(Blocks.BRAIN_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(
+                    blockPos,
+                    Blocks.BRAIN_CORAL_WALL_FAN.defaultBlockState().setValue(BaseCoralWallFanBlock.FACING, facing)
+                );
+            } else if (blockState.is(Blocks.FIRE_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(
+                    blockPos,
+                    Blocks.FIRE_CORAL_WALL_FAN.defaultBlockState().setValue(BaseCoralWallFanBlock.FACING, facing)
+                );
+            } else if (blockState.is(Blocks.HORN_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(
+                    blockPos,
+                    Blocks.HORN_CORAL_WALL_FAN.defaultBlockState().setValue(BaseCoralWallFanBlock.FACING, facing)
+                );
+            } else if (blockState.is(Blocks.TUBE_CORAL_BLOCK)) {
+                level.setBlockAndUpdate(
+                    blockPos,
+                    Blocks.TUBE_CORAL_WALL_FAN.defaultBlockState().setValue(BaseCoralWallFanBlock.FACING, facing)
+                );
             }
         }
-        stack.decrement(1);
+        stack.shrink(1);
         return true;
     }
 }

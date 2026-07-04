@@ -32,3 +32,5 @@ bin/
 
 run/
 /src/main/generated/.cache/
+ref/
+.claude/

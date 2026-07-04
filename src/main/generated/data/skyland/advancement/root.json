@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:block/crimson_planks",
+    "description": {
+      "translate": "advancement.skyland.root.desc"
+    },
+    "icon": {
+      "id": "minecraft:crimson_fungus"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.skyland.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

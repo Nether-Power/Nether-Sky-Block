@@ -1,108 +1,88 @@
 package dev.dubhe.skyland.mixin;
 
 import dev.dubhe.skyland.SkyLandGamerules;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.passive.StriderEntity;
-import net.minecraft.entity.passive.WanderingTraderEntity;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.BiomeTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.Heightmap.Type;
-import net.minecraft.world.WanderingTraderManager;
-import net.minecraft.world.level.ServerWorldProperties;
-import net.minecraft.world.poi.PointOfInterestStorage;
-import net.minecraft.world.poi.PointOfInterestTypes;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.monster.Strider;
+import net.minecraft.world.entity.npc.wanderingtrader.WanderingTrader;
+import net.minecraft.world.entity.npc.wanderingtrader.WanderingTraderSpawner;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap.Types;
+import net.minecraft.world.level.material.Fluids;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Optional;
-
-@Mixin(WanderingTraderManager.class)
+@Mixin(WanderingTraderSpawner.class)
 public abstract class WanderingTraderManagerMixin {
-
     @Shadow
     @Final
-    private Random random;
+    private RandomSource random;
 
-    @Shadow
-    @Final
-    private ServerWorldProperties properties;
-
-    @Redirect(method = "trySpawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/random/Random;nextInt(I)I"))
-    private int spawnX10(Random random, int value, ServerWorld world) {
-        return world.getGameRules().getBoolean(SkyLandGamerules.CHIEFTAIN) ? 0 : random.nextInt(value);
+    @Redirect(method = "spawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/RandomSource;nextInt(I)I"))
+    private int chieftainMode(RandomSource random, int bound, ServerLevel level) {
+        return level.getGameRules().get(SkyLandGamerules.CHIEFTAIN) ? 0 : random.nextInt(bound);
     }
 
-    @Inject(method = "trySpawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;getRandomAlivePlayer()Lnet/minecraft/server/network/ServerPlayerEntity;", shift = At.Shift.AFTER), cancellable = true)
-    private void spawn(ServerWorld world, CallbackInfoReturnable<Boolean> cir) {
-        if (world.getGameRules().getBoolean(SkyLandGamerules.NETHER_TRADER)) {
-            ServerPlayerEntity playerEntity = world.getRandomAlivePlayer();
-            if (!world.getGameRules().getBoolean(SkyLandGamerules.CHIEFTAIN) && this.random.nextFloat() >= 0.1) {
-                cir.setReturnValue(false);
-            }
-            if (playerEntity != null) {
-                BlockPos blockPos = playerEntity.getBlockPos();
-                PointOfInterestStorage pointOfInterestStorage = world.getPointOfInterestStorage();
-                Optional<BlockPos> optional = pointOfInterestStorage.getPosition(
-                        registryEntry -> registryEntry.matchesKey(PointOfInterestTypes.MEETING), pos -> true, blockPos,
-                        48, PointOfInterestStorage.OccupationStatus.ANY);
-                BlockPos blockPos2 = optional.orElse(blockPos);
-                BlockPos blockPos3 = this.getNearbySpawnPos(world, blockPos2);
-                if (blockPos3 != null && this.doesNotSuffocateAt(world, blockPos3)) {
-                    if (world.getBiome(blockPos3).isIn(BiomeTags.IS_NETHER)) {
-                        StriderEntity striderEntity = EntityType.STRIDER.spawn(world, null, null, null, blockPos3,
-                                SpawnReason.EVENT, false, false);
-                        WanderingTraderEntity wanderingTraderEntity = EntityType.WANDERING_TRADER.spawn(world, null,
-                                null, null, blockPos3, SpawnReason.EVENT, false, false);
-                        if (wanderingTraderEntity != null) {
-                            if (striderEntity != null) {
-                                striderEntity.saddle(null);
-                                wanderingTraderEntity.startRiding(striderEntity, true);
-                            }
-                            properties.setWanderingTraderId(wanderingTraderEntity.getUuid());
-                            wanderingTraderEntity.setDespawnDelay(48000);
-                            wanderingTraderEntity.setWanderTarget(blockPos2);
-                            wanderingTraderEntity.setPositionTarget(blockPos2, 16);
-                            cir.setReturnValue(true);
-                        }
-                    }
-                }
-            }
+    @Inject(method = "tick", at = @At("TAIL"))
+    private void spawnNetherTrader(ServerLevel level, boolean spawnEnemies, CallbackInfo ci) {
+        if (!level.getGameRules().get(SkyLandGamerules.NETHER_TRADER)) return;
+        if (!level.getGameRules().get(SkyLandGamerules.CHIEFTAIN) && random.nextFloat() >= 0.1f) return;
+
+        ServerPlayer player = level.getRandomPlayer();
+        if (player == null) return;
+
+        BlockPos blockPos = player.blockPosition();
+        BlockPos spawnPos = getNearbyLavaSpawnPos(level, blockPos);
+        if (spawnPos == null) return;
+
+        if (!level.getBiome(spawnPos).is(BiomeTags.IS_NETHER)) return;
+
+        WanderingTrader trader = EntityType.WANDERING_TRADER.create(level, EntitySpawnReason.EVENT);
+        if (trader == null) return;
+
+        trader.setPos(spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5);
+        trader.setDespawnDelay(48000);
+
+        Strider strider = EntityType.STRIDER.create(level, EntitySpawnReason.EVENT);
+        if (strider != null) {
+            strider.setPos(spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5);
+            strider.setItemSlot(EquipmentSlot.SADDLE, new ItemStack(Items.SADDLE));
+            level.addFreshEntityWithPassengers(strider);
+            trader.startRiding(strider, true, true);
         }
+
+        level.addFreshEntityWithPassengers(trader);
     }
 
+    @Unique
     @Nullable
-    private BlockPos getNearbySpawnPos(ServerWorld world, BlockPos pos) {
-        BlockPos blockPos = null;
-
+    private BlockPos getNearbyLavaSpawnPos(ServerLevel level, BlockPos pos) {
         for (int i = 0; i < 10; ++i) {
-            int j = pos.getX() + this.random.nextInt(48 * 2) - 48;
-            int k = pos.getZ() + this.random.nextInt(48 * 2) - 48;
-            int l = world.getTopY(Type.WORLD_SURFACE, j, k);
-            BlockPos blockPos2 = new BlockPos(j, l, k);
-            BlockPos blockPos3 = new BlockPos(j, l - 1, k);
-            BlockState blockState = world.getBlockState(blockPos3);
-            if (blockState.getFluidState().isOf(Fluids.LAVA) && blockState.getFluidState().isStill()) {
-                blockPos = blockPos2;
-                break;
+            int j = pos.getX() + this.random.nextInt(96) - 48;
+            int k = pos.getZ() + this.random.nextInt(96) - 48;
+            int l = level.getHeight(Types.WORLD_SURFACE, j, k);
+            BlockPos candidate = new BlockPos(j, l, k);
+            BlockPos below = new BlockPos(j, l - 1, k);
+            BlockState belowState = level.getBlockState(below);
+            if (belowState.getFluidState().is(Fluids.LAVA) && belowState.getFluidState().isSource()) {
+                return candidate;
             }
         }
-
-        return blockPos;
+        return null;
     }
-
-    @Shadow
-    protected abstract boolean doesNotSuffocateAt(BlockView world, BlockPos pos);
 }
